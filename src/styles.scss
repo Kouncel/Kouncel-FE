@@ -1,0 +1,137 @@
+/* You can add global styles to this file, and also import other style files */
+@font-face {
+  font-family: poppins;
+  src: url(assets/fonts/poppins/Poppins-Regular.otf);
+}
+
+@font-face {
+  font-family: poppins-bold;
+  src: url(assets/fonts/poppins/Poppins-Bold.otf);
+}
+
+body {
+  color: #fff;
+  font-family: poppins;
+  background: #000;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+span {
+  color: #fff;
+}
+
+h1 {
+  font-size: 36px;
+  font-family: poppins-bold;
+}
+
+a {
+  color: #fff;
+  text-decoration: none;
+}
+a:hover {
+  color: #fff;
+}
+
+.red {
+  color: #ab2331 !important;
+  text-decoration: underline !important;
+}
+
+.grey {
+  color: #646464 !important;
+  text-decoration: underline !important;
+}
+
+hr {
+  background-color: #ab2331;
+  width: 100px;
+  margin: 0 auto;
+  height: 7px !important;
+  border-radius: 5px;
+  opacity: 1;
+}
+
+input {
+  background: #272727 !important;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 17px;
+  width: 100%;
+  margin: 10px 0;
+}
+
+label {
+  float: left;
+  margin-top: 20px;
+}
+
+.ant-menu-light .ant-menu-item-active,
+.ant-menu-light .ant-menu-item:hover,
+.ant-menu-light .ant-menu-submenu-active,
+.ant-menu-light .ant-menu-submenu-title:hover,
+.ant-menu-light .ant-menu:not(.ant-menu-inline) .ant-menu-submenu-open {
+  color: #ab2331;
+}
+
+.ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-item-active,
+.ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-item-open,
+.ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-item-selected,
+.ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-item:hover,
+.ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-submenu-active,
+.ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-submenu-open,
+.ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-submenu-selected,
+.ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-submenu:hover,
+.ant-menu-submenu:hover > .ant-menu-submenu-title > .ant-menu-submenu-arrow,
+.ant-menu-submenu:hover
+  > .ant-menu-submenu-title
+  > .ant-menu-submenu-expand-icon,
+.ant-menu-vertical .ant-menu-submenu-selected,
+.ant-menu-vertical-left .ant-menu-submenu-selected,
+.ant-menu-vertical-right .ant-menu-submenu-selected {
+  color: #ab2331;
+}
+
+.ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-item-active::after,
+.ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-item-open::after,
+.ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-item-selected::after,
+.ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-item:hover::after,
+.ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-submenu-active::after,
+.ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-submenu-open::after,
+.ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-submenu-selected::after,
+.ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-submenu:hover::after {
+  border-bottom-color: #ab2331;
+}
+
+.link-btn {
+  background-color: #ab2331;
+  color: #fff;
+  text-decoration: none;
+  transition: all 0.2s ease-in-out;
+  padding: 7px 20px;
+  border-radius: 5px;
+}
+.link-btn:hover {
+  color: #fff;
+  background-color: darken(#ab2331, 10);
+}
+
+button {
+  background-color: #ab2331;
+  color: #fff;
+  text-decoration: none;
+  transition: all 0.2s ease-in-out;
+  padding: 10px 17px;
+  border-radius: 5px;
+  border: none;
+  width: 100%;
+}
+
+button:hover {
+  background-color: darken(#ab2331, 10);
+}
