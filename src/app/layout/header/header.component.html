@@ -6,7 +6,7 @@
                     <img src="assets/logo.png" />
                 </a>
             </div>
-            <div class="col-7">
+            <div class="col-6">
                 <ul nz-menu nzMode="horizontal" class="header-menu">
                     <li nz-menu-item>
                         <a [routerLink]="['/']" routerLinkActive="router-link-active">Home</a>
@@ -28,8 +28,11 @@
             </div>
             <div class="col">
                 <div class="row">
-                    <div class="col"><a class="link-btn" [routerLink]="['/login']"
-                            routerLinkActive="router-link-active">Log in</a>
+                    <div class="col">
+                        <a class="link-btn" [routerLink]="['/login']" routerLinkActive="router-link-active"
+                            *ngIf="!(authenticationService.isLoggedIn | async)">Log in</a>
+                        <a class="link-btn" (click)="logOut()" *ngIf="(authenticationService.isLoggedIn | async)">Log
+                            out</a>
                     </div>
                     <div class="col">
                         <a nz-dropdown [nzDropdownMenu]="menu">
