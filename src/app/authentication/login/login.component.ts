@@ -23,20 +23,16 @@ export class LoginComponent implements OnInit, OnDestroy {
       email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', [Validators.required]),
     });
-    this.subscriptions.push(
-      this.authenticationService.isLoggedIn.subscribe((isLoggedIn) => {
-        this.router.navigate(['']);
-      })
-    );
+    // this.subscriptions.push(
+    //   this.authenticationService.isLoggedIn.subscribe((isLoggedIn) => {
+    //     this.router.navigate(['']);
+    //   })
+    // );
   }
 
   login() {
-    console.log(this.formGroup);
+    this.formGroup.markAsDirty();
     if (this.formGroup.valid) {
-      console.log(
-        this.formGroup.get('email')?.value,
-        this.formGroup.get('password')?.value
-      );
       this.authenticationService
         .login(
           this.formGroup.get('email')?.value,

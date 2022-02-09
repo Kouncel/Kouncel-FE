@@ -1,0 +1,14 @@
+.login-form {
+  text-align: center;
+}
+label {
+  width: 100%;
+  text-align: left;
+  margin-bottom: 10px;
+}
+
+.half-input {
+  width: calc(50% - 8px);
+  display: inline-block;
+  margin: 0 4px;
+}

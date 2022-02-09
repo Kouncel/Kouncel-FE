@@ -1,1 +1,115 @@
-<p>register works!</p>
+<div class="login-form">
+    <br />
+    <br />
+    <h1>
+        Create Account
+    </h1>
+    <br />
+    <p>
+        Please enter all your data to join KOUNCEL!
+    </p>
+    <br />
+    <hr />
+    <div class="row justify-content-center">
+        <form class="col-md-6" (ngSubmit)="register()" [formGroup]="formGroup">
+            <div
+                [ngClass]="{'input-error': formGroup?.dirty && (formGroup?.get('firstName')?.invalid || formGroup?.get('lastName')?.invalid)}">
+                <label>
+                    Name
+                </label>
+                <br />
+                <div class="half-input">
+                    <input name="firstName" formControlName="firstName" placeholder="First Name" />
+                </div>
+                <div class="half-input">
+                    <input name="lastName" formControlName="lastName" placeholder="Last Name" />
+                </div>
+            </div>
+            <div [ngClass]="{'input-error': formGroup?.dirty && formGroup?.get('email')?.invalid}">
+                <label>
+                    E-mail
+                </label>
+                <br />
+                <input type="email" name="email" formControlName="email" placeholder="Example: someone@example.com" />
+            </div>
+            <div>
+                <br />
+                <div class="half-input"
+                    [ngClass]="{'input-error': formGroup?.dirty && formGroup?.get('birthDate')?.invalid}">
+                    <label>
+                        Date of Birth
+                    </label>
+                    <input name="birthDate" type="date" formControlName="birthDate" placeholder="dd/mm/yyyy" />
+                </div>
+                <div class="half-input"
+                    [ngClass]="{'input-error': formGroup?.dirty && formGroup?.get('gender')?.invalid}">
+                    <label>
+                        Gender
+                    </label>
+                    <select name="gender" formControlName="gender" placeholder="Select your gender">
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                    </select>
+                </div>
+            </div>
+            <div [ngClass]="{'input-error': formGroup?.dirty && formGroup?.get('country')?.invalid}">
+                <label>
+                    Country
+                </label>
+                <br />
+                <select name="country" formControlName="country" placeholder="Select your country">
+                    <option value=""></option>
+                    <option *ngFor="let item of countries" [value]="item.code">{{item.name}}</option>
+                </select>
+            </div>
+            <div [ngClass]="{'input-error': formGroup?.dirty && formGroup?.get('profession')?.invalid}">
+                <label>
+                    Profession
+                </label>
+                <br />
+                <select name="profession" formControlName="profession" placeholder="Select your profession">
+                    <option value=""></option>
+                    <option *ngFor="let item of countries" [value]="item.code">{{item.name}}</option>
+                </select>
+            </div>
+            <div
+                [ngClass]="{'input-error': formGroup?.dirty && (formGroup?.hasError('matching') || formGroup?.get('password')?.invalid || formGroup?.get('confirmPassword')?.invalid)}">
+                <label>
+                    Password
+                </label>
+                <br />
+                <input type="password" name="password" formControlName="password" placeholder="Enter your password" />
+                <input type="password" name="confirmPassword" formControlName="confirmPassword"
+                    placeholder="Confirm your password" />
+            </div>
+            <br />
+            <div *ngIf="formGroup?.dirty && formGroup?.invalid" class="form-errors">
+                <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
+                <ul>
+                    <li *ngIf="formGroup.get('firstName')?.hasError('required')">First Name is required</li>
+                    <li *ngIf="formGroup.get('lastName')?.hasError('required')">Last Name is required</li>
+                    <li *ngIf="formGroup.get('email')?.hasError('required')">Email is required</li>
+                    <li *ngIf="formGroup.get('birthDate')?.hasError('required')">Birth Date is required</li>
+                    <li *ngIf="formGroup.get('gender')?.hasError('required')">Gender is required</li>
+                    <li *ngIf="formGroup.get('country')?.hasError('required')">Country is required</li>
+                    <li *ngIf="formGroup.get('profession')?.hasError('required')">Profession is required</li>
+                    <li *ngIf="formGroup.get('password')?.hasError('required')">Password is required</li>
+                    <li *ngIf="formGroup.get('confirmPassword')?.hasError('required')">Please confirm your password</li>
+                    <li *ngIf="formGroup?.hasError('matching')">Passwords don't match</li>
+                    <li *ngIf="formGroup.get('email')?.hasError('email')">Invalid Email</li>
+                </ul>
+            </div>
+            <br />
+            <button type="submit">Create Account</button>
+            <br />
+            <br />
+            <br />
+            <p>Already have an account? <a class="red" [routerLink]="['/login']"
+                    routerLinkActive="router-link-active">Log
+                    in</a></p>
+            <br />
+            <a class="grey" [routerLink]="['/reset-password']" routerLinkActive="router-link-active">Forgot your
+                password?</a>
+        </form>
+    </div>
+</div>
