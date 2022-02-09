@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Observable, Subscription } from 'rxjs';
 import { AuthenticationService } from '../authentication.service';
 
 @Component({
@@ -7,17 +9,48 @@ import { AuthenticationService } from '../authentication.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, OnDestroy {
+  formGroup: FormGroup = new FormGroup({});
+  subscriptions: Subscription[] = [];
+
   constructor(
     private router: Router,
     private authenticationService: AuthenticationService
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.formGroup = new FormGroup({
+      email: new FormControl('', [Validators.required, Validators.email]),
+      password: new FormControl('', [Validators.required]),
+    });
+    this.subscriptions.push(
+      this.authenticationService.isLoggedIn.subscribe((isLoggedIn) => {
+        this.router.navigate(['']);
+      })
+    );
+  }
 
   login() {
-    localStorage.setItem('authToken', '21234234234');
-    this.authenticationService.setLoggedInState(true);
-    this.router.navigate(['']);
+    console.log(this.formGroup);
+    if (this.formGroup.valid) {
+      console.log(
+        this.formGroup.get('email')?.value,
+        this.formGroup.get('password')?.value
+      );
+      this.authenticationService
+        .login(
+          this.formGroup.get('email')?.value,
+          this.formGroup.get('password')?.value
+        )
+        .subscribe((authToken) => {
+          localStorage.setItem('authToken', authToken);
+          this.authenticationService.setLoggedInState(true);
+          this.router.navigate(['']);
+        });
+    }
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.forEach((s) => s.unsubscribe());
   }
 }

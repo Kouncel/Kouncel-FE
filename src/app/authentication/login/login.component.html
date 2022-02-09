@@ -11,20 +11,31 @@
     <br />
     <hr />
     <div class="row justify-content-center">
-        <form class="col-md-6" (ngSubmit)="login()">
-            <label>
-                E-mail
-            </label>
+        <form class="col-md-6" (ngSubmit)="login()" [formGroup]="formGroup">
+            <div [ngClass]="{'input-error': formGroup?.dirty && formGroup?.get('email')?.invalid}">
+                <label>
+                    E-mail
+                </label>
+                <br />
+                <input type="email" name="email" formControlName="email" placeholder="Example: someone@example.com" />
+            </div>
             <br />
-            <input type="email" name="email" placeholder="Example: someone@example.com" />
+            <div [ngClass]="{'input-error': formGroup?.dirty && formGroup?.get('password')?.invalid}">
+                <label>
+                    Password
+                </label>
+                <br />
+                <input type="password" name="password" formControlName="password" placeholder="Enter your password" />
+            </div>
             <br />
-            <label>
-                Password
-            </label>
-            <br />
-            <input type="password" name="password" placeholder="Enter your password" />
-            <br />
-            <br />
+            <div *ngIf="formGroup?.dirty && formGroup?.invalid" class="form-errors">
+                <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
+                <ul>
+                    <li *ngIf="formGroup.get('email')?.hasError('required')">Email is required</li>
+                    <li *ngIf="formGroup.get('password')?.hasError('required')">Password is required</li>
+                    <li *ngIf="formGroup.get('email')?.hasError('email')">Invalid Email</li>
+                </ul>
+            </div>
             <br />
             <button type="submit">Log in</button>
             <br />

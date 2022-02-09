@@ -59,7 +59,7 @@ hr {
 
 input {
   background: #272727 !important;
-  border: none;
+  border: 1px solid #272727;
   border-radius: 5px;
   padding: 10px 17px;
   width: 100%;
@@ -134,4 +134,47 @@ button {
 
 button:hover {
   background-color: darken(#ab2331, 10);
+}
+
+.form-errors {
+  text-align: left;
+}
+
+.form-errors > * {
+  display: inline-block;
+  vertical-align: top;
+  color: #ab2331;
+}
+
+.form-errors ul {
+  list-style: none;
+  padding-left: 10px;
+  padding-top: 3px;
+}
+
+.form-errors .fa {
+  color: #272727;
+  font-size: 30px;
+}
+
+.input-error input {
+  border: 1px solid #ab2331;
+}
+.input-error label {
+  color: #ab2331;
+}
+.input-error ::placeholder {
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: #ab2331;
+  opacity: 1; /* Firefox */
+}
+
+.input-error :-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
+  color: #ab2331;
+}
+
+.input-error ::-ms-input-placeholder {
+  /* Microsoft Edge */
+  color: #ab2331;
 }

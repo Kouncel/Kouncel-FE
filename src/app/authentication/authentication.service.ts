@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, of } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
@@ -11,6 +11,7 @@ export class AuthenticationService {
   constructor(private httpClient: HttpClient) {}
 
   login(email: string, password: string): Observable<any> {
+    return of('77878dy8w7ef78we6f87w6ef876w7e8f678d6f89wye7ftw78==');
     return this.httpClient.post('login', { email, password });
   }
 
