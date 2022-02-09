@@ -48,6 +48,10 @@ a:hover {
   text-decoration: underline !important;
 }
 
+.no-underline {
+  text-decoration: none !important;
+}
+
 hr {
   background-color: #ab2331;
   width: 100px;
@@ -55,6 +59,15 @@ hr {
   height: 7px !important;
   border-radius: 5px;
   opacity: 1;
+}
+
+.white {
+  color: #fff;
+  text-decoration: underline !important;
+}
+
+.relative {
+  position: relative;
 }
 
 input,
@@ -107,6 +120,14 @@ label {
 .ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-submenu-selected::after,
 .ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-submenu:hover::after {
   border-bottom-color: #ab2331;
+}
+
+.ant-tooltip-inner {
+  background: #fff;
+  color: #000;
+}
+.ant-tooltip-arrow span {
+  background: #fff;
 }
 
 .link-btn {

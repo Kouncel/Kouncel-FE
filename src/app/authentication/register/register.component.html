@@ -69,15 +69,18 @@
                 <br />
                 <select name="profession" formControlName="profession" placeholder="Select your profession">
                     <option value=""></option>
-                    <option *ngFor="let item of countries" [value]="item.code">{{item.name}}</option>
+                    <option *ngFor="let item of professions" [value]="item.code">{{item.name}}</option>
                 </select>
             </div>
-            <div
+            <div class="relative"
                 [ngClass]="{'input-error': formGroup?.dirty && (formGroup?.hasError('matching') || formGroup?.get('password')?.invalid || formGroup?.get('confirmPassword')?.invalid)}">
                 <label>
                     Password
                 </label>
                 <br />
+                <i class="fa fa-exclamation-circle password-info" aria-hidden="true"
+                    nzTooltipTitle="Password should be at least 6 characters, max 100 characters, should contain one uppercase, one lowercase and one special character"
+                    nzTooltipPlacement="right" nz-tooltip></i>
                 <input type="password" name="password" formControlName="password" placeholder="Enter your password" />
                 <input type="password" name="confirmPassword" formControlName="confirmPassword"
                     placeholder="Confirm your password" />
@@ -108,8 +111,11 @@
                     routerLinkActive="router-link-active">Log
                     in</a></p>
             <br />
-            <a class="grey" [routerLink]="['/reset-password']" routerLinkActive="router-link-active">Forgot your
-                password?</a>
+            <p class="grey no-underline">
+                By signing up or creating an account, you agree to the <a class="white" href="#"> End User License
+                    Agreement,</a> <a class="white" href="#"> Terms & Conditions</a>
+                and <a class="white" href="#"> Privacy Policy </a> including cookie usage
+            </p>
         </form>
     </div>
 </div>

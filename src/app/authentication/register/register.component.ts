@@ -22,6 +22,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
   subscriptions: Subscription[] = [];
 
   countries: any[] = [];
+  professions: any[] = [];
 
   constructor(
     private router: Router,
@@ -31,6 +32,9 @@ export class RegisterComponent implements OnInit, OnDestroy {
     this.lookupsService
       .getCountries()
       .subscribe((countries) => (this.countries = countries));
+    this.lookupsService
+      .getProfessions()
+      .subscribe((professions) => (this.professions = professions));
   }
 
   ngOnInit(): void {
@@ -69,7 +73,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
         .subscribe((authToken) => {
           localStorage.setItem('authToken', authToken);
           this.authenticationService.setLoggedInState(true);
-          this.router.navigate(['']);
+          this.router.navigate(['verify']);
         });
     }
   }

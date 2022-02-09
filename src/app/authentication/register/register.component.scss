@@ -12,3 +12,11 @@ label {
   display: inline-block;
   margin: 0 4px;
 }
+
+.password-info {
+  position: absolute;
+  font-size: 35px;
+  margin-top: 13px;
+  right: -40px;
+  cursor: pointer;
+}

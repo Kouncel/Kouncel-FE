@@ -23,6 +23,8 @@ export class LoginComponent implements OnInit, OnDestroy {
       email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', [Validators.required]),
     });
+    localStorage.removeItem('authToken');
+    this.authenticationService.setLoggedInState(false);
     // this.subscriptions.push(
     //   this.authenticationService.isLoggedIn.subscribe((isLoggedIn) => {
     //     this.router.navigate(['']);
