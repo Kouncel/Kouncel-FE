@@ -6,10 +6,17 @@ import { FooterComponent } from './footer/footer.component';
 import { RouterModule } from '@angular/router';
 import { NzMenuModule } from 'ng-zorro-antd/menu';
 import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [LayoutComponent, HeaderComponent, FooterComponent],
-  imports: [CommonModule, RouterModule, NzMenuModule, NzDropDownModule],
+  imports: [
+    CommonModule,
+    RouterModule,
+    NzMenuModule,
+    NzDropDownModule,
+    ReactiveFormsModule,
+  ],
   exports: [LayoutComponent],
 })
 export class LayoutModule {}

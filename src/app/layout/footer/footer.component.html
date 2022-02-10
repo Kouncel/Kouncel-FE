@@ -1,1 +1,78 @@
-<p>footer works!</p>
+<footer class="footer-container">
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            <form class="row justify-content-center subscribe-container" (ngSubmit)="subscribe()"
+                [formGroup]="formGroup">
+                <p class="col-10 ">
+                    Enter your e-mail address to receive the latest news & offers
+                </p>
+                <div class="col-md-6">
+                    <div class="row align-items-center">
+                        <div class="col-7">
+                            <input type="email" name="email" formControlName="email"
+                                placeholder="Your e-mail address" />
+                        </div>
+                        <div class="col-5">
+                            <button type="submit">Keep in touch</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <div class="row justify-content-center">
+                <div class="col-6">
+                    <div class="row">
+                        <div class="col">
+                            <p class="grey">
+                                Explore
+                            </p>
+                            <ul>
+                                <li>
+                                    <a href="#">Categories</a>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="col">
+                            <p class="grey">
+                                About
+                            </p>
+                            <ul>
+                                <li>
+                                    <a href="#">Privacy Ploicy</a>
+                                </li>
+                                <li>
+                                    <a href="#">Terms & Conditions</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col">
+                            <p class="grey">Follow Us</p>
+                            <div class="row social-media">
+                                <div class="col">
+                                    <a href="#"><i class="fa fa-linkedin"></i></a>
+                                </div>
+                                <div class="col">
+                                    <a href="#"><i class="fa fa-twitter"></i></a>
+                                </div>
+                                <div class="col">
+                                    <a href="#"><i class="fa fa-facebook"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row justify-content-center copyrights">
+                <img src="assets/logo-grey.svg" style="width: 230px" />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <p class="grey center">
+                    All Rights Reserved. KOUNCEL 2022
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
