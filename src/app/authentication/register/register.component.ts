@@ -10,6 +10,7 @@ import {
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { LookupsService } from 'src/app/models/lookups.service';
+import { UtilsService } from 'src/app/shared/utils.service';
 import { AuthenticationService } from '../authentication.service';
 
 @Component({
@@ -47,11 +48,16 @@ export class RegisterComponent implements OnInit, OnDestroy {
         gender: new FormControl('Male', [Validators.required]),
         country: new FormControl('', [Validators.required]),
         profession: new FormControl('', [Validators.required]),
-        password: new FormControl('', [Validators.required]),
+        password: new FormControl('', [
+          Validators.required,
+          Validators.pattern(
+            /^(?=[^A-Z\n]*[A-Z])(?=[^a-z\n]*[a-z])(?=[^#?!@$%^&*\n-]*[#?!@$%^&*-]).{6,100}$/
+          ),
+        ]),
         confirmPassword: new FormControl('', [Validators.required]),
       },
       {
-        validators: [RegisterComponent.match('password', 'confirmPassword')],
+        validators: [UtilsService.match('password', 'confirmPassword')],
       }
     );
     // this.subscriptions.push(
@@ -62,7 +68,6 @@ export class RegisterComponent implements OnInit, OnDestroy {
   }
 
   register() {
-    console.log(this.formGroup);
     this.formGroup.markAsDirty();
     if (this.formGroup.valid) {
       this.authenticationService
@@ -80,25 +85,5 @@ export class RegisterComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.subscriptions.forEach((s) => s.unsubscribe());
-  }
-
-  static match(controlName: string, checkControlName: string): ValidatorFn {
-    return (controls: AbstractControl) => {
-      const control = controls.get(controlName);
-      const checkControl = controls.get(checkControlName);
-      if (
-        checkControl &&
-        checkControl.errors &&
-        !checkControl.errors['matching']
-      ) {
-        return null;
-      }
-      if (control.value !== checkControl.value) {
-        controls.get(checkControlName).setErrors({ matching: true });
-        return { matching: true };
-      } else {
-        return null;
-      }
-    };
   }
 }

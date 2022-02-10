@@ -99,6 +99,7 @@
                     <li *ngIf="formGroup.get('password')?.hasError('required')">Password is required</li>
                     <li *ngIf="formGroup.get('confirmPassword')?.hasError('required')">Please confirm your password</li>
                     <li *ngIf="formGroup?.hasError('matching')">Passwords don't match</li>
+                    <li *ngIf="formGroup.get('password')?.hasError('pattern')">Password doesn't match pattern</li>
                     <li *ngIf="formGroup.get('email')?.hasError('email')">Invalid Email</li>
                 </ul>
             </div>
