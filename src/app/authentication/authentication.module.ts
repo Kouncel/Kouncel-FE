@@ -9,12 +9,23 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
 import { RegisterSuccessComponent } from './register-success/register-success.component';
 import { RegisterVerifyComponent } from './register-verify/register-verify.component';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { ResetVerifyComponent } from './reset-verify/reset-verify.component';
+import { ChangePasswordComponent } from './change-password/change-password.component';
+import { ChangePasswordSuccessComponent } from './change-password-success/change-password-success.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'verify', component: RegisterVerifyComponent },
   { path: 'verify-success', component: RegisterSuccessComponent },
+  { path: 'reset-password', component: ResetPasswordComponent },
+  { path: 'reset-verify', component: ResetVerifyComponent },
+  { path: 'change-password', component: ChangePasswordComponent },
+  {
+    path: 'change-password-success',
+    component: ChangePasswordSuccessComponent,
+  },
 ];
 
 @NgModule({
@@ -23,6 +34,10 @@ const routes: Routes = [
     RegisterComponent,
     RegisterSuccessComponent,
     RegisterVerifyComponent,
+    ResetPasswordComponent,
+    ResetVerifyComponent,
+    ChangePasswordComponent,
+    ChangePasswordSuccessComponent,
   ],
   imports: [
     CommonModule,
