@@ -44,7 +44,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
         firstName: new FormControl('', [Validators.required]),
         lastName: new FormControl('', [Validators.required]),
         email: new FormControl('', [Validators.required, Validators.email]),
-        birthDate: new FormControl('', [Validators.required]),
+        birthdate: new FormControl('', [Validators.required]),
         gender: new FormControl('Male', [Validators.required]),
         country: new FormControl('', [Validators.required]),
         profession: new FormControl('', [Validators.required]),
@@ -69,12 +69,14 @@ export class RegisterComponent implements OnInit, OnDestroy {
 
   register() {
     this.formGroup.markAsDirty();
+    console.log();
     if (this.formGroup.valid) {
+      const registrationOb = { ...this.formGroup.value };
+      registrationOb.professionId = '0459cc91-7bce-422b-98c7-fe0b8a054b94';
+      registrationOb.birthdate = '1996-01-24T17:33:07Z';
+      delete registrationOb.profession;
       this.authenticationService
-        .login(
-          this.formGroup.get('email')?.value,
-          this.formGroup.get('password')?.value
-        )
+        .register(registrationOb)
         .subscribe((authToken) => {
           localStorage.setItem('authToken', authToken);
           this.authenticationService.setLoggedInState(true);

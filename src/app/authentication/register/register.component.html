@@ -35,11 +35,11 @@
             <div>
                 <br />
                 <div class="half-input"
-                    [ngClass]="{'input-error': formGroup?.dirty && formGroup?.get('birthDate')?.invalid}">
+                    [ngClass]="{'input-error': formGroup?.dirty && formGroup?.get('birthdate')?.invalid}">
                     <label>
                         Date of Birth
                     </label>
-                    <input name="birthDate" type="date" formControlName="birthDate" placeholder="dd/mm/yyyy" />
+                    <input name="birthdate" type="date" formControlName="birthdate" placeholder="dd/mm/yyyy" />
                 </div>
                 <div class="half-input"
                     [ngClass]="{'input-error': formGroup?.dirty && formGroup?.get('gender')?.invalid}">
@@ -92,7 +92,7 @@
                     <li *ngIf="formGroup.get('firstName')?.hasError('required')">First Name is required</li>
                     <li *ngIf="formGroup.get('lastName')?.hasError('required')">Last Name is required</li>
                     <li *ngIf="formGroup.get('email')?.hasError('required')">Email is required</li>
-                    <li *ngIf="formGroup.get('birthDate')?.hasError('required')">Birth Date is required</li>
+                    <li *ngIf="formGroup.get('birthdate')?.hasError('required')">Birth Date is required</li>
                     <li *ngIf="formGroup.get('gender')?.hasError('required')">Gender is required</li>
                     <li *ngIf="formGroup.get('country')?.hasError('required')">Country is required</li>
                     <li *ngIf="formGroup.get('profession')?.hasError('required')">Profession is required</li>
