@@ -8,6 +8,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { Router } from '@angular/router';
+import { NzNotificationService } from 'ng-zorro-antd/notification';
 import { Subscription } from 'rxjs';
 import { LookupsService } from 'src/app/models/lookups.service';
 import { UtilsService } from 'src/app/shared/utils.service';
@@ -28,7 +29,8 @@ export class RegisterComponent implements OnInit, OnDestroy {
   constructor(
     private router: Router,
     private authenticationService: AuthenticationService,
-    private lookupsService: LookupsService
+    private lookupsService: LookupsService,
+    private notification: NzNotificationService
   ) {
     this.lookupsService
       .getCountries()
@@ -75,13 +77,23 @@ export class RegisterComponent implements OnInit, OnDestroy {
       registrationOb.professionId = '0459cc91-7bce-422b-98c7-fe0b8a054b94';
       registrationOb.birthdate = '1996-01-24T17:33:07Z';
       delete registrationOb.profession;
-      this.authenticationService
-        .register(registrationOb)
-        .subscribe((authToken) => {
+      this.authenticationService.register(registrationOb).subscribe(
+        (authToken) => {
           localStorage.setItem('authToken', authToken);
           this.authenticationService.setLoggedInState(true);
           this.router.navigate(['verify']);
-        });
+        },
+        (err) => {
+          err?.error?.errors?.forEach((element: any) => {
+            this.notification.create(
+              'error',
+              'Registration Error',
+              element.error_description,
+              { nzPlacement: 'bottomRight' }
+            );
+          });
+        }
+      );
     }
   }
 

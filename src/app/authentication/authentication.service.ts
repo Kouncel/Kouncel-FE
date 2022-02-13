@@ -12,8 +12,23 @@ export class AuthenticationService {
   constructor(private httpClient: HttpClient) {}
 
   login(email: string, password: string): Observable<any> {
-    return of('77878dy8w7ef78we6f87w6ef876w7e8f678d6f89wye7ftw78==');
-    return this.httpClient.post('login', { email, password });
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/x-www-form-urlencoded',
+      }),
+    };
+    const params = new HttpParams({
+      fromObject: {
+        username: email,
+        password,
+      },
+    });
+
+    return this.httpClient.post(
+      `${environment.baseUrl}/accounts/login`,
+      params.toString(),
+      httpOptions
+    );
   }
 
   register(registrationObj: any): Observable<any> {

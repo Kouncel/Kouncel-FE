@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { NzNotificationService } from 'ng-zorro-antd/notification';
 import { Observable, Subscription } from 'rxjs';
 import { AuthenticationService } from '../authentication.service';
 
@@ -15,7 +16,8 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   constructor(
     private router: Router,
-    private authenticationService: AuthenticationService
+    private authenticationService: AuthenticationService,
+    private notification: NzNotificationService
   ) {}
 
   ngOnInit(): void {
@@ -40,11 +42,23 @@ export class LoginComponent implements OnInit, OnDestroy {
           this.formGroup.get('email')?.value,
           this.formGroup.get('password')?.value
         )
-        .subscribe((authToken) => {
-          localStorage.setItem('authToken', authToken);
-          this.authenticationService.setLoggedInState(true);
-          this.router.navigate(['']);
-        });
+        .subscribe(
+          (authToken) => {
+            localStorage.setItem('authToken', authToken.access_token);
+            this.authenticationService.setLoggedInState(true);
+            this.router.navigate(['']);
+          },
+          (err) => {
+            err?.error?.errors?.forEach((element: any) => {
+              this.notification.create(
+                'error',
+                'Registration Error',
+                element.error_description,
+                { nzPlacement: 'bottomRight' }
+              );
+            });
+          }
+        );
     }
   }
 
