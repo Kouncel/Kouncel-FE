@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { NzNotificationService } from 'ng-zorro-antd/notification';
 import { Subscription } from 'rxjs';
 import { AuthenticationService } from '../authentication.service';
 
@@ -15,7 +16,8 @@ export class ResetPasswordComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private authenticationService: AuthenticationService
+    private authenticationService: AuthenticationService,
+    private notification: NzNotificationService
   ) {}
 
   ngOnInit(): void {
@@ -34,17 +36,23 @@ export class ResetPasswordComponent implements OnInit {
   resetPassword() {
     this.formGroup.markAsDirty();
     if (this.formGroup.valid) {
-      this.router.navigate(['/reset-verify']);
-      // this.authenticationService
-      //   .login(
-      //     this.formGroup.get('email')?.value,
-      //     this.formGroup.get('password')?.value
-      //   )
-      //   .subscribe((authToken) => {
-      //     localStorage.setItem('authToken', authToken);
-      //     this.authenticationService.setLoggedInState(true);
-      //     this.router.navigate(['']);
-      //   });
+      this.authenticationService
+        .resetPassword(this.formGroup.get('email')?.value)
+        .subscribe(
+          (res) => {
+            this.router.navigate(['/reset-verify']);
+          },
+          (err) => {
+            err?.error?.errors?.forEach((element: any) => {
+              this.notification.create(
+                'error',
+                'Registration Error',
+                element.error_description,
+                { nzPlacement: 'bottomRight' }
+              );
+            });
+          }
+        );
     }
   }
 

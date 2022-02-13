@@ -31,6 +31,25 @@ export class AuthenticationService {
     );
   }
 
+  resetPassword(email: string): Observable<any> {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/x-www-form-urlencoded',
+      }),
+    };
+    const params = new HttpParams({
+      fromObject: {
+        email,
+      },
+    });
+
+    return this.httpClient.post(
+      `${environment.baseUrl}/accounts/forgot-password`,
+      params.toString(),
+      httpOptions
+    );
+  }
+
   register(registrationObj: any): Observable<any> {
     const httpOptions = {
       headers: new HttpHeaders({
