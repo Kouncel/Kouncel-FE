@@ -1,0 +1,19 @@
+<a href="#">
+    <div class="card-holder">
+        <div class="admin-controls" *ngIf="(authenticationService.isAdmin | async)">
+            <i (click)="edit($event)" class="fa fa-pencil-square-o" aria-hidden="true"></i>
+            <i (click)="delete($event)" class="fa fa-trash-o" aria-hidden="true"></i>
+        </div>
+        <div class="card-img"
+            style="background-image: url(https://cdn-share.almentor.net/images/b4e40a02c566635d554e9c100fb1f831a406e1a529887ae4119ea8ae9e827b76);">
+        </div>
+        <div class="card-body">
+            <h5>
+                {{title}}
+            </h5>
+            <p [title]="description">
+                {{description | ellipses}}
+            </p>
+        </div>
+    </div>
+</a>

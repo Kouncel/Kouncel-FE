@@ -9,6 +9,10 @@ export class AuthenticationService {
     localStorage.getItem('authToken') ? true : false
   );
   isLoggedInSource = this.isLoggedIn.asObservable();
+
+  isAdmin: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(true);
+  isAdminSource = this.isAdmin.asObservable();
+
   constructor(private httpClient: HttpClient) {}
 
   login(email: string, password: string): Observable<any> {
@@ -69,5 +73,8 @@ export class AuthenticationService {
 
   setLoggedInState(state: boolean) {
     this.isLoggedIn.next(state);
+  }
+  setIsAdminState(isAdmin: boolean) {
+    this.isAdmin.next(isAdmin);
   }
 }

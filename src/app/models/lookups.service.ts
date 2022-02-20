@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { countries } from './countries.const';
 import { professions } from './professions.const';
+import { categories } from './categories.const';
 
 @Injectable({ providedIn: 'root' })
 export class LookupsService {
@@ -15,6 +16,11 @@ export class LookupsService {
 
   getProfessions(): Observable<any> {
     return of(professions);
+    return this.httpClient.get('');
+  }
+
+  getCategories(): Observable<any> {
+    return of(categories);
     return this.httpClient.get('');
   }
 }

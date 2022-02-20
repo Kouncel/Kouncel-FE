@@ -13,7 +13,7 @@
     <div class="row justify-content-center">
         <form class="col-md-6" (ngSubmit)="register()" [formGroup]="formGroup">
             <div
-                [ngClass]="{'input-error': formGroup?.dirty && (formGroup?.get('firstName')?.invalid || formGroup?.get('lastName')?.invalid)}">
+                [ngClass]="{'input-error': (formGroup?.get('firstName')?.dirty || formGroup?.get('lastName')?.dirty) && formGroup?.dirty && (formGroup?.get('firstName')?.invalid || formGroup?.get('lastName')?.invalid)}">
                 <label>
                     Name
                 </label>
@@ -25,7 +25,8 @@
                     <input name="lastName" formControlName="lastName" placeholder="Last Name" />
                 </div>
             </div>
-            <div [ngClass]="{'input-error': formGroup?.dirty && formGroup?.get('email')?.invalid}">
+            <div
+                [ngClass]="{'input-error': formGroup?.dirty && formGroup?.get('email')?.dirty && formGroup?.get('email')?.invalid}">
                 <label>
                     E-mail
                 </label>
@@ -35,14 +36,14 @@
             <div>
                 <br />
                 <div class="half-input"
-                    [ngClass]="{'input-error': formGroup?.dirty && formGroup?.get('birthdate')?.invalid}">
+                    [ngClass]="{'input-error': formGroup?.dirty && formGroup?.get('birthdate')?.dirty && formGroup?.get('birthdate')?.invalid}">
                     <label>
                         Date of Birth
                     </label>
                     <input name="birthdate" type="date" formControlName="birthdate" placeholder="dd/mm/yyyy" />
                 </div>
                 <div class="half-input"
-                    [ngClass]="{'input-error': formGroup?.dirty && formGroup?.get('gender')?.invalid}">
+                    [ngClass]="{'input-error': formGroup?.dirty && formGroup?.get('gender')?.dirty && formGroup?.get('gender')?.invalid}">
                     <label>
                         Gender
                     </label>
@@ -52,7 +53,8 @@
                     </select>
                 </div>
             </div>
-            <div [ngClass]="{'input-error': formGroup?.dirty && formGroup?.get('country')?.invalid}">
+            <div
+                [ngClass]="{'input-error': formGroup?.dirty && formGroup?.get('country')?.dirty && formGroup?.get('country')?.invalid}">
                 <label>
                     Country
                 </label>
@@ -62,7 +64,8 @@
                     <option *ngFor="let item of countries" [value]="item.code">{{item.name}}</option>
                 </select>
             </div>
-            <div [ngClass]="{'input-error': formGroup?.dirty && formGroup?.get('profession')?.invalid}">
+            <div
+                [ngClass]="{'input-error': formGroup?.dirty && formGroup?.get('profession')?.dirty && formGroup?.get('profession')?.invalid}">
                 <label>
                     Profession
                 </label>
@@ -73,7 +76,7 @@
                 </select>
             </div>
             <div class="relative"
-                [ngClass]="{'input-error': formGroup?.dirty && (formGroup?.hasError('matching') || formGroup?.get('password')?.invalid || formGroup?.get('confirmPassword')?.invalid)}">
+                [ngClass]="{'input-error': (formGroup?.get('password')?.dirty || formGroup?.get('confirmPassword')?.dirty) && formGroup?.dirty && (formGroup?.hasError('matching') || formGroup?.get('password')?.invalid || formGroup?.get('confirmPassword')?.invalid)}">
                 <label>
                     Password
                 </label>
@@ -89,18 +92,31 @@
             <div *ngIf="formGroup?.dirty && formGroup?.invalid" class="form-errors">
                 <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
                 <ul>
-                    <li *ngIf="formGroup.get('firstName')?.hasError('required')">First Name is required</li>
-                    <li *ngIf="formGroup.get('lastName')?.hasError('required')">Last Name is required</li>
-                    <li *ngIf="formGroup.get('email')?.hasError('required')">Email is required</li>
-                    <li *ngIf="formGroup.get('birthdate')?.hasError('required')">Birth Date is required</li>
-                    <li *ngIf="formGroup.get('gender')?.hasError('required')">Gender is required</li>
-                    <li *ngIf="formGroup.get('country')?.hasError('required')">Country is required</li>
-                    <li *ngIf="formGroup.get('profession')?.hasError('required')">Profession is required</li>
-                    <li *ngIf="formGroup.get('password')?.hasError('required')">Password is required</li>
-                    <li *ngIf="formGroup.get('confirmPassword')?.hasError('required')">Please confirm your password</li>
-                    <li *ngIf="formGroup?.hasError('matching')">Passwords don't match</li>
-                    <li *ngIf="formGroup.get('password')?.hasError('pattern')">Password doesn't match pattern</li>
-                    <li *ngIf="formGroup.get('email')?.hasError('email')">Invalid Email</li>
+                    <li *ngIf="formGroup.get('firstName')?.dirty && formGroup.get('firstName')?.hasError('required')">
+                        First Name is required</li>
+                    <li *ngIf="formGroup.get('lastName')?.dirty && formGroup.get('lastName')?.hasError('required')">Last
+                        Name is required</li>
+                    <li *ngIf="formGroup.get('email')?.dirty && formGroup.get('email')?.hasError('required')">Email is
+                        required</li>
+                    <li *ngIf="formGroup.get('birthdate')?.dirty && formGroup.get('birthdate')?.hasError('required')">
+                        Birth Date is required</li>
+                    <li *ngIf="formGroup.get('gender')?.dirty && formGroup.get('gender')?.hasError('required')">Gender
+                        is required</li>
+                    <li *ngIf="formGroup.get('country')?.dirty && formGroup.get('country')?.hasError('required')">
+                        Country is required</li>
+                    <li *ngIf="formGroup.get('profession')?.dirty && formGroup.get('profession')?.hasError('required')">
+                        Profession is required</li>
+                    <li *ngIf="formGroup.get('password')?.dirty && formGroup.get('password')?.hasError('required')">
+                        Password is required</li>
+                    <li
+                        *ngIf="formGroup.get('confirmPassword')?.dirty && formGroup.get('confirmPassword')?.hasError('required')">
+                        Please confirm your password</li>
+                    <li *ngIf="formGroup.get('matching')?.dirty && formGroup?.hasError('matching')">Passwords don't
+                        match</li>
+                    <li *ngIf="formGroup.get('password')?.dirty && formGroup.get('password')?.hasError('pattern')">
+                        Password doesn't match pattern</li>
+                    <li *ngIf="formGroup.get('email')?.dirty && formGroup.get('email')?.hasError('email')">Invalid Email
+                    </li>
                 </ul>
             </div>
             <br />

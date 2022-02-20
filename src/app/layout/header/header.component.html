@@ -50,5 +50,6 @@
         </div>
     </div>
 </div>
-<ng-template #titleTpl><span>Categories</span>&nbsp;&nbsp;<i class="fa fa-angle-down" aria-hidden="true"></i>
+<ng-template #titleTpl><a [routerLink]="['/categories']" routerLinkActive="router-link-active">
+        <span>Categories</span></a>&nbsp;&nbsp;<i class="fa fa-angle-down" aria-hidden="true"></i>
 </ng-template>

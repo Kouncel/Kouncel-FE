@@ -12,7 +12,8 @@
     <hr />
     <div class="row justify-content-center">
         <form class="col-md-6" (ngSubmit)="login()" [formGroup]="formGroup">
-            <div [ngClass]="{'input-error': formGroup?.dirty && formGroup?.get('email')?.invalid}">
+            <div
+                [ngClass]="{'input-error': formGroup?.dirty && formGroup?.get('email')?.invalid && formGroup?.get('email')?.dirty}">
                 <label>
                     E-mail
                 </label>
@@ -20,7 +21,8 @@
                 <input type="email" name="email" formControlName="email" placeholder="Example: someone@example.com" />
             </div>
             <br />
-            <div [ngClass]="{'input-error': formGroup?.dirty && formGroup?.get('password')?.invalid}">
+            <div
+                [ngClass]="{'input-error': formGroup?.dirty && formGroup?.get('password')?.invalid && formGroup?.get('password')?.dirty}">
                 <label>
                     Password
                 </label>
@@ -31,9 +33,12 @@
             <div *ngIf="formGroup?.dirty && formGroup?.invalid" class="form-errors">
                 <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
                 <ul>
-                    <li *ngIf="formGroup.get('email')?.hasError('required')">Email is required</li>
-                    <li *ngIf="formGroup.get('password')?.hasError('required')">Password is required</li>
-                    <li *ngIf="formGroup.get('email')?.hasError('email')">Invalid Email</li>
+                    <li *ngIf="formGroup.get('email')?.dirty && formGroup.get('email')?.hasError('required')">Email is
+                        required</li>
+                    <li *ngIf="formGroup.get('password')?.dirty && formGroup.get('password')?.hasError('required')">
+                        Password is required</li>
+                    <li *ngIf="formGroup.get('email')?.dirty && formGroup.get('email')?.hasError('email')">Invalid Email
+                    </li>
                 </ul>
             </div>
             <br />
