@@ -1,8 +1,12 @@
 import { Injectable } from '@angular/core';
 import { AbstractControl, ValidatorFn } from '@angular/forms';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class UtilsService {
+  language: BehaviorSubject<string> = new BehaviorSubject<string>('en');
+  languageSource = this.language.asObservable();
+
   constructor() {}
 
   static match(controlName: string, checkControlName: string): ValidatorFn {
@@ -23,5 +27,9 @@ export class UtilsService {
         return null;
       }
     };
+  }
+
+  setLanguage(lang: string) {
+    this.language.next(lang);
   }
 }

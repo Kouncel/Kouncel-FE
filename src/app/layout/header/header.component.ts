@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthenticationService } from 'src/app/authentication/authentication.service';
+import { UtilsService } from 'src/app/shared/utils.service';
 
 @Component({
   selector: 'koun-header',
@@ -10,6 +11,7 @@ import { AuthenticationService } from 'src/app/authentication/authentication.ser
 export class HeaderComponent implements OnInit {
   constructor(
     public authenticationService: AuthenticationService,
+    public utilsService: UtilsService,
     private router: Router
   ) {}
 
@@ -19,5 +21,9 @@ export class HeaderComponent implements OnInit {
     localStorage.removeItem('authToken');
     this.authenticationService.setLoggedInState(false);
     this.router.navigate(['/login']);
+  }
+
+  setLang(lang: string) {
+    this.utilsService.setLanguage(lang);
   }
 }

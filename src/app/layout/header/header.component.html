@@ -40,8 +40,8 @@
                         </a>
                         <nz-dropdown-menu #menu="nzDropdownMenu">
                             <ul nz-menu nzSelectable>
-                                <li nz-menu-item>EN</li>
-                                <li nz-menu-item>AR</li>
+                                <li nz-menu-item (click)="setLang('en')">EN</li>
+                                <li nz-menu-item (click)="setLang('ar')">AR</li>
                             </ul>
                         </nz-dropdown-menu>
                     </div>

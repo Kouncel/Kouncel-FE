@@ -2,12 +2,13 @@
     <div class="page-title">
         <br />
         <h1>
-            Categories
+            {{ 'CATEGORIES' | translate }}
         </h1>
+
         <hr />
     </div>
     <div class="row">
-        <koun-category-item *ngFor="let item of categories" [title]="item.title"
+        <koun-category-item *ngFor="let item of categories" [title]="item.title" [image]="item.image"
             class="col-lg-3 col-md-4 col-sm-6 col-xs">
         </koun-category-item>
     </div>
