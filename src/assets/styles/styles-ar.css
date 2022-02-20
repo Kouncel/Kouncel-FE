@@ -17,3 +17,7 @@ label {
 h1 {
   font-family: system-ui;
 }
+.ant-list-rtl .ant-list-pagination,
+.ant-menu {
+  text-align: right;
+}

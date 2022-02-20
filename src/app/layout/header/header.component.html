@@ -15,8 +15,7 @@
                         <ul>
                             <li nz-menu-group>
                                 <ul>
-                                    <li nz-menu-item>Option 1</li>
-                                    <li nz-menu-item>Option 2</li>
+                                    <li *ngFor="let item of categories" nz-menu-item>{{item.title}}</li>
                                 </ul>
                             </li>
                         </ul>

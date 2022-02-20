@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { AuthenticationService } from 'src/app/authentication/authentication.service';
 import { UtilsService } from 'src/app/shared/utils.service';
 import { TranslateService } from '@ngx-translate/core';
+import { LookupsService } from 'src/app/models/lookups.service';
 
 @Component({
   selector: 'koun-header',
@@ -10,14 +11,21 @@ import { TranslateService } from '@ngx-translate/core';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
+  categories: any[];
+
   constructor(
     public authenticationService: AuthenticationService,
     public utilsService: UtilsService,
+    public lookupsService: LookupsService,
     private router: Router,
     translate: TranslateService
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.lookupsService.getCategories().subscribe((res) => {
+      this.categories = res.slice(0, 5);
+    });
+  }
 
   logOut() {
     localStorage.removeItem('authToken');
