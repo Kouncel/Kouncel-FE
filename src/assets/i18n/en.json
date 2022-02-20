@@ -1,3 +1,7 @@
 {
-  "CATEGORIES": "Categories"
+  "CATEGORIES": "Categories",
+  "SEARCH": "SEARCH",
+  "HOME": "Home",
+  "LOG-IN": "Log in",
+  "LOG-OUT": "Log out"
 }

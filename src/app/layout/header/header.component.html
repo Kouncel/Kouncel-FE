@@ -9,7 +9,7 @@
             <div class="col-6">
                 <ul nz-menu nzMode="horizontal" class="header-menu">
                     <li nz-menu-item>
-                        <a [routerLink]="['/']" routerLinkActive="router-link-active">Home</a>
+                        <a [routerLink]="['/']" routerLinkActive="router-link-active">{{ 'HOME' | translate }}</a>
                     </li>
                     <li nz-submenu [nzTitle]="titleTpl">
                         <ul>
@@ -22,7 +22,7 @@
                         </ul>
                     </li>
                     <li nz-menu-item>
-                        Search
+                        {{ 'SEARCH' | translate }}
                     </li>
                 </ul>
             </div>
@@ -30,18 +30,21 @@
                 <div class="row">
                     <div class="col">
                         <a class="link-btn" [routerLink]="['/login']" routerLinkActive="router-link-active"
-                            *ngIf="!(authenticationService.isLoggedIn | async)">Log in</a>
-                        <a class="link-btn" (click)="logOut()" *ngIf="(authenticationService.isLoggedIn | async)">Log
-                            out</a>
+                            *ngIf="!(authenticationService.isLoggedIn | async)">{{ 'LOG-IN' | translate }}</a>
+                        <a class="link-btn" (click)="logOut()" *ngIf="(authenticationService.isLoggedIn | async)">{{
+                            'LOG-OUT' | translate }}</a>
                     </div>
                     <div class="col">
                         <a nz-dropdown [nzDropdownMenu]="menu">
-                            EN&nbsp;&nbsp;<i class="fa fa-angle-down" aria-hidden="true"></i>
+                            {{(utilsService.languageSource | async)?.toUpperCase()}}&nbsp;&nbsp;<i
+                                class="fa fa-angle-down" aria-hidden="true"></i>
                         </a>
                         <nz-dropdown-menu #menu="nzDropdownMenu">
                             <ul nz-menu nzSelectable>
-                                <li nz-menu-item (click)="setLang('en')">EN</li>
-                                <li nz-menu-item (click)="setLang('ar')">AR</li>
+                                <li nz-menu-item [nzSelected]="(utilsService.languageSource | async) === 'en'"
+                                    (click)="setLang('en')">EN</li>
+                                <li nz-menu-item [nzSelected]="(utilsService.languageSource | async) === 'ar'"
+                                    (click)="setLang('ar')">AR</li>
                             </ul>
                         </nz-dropdown-menu>
                     </div>
@@ -51,5 +54,5 @@
     </div>
 </div>
 <ng-template #titleTpl><a [routerLink]="['/categories']" routerLinkActive="router-link-active">
-        <span>Categories</span></a>&nbsp;&nbsp;<i class="fa fa-angle-down" aria-hidden="true"></i>
+        <span>{{ 'CATEGORIES' | translate }}</span></a>&nbsp;&nbsp;<i class="fa fa-angle-down" aria-hidden="true"></i>
 </ng-template>

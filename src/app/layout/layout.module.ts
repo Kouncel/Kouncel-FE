@@ -7,6 +7,7 @@ import { RouterModule } from '@angular/router';
 import { NzMenuModule } from 'ng-zorro-antd/menu';
 import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
 import { ReactiveFormsModule } from '@angular/forms';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   declarations: [LayoutComponent, HeaderComponent, FooterComponent],
@@ -16,7 +17,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     NzMenuModule,
     NzDropDownModule,
     ReactiveFormsModule,
+    TranslateModule,
   ],
-  exports: [LayoutComponent],
+  exports: [LayoutComponent, TranslateModule],
 })
 export class LayoutModule {}

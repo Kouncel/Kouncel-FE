@@ -1,0 +1,19 @@
+body {
+  direction: rtl;
+  font-family: system-ui;
+}
+label {
+  float: right;
+  text-align: right !important;
+}
+.form-errors {
+  text-align: right;
+}
+.admin-controls {
+  left: 5px;
+  right: unset !important;
+}
+
+h1 {
+  font-family: system-ui;
+}
