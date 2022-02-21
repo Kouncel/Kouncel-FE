@@ -4,10 +4,16 @@ import { ButtonComponent } from './button/button.component';
 import { EllipsesPipe } from './pipes/ellipses.pipe';
 import { SanitizeUrlPipe } from './pipes/sanitize-url.pipe';
 import { TranslateModule } from '@ngx-translate/core';
+import { ModalComponent } from './modal/modal.component';
 
 @NgModule({
-  declarations: [ButtonComponent, EllipsesPipe, SanitizeUrlPipe],
+  declarations: [
+    ButtonComponent,
+    EllipsesPipe,
+    SanitizeUrlPipe,
+    ModalComponent,
+  ],
   imports: [CommonModule],
-  exports: [EllipsesPipe, SanitizeUrlPipe, TranslateModule],
+  exports: [EllipsesPipe, SanitizeUrlPipe, TranslateModule, ModalComponent],
 })
 export class SharedModule {}

@@ -1,0 +1,52 @@
+<h2>{{ 'CREATE-CATEGORY' | translate }}</h2>
+<hr />
+<br />
+<div class="row justify-content-center">
+    <form class="col-11" (ngSubmit)="create()" [formGroup]="formGroup">
+        <div
+            [ngClass]="{'input-error': formGroup?.dirty && formGroup?.get('title')?.invalid && formGroup?.get('title')?.dirty}">
+            <label>
+                {{ 'TITLE' | translate }}
+            </label>
+            <br />
+            <input type="text" name="title" formControlName="title" placeholder="{{'TITLE' | translate }}" />
+        </div>
+        <br />
+        <div
+            [ngClass]="{'input-error': formGroup?.dirty && formGroup?.get('description')?.invalid && formGroup?.get('description')?.dirty}">
+            <label>
+                {{ 'DESCRIPTION' | translate }}
+            </label>
+            <br />
+            <input type="text" name="description" formControlName="description"
+                placeholder="{{'DESCRIPTION' | translate }}" />
+        </div>
+        <div *ngIf="formGroup?.dirty && formGroup?.invalid" class="form-errors">
+            <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
+            <ul>
+                <li *ngIf="formGroup.get('title')?.dirty && formGroup.get('title')?.hasError('required')">{{'TITLE'
+                    | translate}}
+                    {{'REQUIRED' | translate}}</li>
+                <li *ngIf="formGroup.get('description')?.dirty && formGroup.get('description')?.hasError('required')">
+                    {{'DESCRIPTION' | translate}} {{'REQUIRED' | translate}}</li>
+            </ul>
+        </div>
+        <label>
+            {{ 'IMAGE' | translate }}
+        </label>
+        <br />
+        <br />
+        <nz-upload nzAction="http(s)://www.hashemian.com/tools/form-post-tester.php/joe123"
+            [nzHeaders]="{ authorization: 'authorization-text' }" (nzChange)="handleChange($event)">
+            <button nz-button>
+                <i nz-icon nzType="upload"></i>
+                Click to Upload Image
+            </button>
+        </nz-upload>
+        <br />
+        <button type="submit">{{ 'CREATE' | translate }}</button>
+        <br />
+        <br />
+        <br />
+    </form>
+</div>

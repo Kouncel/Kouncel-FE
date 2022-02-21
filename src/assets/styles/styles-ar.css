@@ -22,6 +22,26 @@ h1 {
   text-align: right;
 }
 
+.create-btn {
+  left: 5px;
+  right: unset !important;
+}
+
+.modal-close {
+  position: absolute;
+  top: 10px;
+  right: unset !important;
+  left: 10px;
+  width: auto;
+}
+.modal-container h2 {
+  padding-right: unset;
+  padding-left: 55px;
+}
+.modal-container hr {
+  float: right;
+}
+
 /* responsiveness */
 @media (max-width: 992px) {
   .header-buttons > div:first-child {

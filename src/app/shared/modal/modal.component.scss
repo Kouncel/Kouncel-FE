@@ -1,0 +1,32 @@
+.modal-shadow {
+  position: fixed;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+.modal-container {
+  width: 90%;
+  background-color: #171717;
+  border-radius: 10px;
+  min-height: 100px;
+  left: 5%;
+  right: 5%;
+  top: 100px;
+  z-index: 2;
+  position: fixed;
+  padding: 10px 20px;
+}
+.modal-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: auto;
+}
+::ng-deep .modal-container h2 {
+  padding-right: 55px;
+}
+::ng-deep .modal-container hr {
+  float: left;
+}
