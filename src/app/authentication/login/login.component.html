@@ -2,11 +2,11 @@
     <br />
     <br />
     <h1>
-        Log in
+        {{ 'LOG-IN' | translate }}
     </h1>
     <br />
     <p>
-        Please enter your data to login to your account
+        {{'PLEASE-ENTER-YOUR-DATA-TO-LOGIN-TO-YOUR-ACCOUNT' | translate}}
     </p>
     <br />
     <hr />
@@ -15,43 +15,47 @@
             <div
                 [ngClass]="{'input-error': formGroup?.dirty && formGroup?.get('email')?.invalid && formGroup?.get('email')?.dirty}">
                 <label>
-                    E-mail
+                    {{ 'EMAIL' | translate }}
                 </label>
                 <br />
-                <input type="email" name="email" formControlName="email" placeholder="Example: someone@example.com" />
+                <input type="email" name="email" formControlName="email"
+                    placeholder="{{'EXAMPLE-EMAIL' | translate }}" />
             </div>
             <br />
             <div
                 [ngClass]="{'input-error': formGroup?.dirty && formGroup?.get('password')?.invalid && formGroup?.get('password')?.dirty}">
                 <label>
-                    Password
+                    {{ 'PASSWORD' | translate }}
                 </label>
                 <br />
-                <input type="password" name="password" formControlName="password" placeholder="Enter your password" />
+                <input type="password" name="password" formControlName="password"
+                    placeholder="{{ 'ENTER-YOUR-PASSWORD' | translate }}" />
             </div>
             <br />
             <div *ngIf="formGroup?.dirty && formGroup?.invalid" class="form-errors">
                 <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
                 <ul>
-                    <li *ngIf="formGroup.get('email')?.dirty && formGroup.get('email')?.hasError('required')">Email is
-                        required</li>
+                    <li *ngIf="formGroup.get('email')?.dirty && formGroup.get('email')?.hasError('required')">{{'EMAIL'
+                        | translate}}
+                        {{'REQUIRED' | translate}}</li>
                     <li *ngIf="formGroup.get('password')?.dirty && formGroup.get('password')?.hasError('required')">
-                        Password is required</li>
-                    <li *ngIf="formGroup.get('email')?.dirty && formGroup.get('email')?.hasError('email')">Invalid Email
+                        {{'PASSWORD' | translate}} {{'REQUIRED' | translate}}</li>
+                    <li *ngIf="formGroup.get('email')?.dirty && formGroup.get('email')?.hasError('email')">{{
+                        'INVALID-EMAIL' | translate }}
                     </li>
                 </ul>
             </div>
             <br />
-            <button type="submit">Log in</button>
+            <button type="submit">{{ 'LOG-IN' | translate }}</button>
             <br />
             <br />
             <br />
         </form>
-        <p>Don't have account? <a class="red" [routerLink]="['/register']"
-                routerLinkActive="router-link-active">Register
-                Now</a></p>
+        <p>{{'DONT-HAVE-ACCOUNT' | translate}}&nbsp;<a class="red" [routerLink]="['/register']"
+                routerLinkActive="router-link-active">{{'REGISTER' | translate}}
+                {{'NOW' | translate}}</a></p>
         <br />
-        <a class="grey" [routerLink]="['/reset-password']" routerLinkActive="router-link-active">Forgot your
-            password?</a>
+        <a class="grey" [routerLink]="['/reset-password']"
+            routerLinkActive="router-link-active">{{'FORGOT-YOUR-PASSWORD' | translate}}</a>
     </div>
 </div>

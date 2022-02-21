@@ -14,6 +14,7 @@ import { ResetVerifyComponent } from './reset-verify/reset-verify.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { ChangePasswordSuccessComponent } from './change-password-success/change-password-success.component';
 import { NzNotificationModule } from 'ng-zorro-antd/notification';
+import { TranslateModule } from '@ngx-translate/core';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -47,6 +48,7 @@ const routes: Routes = [
     ReactiveFormsModule,
     NzToolTipModule,
     NzNotificationModule,
+    TranslateModule,
   ],
   providers: [AuthenticationService],
 })

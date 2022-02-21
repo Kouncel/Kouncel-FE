@@ -25,6 +25,9 @@ export class HeaderComponent implements OnInit {
     this.lookupsService.getCategories().subscribe((res) => {
       this.categories = res.slice(0, 5);
     });
+    this.utilsService.languageSource.subscribe((lang) => {
+      this.addRemoveRtlStyles(lang);
+    });
   }
 
   logOut() {
@@ -35,6 +38,9 @@ export class HeaderComponent implements OnInit {
 
   setLang(lang: string) {
     this.utilsService.setLanguage(lang);
+  }
+
+  addRemoveRtlStyles(lang: string) {
     switch (lang) {
       case 'en':
         document.querySelectorAll('.rtl-style').forEach((n) => n.remove());

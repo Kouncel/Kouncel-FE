@@ -9,6 +9,11 @@
   src: url(assets/fonts/poppins/Poppins-Bold.otf);
 }
 
+@font-face {
+  font-family: gess2l;
+  src: url(assets/fonts/gess2l.otf);
+}
+
 body {
   color: #fff;
   font-family: poppins;
@@ -201,4 +206,23 @@ button:hover {
 .input-error ::-ms-input-placeholder {
   /* Microsoft Edge */
   color: #ab2331;
+}
+
+/* responsiveness */
+@media (max-width: 992px) {
+  .header-container {
+    height: auto !important;
+  }
+  .header-logo {
+    text-align: center;
+  }
+  .header-buttons > div:first-child {
+    text-align: left;
+  }
+  .header-buttons > div:last-child {
+    text-align: right;
+  }
+  .social-media {
+    text-align: center;
+  }
 }

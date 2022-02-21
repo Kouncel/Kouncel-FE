@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'koun-footer',
@@ -8,7 +9,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 })
 export class FooterComponent implements OnInit {
   formGroup: FormGroup = new FormGroup({});
-  constructor() {}
+  constructor(translate: TranslateService) {}
 
   ngOnInit(): void {
     this.formGroup = new FormGroup({

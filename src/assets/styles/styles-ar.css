@@ -1,6 +1,6 @@
 body {
   direction: rtl;
-  font-family: system-ui;
+  font-family: gess2l, poppins;
 }
 label {
   float: right;
@@ -15,9 +15,19 @@ label {
 }
 
 h1 {
-  font-family: system-ui;
+  font-family: gess2l, poppins;
 }
 .ant-list-rtl .ant-list-pagination,
 .ant-menu {
   text-align: right;
+}
+
+/* responsiveness */
+@media (max-width: 992px) {
+  .header-buttons > div:first-child {
+    text-align: right;
+  }
+  .header-buttons > div:last-child {
+    text-align: left;
+  }
 }

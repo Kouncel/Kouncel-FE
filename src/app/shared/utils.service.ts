@@ -4,7 +4,9 @@ import { BehaviorSubject } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class UtilsService {
-  language: BehaviorSubject<string> = new BehaviorSubject<string>('en');
+  language: BehaviorSubject<string> = new BehaviorSubject<string>(
+    localStorage.getItem('lang') || 'en'
+  );
   languageSource = this.language.asObservable();
 
   constructor() {}
@@ -30,6 +32,7 @@ export class UtilsService {
   }
 
   setLanguage(lang: string) {
+    localStorage.setItem('lang', lang);
     this.language.next(lang);
   }
 }

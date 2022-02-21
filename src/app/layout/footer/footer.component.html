@@ -4,16 +4,16 @@
             <form class="row justify-content-center subscribe-container" (ngSubmit)="subscribe()"
                 [formGroup]="formGroup">
                 <p class="col-10 ">
-                    Enter your e-mail address to receive the latest news & offers
+                    {{ 'SUBSCRIBE-TEXT' | translate }}
                 </p>
                 <div class="col-md-8 col-lg-6">
                     <div class="row align-items-center">
                         <div class="col-7">
                             <input type="email" name="email" formControlName="email"
-                                placeholder="Your e-mail address" />
+                                placeholder="{{ 'YOUR-EMAIL-ADDRESS' | translate }}" />
                         </div>
                         <div class="col-5">
-                            <button type="submit">Keep in touch</button>
+                            <button type="submit">{{ 'CONTACT-WITH-US' | translate }}</button>
                         </div>
                     </div>
                 </div>
@@ -23,30 +23,31 @@
                     <div class="row">
                         <div class="col">
                             <p class="grey">
-                                Explore
+                                {{ 'EXPLORE' | translate }}
                             </p>
                             <ul>
                                 <li>
-                                    <a href="#">Categories</a>
+                                    <a [routerLink]="['/categories']" routerLinkActive="router-link-active">{{
+                                        'CATEGORIES' | translate }}</a>
                                 </li>
                             </ul>
                         </div>
 
                         <div class="col">
                             <p class="grey">
-                                About
+                                {{ 'ABOUT' | translate }}
                             </p>
                             <ul>
                                 <li>
-                                    <a href="#">Privacy Ploicy</a>
+                                    <a href="#">{{ 'PRIVACY-POLICY' | translate }}</a>
                                 </li>
                                 <li>
-                                    <a href="#">Terms & Conditions</a>
+                                    <a href="#">{{ 'TERMS-AND-CONDITIONS' | translate }}</a>
                                 </li>
                             </ul>
                         </div>
                         <div class="col-md">
-                            <p class="grey">Follow Us</p>
+                            <p class="grey">{{ 'FOLLOW-US' | translate }}</p>
                             <div class="row social-media">
                                 <div class="col">
                                     <a href="#"><i class="fa fa-linkedin"></i></a>
@@ -70,7 +71,7 @@
                 <br />
                 <br />
                 <p class="grey center">
-                    All Rights Reserved. KOUNCEL 2022
+                    {{ 'ALL-RIGHTS-RESERVED' | translate }} KOUNCEL 2022
                 </p>
             </div>
         </div>

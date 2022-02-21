@@ -1,12 +1,12 @@
 <div class="container-fluid header-container">
     <div class="container">
         <div class="row align-items-center">
-            <div class="col">
+            <div class="col-md-12 col-lg header-logo">
                 <a [routerLink]="['/']" routerLinkActive="router-link-active">
                     <img src="assets/logo.png" />
                 </a>
             </div>
-            <div class="col-6">
+            <div class="col-md-12 col-lg-6">
                 <ul nz-menu nzMode="horizontal" class="header-menu">
                     <li nz-menu-item>
                         <a [routerLink]="['/']" routerLinkActive="router-link-active">{{ 'HOME' | translate }}</a>
@@ -26,14 +26,14 @@
                 </ul>
             </div>
             <div class="col">
-                <div class="row">
+                <div class="row header-buttons">
                     <div class="col">
                         <a class="link-btn" [routerLink]="['/login']" routerLinkActive="router-link-active"
                             *ngIf="!(authenticationService.isLoggedIn | async)">{{ 'LOG-IN' | translate }}</a>
                         <a class="link-btn" (click)="logOut()" *ngIf="(authenticationService.isLoggedIn | async)">{{
                             'LOG-OUT' | translate }}</a>
                     </div>
-                    <div class="col">
+                    <div class="col-4">
                         <a nz-dropdown [nzDropdownMenu]="menu">
                             {{(utilsService.languageSource | async)?.toUpperCase()}}&nbsp;&nbsp;<i
                                 class="fa fa-angle-down" aria-hidden="true"></i>
