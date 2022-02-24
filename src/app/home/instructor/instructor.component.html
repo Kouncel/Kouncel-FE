@@ -1,0 +1,19 @@
+<div class="page-container">
+    <div class="page-title">
+        <br />
+        <h1>
+            {{ 'INSTRUCTORS' | translate }}
+        </h1>
+        <button *ngIf="(authenticationService.isAdmin | async)" class="create-btn" (click)="createModalActive=true"><i
+                class="fa fa-plus" aria-hidden="true"></i></button>
+        <hr />
+    </div>
+    <div class="row">
+        <koun-instructor-item *ngFor="let item of categories" [title]="item.title" [image]="item.image"
+            class="col-lg-3 col-md-4 col-sm-6 col-xs"></koun-instructor-item>
+    </div>
+</div>
+
+<koun-modal *ngIf="createModalActive" (closeModal)="createModalActive=false">
+    <koun-create-instructor></koun-create-instructor>
+</koun-modal>

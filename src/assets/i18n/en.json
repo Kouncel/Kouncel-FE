@@ -1,8 +1,10 @@
 {
   "CATEGORIES": "Categories",
+  "INSTRUCTORS": "Instructors",
   "SEARCH": "Search",
   "HOME": "Home",
   "CREATE-CATEGORY": "Create Category",
+  "CREATE-INSTRUCTOR": "Create Instructor",
   "TITLE": "Title",
   "DESCRIPTION": "Description",
   "IMAGE": "Image",

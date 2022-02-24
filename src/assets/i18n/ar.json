@@ -1,8 +1,10 @@
 {
   "CATEGORIES": "التصنيفات",
+  "INSTRUCTORS": "المقدمين",
   "SEARCH": "بحث",
   "HOME": "الرئيسية",
   "CREATE-CATEGORY": "انشئ تصنيف",
+  "CREATE-INSTRUCTOR": "انشئ مقدم",
   "TITLE": "العنوان",
   "DESCRIPTION": "الشرح",
   "IMAGE": "الصورة",

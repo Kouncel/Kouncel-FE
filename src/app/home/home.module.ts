@@ -10,10 +10,14 @@ import { AuthenticationModule } from '../authentication/authentication.module';
 import { CreateCategoryComponent } from './category/create-category/create-category.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NzUploadModule } from 'ng-zorro-antd/upload';
+import { InstructorComponent } from './instructor/instructor.component';
+import { InstructorItemComponent } from './instructor/instructor-item/instructor-item.component';
+import { CreateInstructorComponent } from './instructor/create-instructor/create-instructor.component';
 
 const routes: Routes = [
   { component: HomeComponent, path: '' },
   { component: CategoryComponent, path: 'categories' },
+  { component: InstructorComponent, path: 'instructors' },
 ];
 
 @NgModule({
@@ -22,6 +26,9 @@ const routes: Routes = [
     CategoryComponent,
     CategoryItemComponent,
     CreateCategoryComponent,
+    InstructorComponent,
+    InstructorItemComponent,
+    CreateInstructorComponent,
   ],
   imports: [
     CommonModule,
