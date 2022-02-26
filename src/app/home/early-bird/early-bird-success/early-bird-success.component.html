@@ -1,0 +1,19 @@
+<div class="login-form">
+    <br />
+    <br />
+    <br />
+    <br />
+
+    <div class="row justify-content-center">
+        <div class="col-md-12">
+            <i class="fa fa-check-circle-o grey no-underline" aria-hidden="true"></i>
+            <p style="margin-top: 20px; font-size: 60px;">{{ 'THANK-YOU-1' | translate }}</p>
+            <p style="margin-top: 20px; font-size: 24px; color: #7A7A7A;">{{ 'THANK-YOU-2' | translate }}</p>
+            <br />
+            <div class="row justify-content-center">
+                <a style="font-size: 20px; width: auto;" class="link-btn" [routerLink]="['/']"
+                    routerLinkActive="router-link-active" (click)="reload()">{{ 'THANK-YOU-3' | translate }}</a>
+            </div>
+        </div>
+    </div>
+</div>

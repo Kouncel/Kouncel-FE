@@ -1,78 +1,26 @@
 <footer class="footer-container">
-    <div class="container-fluid">
+    <div class="container">
         <div class="row justify-content-center">
-            <form class="row justify-content-center subscribe-container" (ngSubmit)="subscribe()"
-                [formGroup]="formGroup">
-                <p class="col-10 ">
-                    {{ 'SUBSCRIBE-TEXT' | translate }}
-                </p>
-                <div class="col-md-8 col-lg-6">
-                    <div class="row align-items-center">
-                        <div class="col-7">
-                            <input type="email" name="email" formControlName="email"
-                                placeholder="{{ 'YOUR-EMAIL-ADDRESS' | translate }}" />
-                        </div>
-                        <div class="col-5">
-                            <button type="submit">{{ 'CONTACT-WITH-US' | translate }}</button>
-                        </div>
-                    </div>
-                </div>
-            </form>
-            <div class="row justify-content-center">
-                <div class="col-8 col-md-6">
-                    <div class="row">
-                        <div class="col">
-                            <p class="grey">
-                                {{ 'EXPLORE' | translate }}
-                            </p>
-                            <ul>
-                                <li>
-                                    <a [routerLink]="['/categories']" routerLinkActive="router-link-active">{{
-                                        'CATEGORIES' | translate }}</a>
-                                </li>
-                            </ul>
-                        </div>
-
-                        <div class="col">
-                            <p class="grey">
-                                {{ 'ABOUT' | translate }}
-                            </p>
-                            <ul>
-                                <li>
-                                    <a href="#">{{ 'PRIVACY-POLICY' | translate }}</a>
-                                </li>
-                                <li>
-                                    <a href="#">{{ 'TERMS-AND-CONDITIONS' | translate }}</a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="col-md">
-                            <p class="grey">{{ 'FOLLOW-US' | translate }}</p>
-                            <div class="row social-media">
-                                <div class="col">
-                                    <a href="#"><i class="fa fa-linkedin"></i></a>
-                                </div>
-                                <div class="col">
-                                    <a href="#"><i class="fa fa-twitter"></i></a>
-                                </div>
-                                <div class="col">
-                                    <a href="#"><i class="fa fa-facebook"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
             <div class="row justify-content-center copyrights">
-                <img src="assets/logo-grey.svg" style="width: 230px" />
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                <p class="grey center">
-                    {{ 'ALL-RIGHTS-RESERVED' | translate }} KOUNCEL 2022
-                </p>
+                <div class="col-xs-12 col-md rights-text">
+                    <p class="">
+                        {{ 'ALL-RIGHTS-RESERVED' | translate }} KOUNCEL 2022
+                    </p>
+                </div>
+                <div class="col-xs-12 col-md-6 sm-holder">
+                    <div class="row social-media">
+                        <span class="col" style="font-size: 16px;">{{ 'FOLLOW-US' | translate }}</span>
+                        <div class="col sm-item">
+                            <a href="#"><i class="fa fa-linkedin"></i></a>
+                        </div>
+                        <div class="col sm-item">
+                            <a href="#"><i class="fa fa-twitter"></i></a>
+                        </div>
+                        <div class="col sm-item">
+                            <a href="#"><i class="fa fa-facebook"></i></a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

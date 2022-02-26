@@ -1,0 +1,35 @@
+<div *ngIf="!earlyBirdSuccess">
+    <br />
+    <img src="assets/bird.png" width="400px" />
+    <br />
+    <br />
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            <form class="row justify-content-center subscribe-container" (ngSubmit)="subscribe()"
+                [formGroup]="formGroup">
+                <div class="col-md-8 col-lg-6">
+                    <div class="row align-items-center">
+                        <div class="col-md-7 col-xs-11">
+                            <input type="email" name="email" formControlName="email"
+                                placeholder="{{ 'YOUR-EMAIL-ADDRESS' | translate }}" />
+                        </div>
+                        <div class="col-md-5 col-xs-11">
+                            <button type="submit">{{ 'JOIN-NOW' | translate }}</button>
+                        </div>
+                    </div>
+                </div>
+                <p class="col-12" style="text-align: center; font-size: 30px; margin-top: 30px;">
+                    {{'EARLY-BIRD-TEXT' | translate}}
+                </p>
+                <hr style="width: 100px; max-width: 100%; margin: 15px 0;" />
+                <p class="col-12" style="text-align: center; font-size: 20px; margin-top: 30px; color: #7A7A7A;">
+                    {{'EARLY-BIRD-FOOTER-1' | translate}}<br />{{'EARLY-BIRD-FOOTER-2' | translate}}
+                </p>
+            </form>
+        </div>
+    </div>
+</div>
+<koun-early-bird-success *ngIf="earlyBirdSuccess"></koun-early-bird-success>
+<br />
+<br />
+<br />

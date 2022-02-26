@@ -54,6 +54,24 @@ export class AuthenticationService {
     );
   }
 
+  earlyBirdSubscribe(email: string): Observable<any> {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/x-www-form-urlencoded',
+      }),
+    };
+    const params = new HttpParams({
+      fromObject: {
+        email,
+      },
+    });
+    return this.httpClient.post(
+      `${environment.baseUrl}/accounts/early-bird-subscribe`,
+      params.toString(),
+      httpOptions
+    );
+  }
+
   register(registrationObj: any): Observable<any> {
     const httpOptions = {
       headers: new HttpHeaders({
