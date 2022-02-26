@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  baseUrl: 'http://ec2-18-197-107-75.eu-central-1.compute.amazonaws.com:8080',
+  baseUrl:
+    'http://ec2-3-65-226-189.eu-central-1.compute.amazonaws.com:8080/earlybird',
 };
 
 /*

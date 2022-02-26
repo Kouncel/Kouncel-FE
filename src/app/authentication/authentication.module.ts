@@ -17,17 +17,17 @@ import { NzNotificationModule } from 'ng-zorro-antd/notification';
 import { TranslateModule } from '@ngx-translate/core';
 
 const routes: Routes = [
-  { path: 'login', component: LoginComponent },
-  { path: 'register', component: RegisterComponent },
-  { path: 'verify', component: RegisterVerifyComponent },
-  { path: 'verify-success', component: RegisterSuccessComponent },
-  { path: 'reset-password', component: ResetPasswordComponent },
-  { path: 'reset-verify', component: ResetVerifyComponent },
-  { path: 'change-password', component: ChangePasswordComponent },
-  {
-    path: 'change-password-success',
-    component: ChangePasswordSuccessComponent,
-  },
+  // { path: 'login', component: LoginComponent },
+  // { path: 'register', component: RegisterComponent },
+  // { path: 'verify', component: RegisterVerifyComponent },
+  // { path: 'verify-success', component: RegisterSuccessComponent },
+  // { path: 'reset-password', component: ResetPasswordComponent },
+  // { path: 'reset-verify', component: ResetVerifyComponent },
+  // { path: 'change-password', component: ChangePasswordComponent },
+  // {
+  //   path: 'change-password-success',
+  //   component: ChangePasswordSuccessComponent,
+  // },
 ];
 
 @NgModule({

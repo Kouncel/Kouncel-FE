@@ -18,8 +18,9 @@ import { EarlyBirdSuccessComponent } from './early-bird/early-bird-success/early
 
 const routes: Routes = [
   { component: EarlyBirdComponent, path: '' },
-  { component: CategoryComponent, path: 'categories' },
-  { component: InstructorComponent, path: 'instructors' },
+  { path: '**', redirectTo: '' },
+  // { component: CategoryComponent, path: 'categories' },
+  // { component: InstructorComponent, path: 'instructors' },
 ];
 
 @NgModule({

@@ -24,7 +24,6 @@ export class EarlyBirdComponent implements OnInit {
 
   subscribe() {
     this.formGroup.markAsDirty();
-    this.earlyBirdSuccess = true;
     if (this.formGroup.valid) {
       this.authenticationService
         .earlyBirdSubscribe(this.formGroup.get('email')?.value)

@@ -57,17 +57,14 @@ export class AuthenticationService {
   earlyBirdSubscribe(email: string): Observable<any> {
     const httpOptions = {
       headers: new HttpHeaders({
-        'Content-Type': 'application/x-www-form-urlencoded',
+        // 'Content-Type': 'application/x-www-form-urlencoded',
+        Cookie: 'JSESSIONID=27F6992314F262014C16ABF1719EBB49',
       }),
     };
-    const params = new HttpParams({
-      fromObject: {
-        email,
-      },
-    });
+    const params = { email };
     return this.httpClient.post(
-      `${environment.baseUrl}/accounts/early-bird-subscribe`,
-      params.toString(),
+      `${environment.baseUrl}/add-email?email=${email}`,
+      '',
       httpOptions
     );
   }
