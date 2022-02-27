@@ -58,7 +58,7 @@ export class AuthenticationService {
     const httpOptions = {
       headers: new HttpHeaders({
         // 'Content-Type': 'application/x-www-form-urlencoded',
-        Cookie: 'JSESSIONID=27F6992314F262014C16ABF1719EBB49',
+        // Cookie: 'JSESSIONID=27F6992314F262014C16ABF1719EBB49',
       }),
     };
     const params = { email };
