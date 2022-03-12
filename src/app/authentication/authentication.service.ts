@@ -29,7 +29,7 @@ export class AuthenticationService {
     });
 
     return this.httpClient.post(
-      `${environment.baseUrl}/accounts/login`,
+      `${environment.baseUrl}accounts/login`,
       params.toString(),
       httpOptions
     );
@@ -48,7 +48,7 @@ export class AuthenticationService {
     });
 
     return this.httpClient.post(
-      `${environment.baseUrl}/accounts/forgot-password`,
+      `${environment.baseUrl}accounts/forgot-password`,
       params.toString(),
       httpOptions
     );
@@ -65,7 +65,7 @@ export class AuthenticationService {
     });
 
     return this.httpClient.post(
-      `${environment.baseUrl}/accounts/register`,
+      `${environment.baseUrl}accounts/register`,
       params.toString(),
       httpOptions
     );
