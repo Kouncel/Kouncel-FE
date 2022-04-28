@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
+import { CategoryService } from '../models/categories.service';
 
 @Component({
   selector: 'koun-home',
@@ -7,7 +8,10 @@ import { TranslateService } from '@ngx-translate/core';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
-  constructor(translate: TranslateService) {
+  categories: [];
+
+  constructor(translate: TranslateService,
+    private categoryService: CategoryService) {
     // this language will be used as a fallback when a translation isn't found in the current language
     translate.setDefaultLang('en');
 
@@ -15,5 +19,9 @@ export class HomeComponent implements OnInit {
     translate.use('en');
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    // this.categoryService.createCategory({nameAr: 'testAr'+Math.floor(Math.random() * 1000), nameEn: 'testEn'+Math.floor(Math.random() * 1000)}).subscribe(
+    //   res => console.log(res)
+    // );
+  }
 }
