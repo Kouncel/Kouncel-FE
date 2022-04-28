@@ -18,19 +18,20 @@ export class AuthenticationService {
   login(email: string, password: string): Observable<any> {
     const httpOptions = {
       headers: new HttpHeaders({
-        'Content-Type': 'application/x-www-form-urlencoded',
+        'Content-Type': 'application/json',
       }),
     };
+    const formObject = {
+      username: email,
+      password,
+    };
     const params = new HttpParams({
-      fromObject: {
-        username: email,
-        password,
-      },
+      fromObject: formObject,
     });
 
     return this.httpClient.post(
       `${environment.baseUrl}accounts/login`,
-      params.toString(),
+      formObject,
       httpOptions
     );
   }
@@ -38,7 +39,7 @@ export class AuthenticationService {
   resetPassword(email: string): Observable<any> {
     const httpOptions = {
       headers: new HttpHeaders({
-        'Content-Type': 'application/x-www-form-urlencoded',
+        // 'Content-Type': 'application/x-www-form-urlencoded',
       }),
     };
     const params = new HttpParams({
@@ -49,7 +50,8 @@ export class AuthenticationService {
 
     return this.httpClient.post(
       `${environment.baseUrl}accounts/forgot-password`,
-      params.toString(),
+      // params.toString(),
+      { email },
       httpOptions
     );
   }
@@ -57,7 +59,7 @@ export class AuthenticationService {
   register(registrationObj: any): Observable<any> {
     const httpOptions = {
       headers: new HttpHeaders({
-        'Content-Type': 'application/x-www-form-urlencoded',
+        'Content-Type': 'application/json',
       }),
     };
     const params = new HttpParams({
@@ -66,7 +68,8 @@ export class AuthenticationService {
 
     return this.httpClient.post(
       `${environment.baseUrl}accounts/register`,
-      params.toString(),
+      // params.toString(),
+      registrationObj,
       httpOptions
     );
   }

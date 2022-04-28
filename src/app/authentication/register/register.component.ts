@@ -79,8 +79,8 @@ export class RegisterComponent implements OnInit, OnDestroy {
       delete registrationOb.profession;
       this.authenticationService.register(registrationOb).subscribe(
         (authToken) => {
-          localStorage.setItem('authToken', authToken);
-          this.authenticationService.setLoggedInState(true);
+          // localStorage.setItem('authToken', authToken);
+          // this.authenticationService.setLoggedInState(true);
           this.router.navigate(['verify']);
         },
         (err) => {
