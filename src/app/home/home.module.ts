@@ -13,9 +13,13 @@ import { NzUploadModule } from 'ng-zorro-antd/upload';
 import { InstructorComponent } from './instructor/instructor.component';
 import { InstructorItemComponent } from './instructor/instructor-item/instructor-item.component';
 import { CreateInstructorComponent } from './instructor/create-instructor/create-instructor.component';
+import { CourseComponent } from './course/course.component';
+import { CourseItemComponent } from './course/course-item/course-item.component';
+import { CreateCourseComponent } from './course/create-course/create-course.component';
 
 const routes: Routes = [
   { component: HomeComponent, path: '' },
+  { component: CourseComponent, path: 'courses' },
   { component: CategoryComponent, path: 'categories' },
   { component: InstructorComponent, path: 'instructors' },
 ];
@@ -29,6 +33,9 @@ const routes: Routes = [
     InstructorComponent,
     InstructorItemComponent,
     CreateInstructorComponent,
+    CourseComponent,
+    CourseItemComponent,
+    CreateCourseComponent,
   ],
   imports: [
     CommonModule,
