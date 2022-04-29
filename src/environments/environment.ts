@@ -8,6 +8,7 @@ export const environment = {
   // baseUrl: 'https://ec2-3-65-226-189.eu-central-1.compute.amazonaws.com/',
 };
 
+
 /*
  * For easier debugging in development mode, you can import the following file
  * to ignore zone related error stack frames such as `zone.run`, `zoneDelegate.invokeTask`.
