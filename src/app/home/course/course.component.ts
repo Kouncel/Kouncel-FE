@@ -41,7 +41,7 @@ export class CourseComponent implements OnInit {
       })
       .subscribe((res) => {
         console.log(res);
-        location.reload();
+        // location.reload();
       });
     console.log('create category');
   }
