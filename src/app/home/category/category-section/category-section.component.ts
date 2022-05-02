@@ -13,7 +13,11 @@ export class CategorySectionComponent implements OnInit {
 
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.list.forEach(element => {
+      element.id = Math.ceil(Math.random()*1000);
+    });
+  }
 
   scrollElement(direction: string) {
     switch (direction) {

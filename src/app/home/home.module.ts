@@ -28,7 +28,7 @@ const routes: Routes = [
   { component: CategoryComponent, path: 'categories' },
   { component: ListingComponent, path: 'list-categories' },
   { component: InstructorComponent, path: 'instructors' },
-  { component: CourseDetailComponent, path: 'course' },
+  { component: CourseDetailComponent, path: 'course/:id' },
 ];
 
 @NgModule({
