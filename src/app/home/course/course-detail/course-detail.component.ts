@@ -6,34 +6,48 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./course-detail.component.scss']
 })
 export class CourseDetailComponent implements OnInit {
-  courseImage =  'https://images.unsplash.com/photo-1598128558393-70ff21433be0?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1989&q=80';
+  courseImage =  `https://source.unsplash.com/random/500x700?sig=${Math.ceil(
+      Math.random() * 1000
+    )}`;
   
   
 
   list1 = [
     {
       image:
-        'https://images.unsplash.com/photo-1598128558393-70ff21433be0?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1989&q=80',
+        `https://source.unsplash.com/random/500x700?sig=${Math.ceil(
+      Math.random() * 1000
+    )}`,
     },
     {
       image:
-        'https://images.unsplash.com/photo-1598128558393-70ff21433be0?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1989&q=80',
+        `https://source.unsplash.com/random/500x700?sig=${Math.ceil(
+      Math.random() * 1000
+    )}`,
     },
     {
       image:
-        'https://images.unsplash.com/photo-1598128558393-70ff21433be0?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1989&q=80',
+        `https://source.unsplash.com/random/500x700?sig=${Math.ceil(
+      Math.random() * 1000
+    )}`,
     },
     {
       image:
-        'https://images.unsplash.com/photo-1598128558393-70ff21433be0?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1989&q=80',
+        `https://source.unsplash.com/random/500x700?sig=${Math.ceil(
+      Math.random() * 1000
+    )}`,
     },
     {
       image:
-        'https://images.unsplash.com/photo-1598128558393-70ff21433be0?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1989&q=80',
+        `https://source.unsplash.com/random/500x700?sig=${Math.ceil(
+      Math.random() * 1000
+    )}`,
     },
     {
       image:
-        'https://images.unsplash.com/photo-1598128558393-70ff21433be0?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1989&q=80',
+        `https://source.unsplash.com/random/500x700?sig=${Math.ceil(
+      Math.random() * 1000
+    )}`,
     },
   ];
 
