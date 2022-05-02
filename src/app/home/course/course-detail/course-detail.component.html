@@ -1,0 +1,115 @@
+<div class="row" #detailsContainer>
+    <div class="col-md-5" style="position: relative;">
+        <h1>
+            Course Name
+        </h1>
+        <hr style="float: left;" />
+        <br />
+        <h3>
+            Instructor Name
+        </h3>
+        <br />
+        <p style="font-size: 22px;">
+            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text
+            of the printing and typesetting industry.
+        </p>
+        <br />
+        <br />
+        <div class="row" style="width: 90%;">
+            <div class="col course-actions">
+                <a href="#"><i class="fa fa-play-circle" aria-hidden="true"></i><br />
+                    <p>TRAILER</p>
+                </a>
+            </div>
+            <div class="col course-actions">
+                <a href="#"><i class="fa fa-desktop" aria-hidden="true"></i><br />
+                    <p>SAMPLE</p>
+                </a>
+            </div>
+            <div class="col course-actions">
+                <a href="#"><i class="fa fa-share-square-o" aria-hidden="true"></i><br />
+                    <p>SHARE</p>
+                </a>
+            </div>
+        </div>
+        <br />
+        <br />
+        <a href="#" class="link-btn" style="display: block; width: 90%; text-align: center; font-size: 22px;">Subscribe
+            Now</a>
+        <br />
+        <p class="grey no-underline" style="font-size: 22px;">1,500 EFP for 3 months</p>
+    </div>
+    <div class="col-md-7">
+        <div class="instructors-container">
+            <div class="instructors-holder row">
+                <div class="col" [style.backgroundImage]="'url('+(courseImage)+')'"></div>
+            </div>
+        </div>
+    </div>
+    <div class="row about-course">
+        <h2 style="margin-bottom: 30px;">
+            <br />
+            <br />
+            About This Course
+        </h2>
+        <div class="row">
+            <div class="col-md-8 video-part">
+                <video width="100%" height="auto" controls>
+                    <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+            <div class="col-md-4 course-breakdown">
+                <div class="course-controls course-trailer"><span class="fa-stack fa-lg">
+                        <i class="fa fa-circle fa-stack-2x red no-underline"></i>
+                        <i class="fa fa-flag fa-stack-1x fa-pause"></i>
+                    </span><span style="margin-left: 20px;">Course Trailer</span></div>
+                <div class="course-controls course-sample"><span class="fa-stack fa-lg">
+                        <i class="fa fa-circle fa-stack-2x red no-underline"></i>
+                        <i class="fa fa-flag fa-stack-1x fa-play"></i>
+                    </span><span style="margin-left: 20px;">Course Sample</span></div>
+                <div class="course-index">
+                    <br/>
+                    <p style="margin-bottom: 10px;">Course Index</p>
+                    <ul>
+                        <li *ngFor="let item of lessons;" (click)="selectedLessonId = item.id"><div><p class="lesson-title">{{item.title}} <span style="float: right;" class="fa" [ngClass]="{'fa-chevron-down': selectedLessonId !== item.id, 'fa-chevron-up': selectedLessonId === item.id}"></span></p><div *ngIf="selectedLessonId===item.id" class="index-details" style="color: #858585;">{{item.body}}</div></div></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <h2 class="grey bold no-underline">
+            <br/>
+            What will you learn
+        </h2>
+        <h5>
+            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+        </h5>
+        <h5 class="grey no-underline">
+            <br/>
+            Instructor Name <span class="white no-underline" style="text-decoration: none !important;">AlHassan Fahmy</span><br/><br/>
+            Course Content <span class="white no-underline" style="text-decoration: none !important;">6 Lessons</span><br/><br/>
+            Category <span class="white no-underline" style="text-decoration: none !important;">Category Name</span><br/><br/>
+        </h5>
+    </div>
+    <div class="row">
+        <koun-category-section [list]="list1" [title]="'Related Courses'"></koun-category-section>
+    </div>
+    <div class="row">
+        <h2 class="bold no-underline">
+            <br/>
+            <br/>
+            <br/>
+            Frequently Asked Questions
+        </h2>
+        <h3 class="grey no-underline" style="margin-bottom: 20px;">
+            <br/>
+            Lorem Ipsum
+        </h3>
+        <div class="faq-item" *ngFor="let item of faq" (click)="item.selected = !item.selected">
+            <div class="faq-question">{{item.question}} <span class="fa" [ngClass]="{'fa-chevron-down': !item.selected, 'fa-chevron-up': item.selected}" style="float: right;"></span></div>
+            <div *ngIf="item.selected" class="faq-answer">{{item.answer}}</div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,46 @@
+<br />
+<br />
+<br />
+<h3>
+    {{title}}
+    <small *ngIf="list.length > 4">
+        <a href="#" style="float: right;">
+            See all
+            <i class="fa fa-chevron-right" aria-hidden="true"></i>
+        </a>
+    </small>
+</h3>
+<br />
+<div class="general-holder">
+    <button class="carousel-controls left-btn" (click)="scrollElement('left')" *ngIf="list.length > 4">
+        <i class="fa fa-long-arrow-left" aria-hidden="true"></i>
+    </button>
+    <button class="carousel-controls right-btn" (click)="scrollElement('right')" *ngIf="list.length > 4">
+        <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
+    </button>
+    <div class="row courses-holder" #coursesHolder>
+        <div class="course-item" *ngFor="let item of list"
+            [style.width.%]="list.length >= 4 ? 25 : list.length === 3 ? 33.33 : list.length === 2 ? 50 : 100 ">
+            <a [routerLink]="['/course']" routerLinkActive="router-link-active" >
+                <div class="course-details" [style.backgroundImage]="'url('+(item.image)+')'">
+                    <div class="course-info">
+                        <h3>
+                            Course Name
+                        </h3>
+                        <hr />
+                        <h4>
+                            Instructor Name
+                        </h4>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="course-item" [style.width.%]="25" *ngIf="list.length > 4">
+            <div class="course-details" [style.background]="'#272727'">
+                <h3 class="see-more">
+                    See More<br />Courses
+                </h3>
+            </div>
+        </div>
+    </div>
+</div>

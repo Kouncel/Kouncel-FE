@@ -1,0 +1,30 @@
+<div class="row" #detailsContainer>
+    <div class="col-md-5" style="position: relative;">
+        <h1>
+            Master Law With MENA's Top Counsellors
+        </h1>
+        <br />
+        <h4>
+            All you need to start and improve your career in law, will find it here
+        </h4>
+        <a class="explore-more" (click)="scrollToDetails()">
+            <h3 class="red" style="text-decoration: none !important;">
+                Explore Courses <i class="fa fa-long-arrow-down" aria-hidden="true" style="vertical-align: middle;"></i>
+            </h3>
+        </a>
+    </div>
+    <div class="col-md-7">
+        <div class="instructors-container">
+            <div class="instructors-holder row">
+                <div *ngFor="let item of instructorsArr" class="col" [style.backgroundImage]="'url('+(item)+')'"></div>
+            </div>
+        </div>
+    </div>
+    <div class="details-container">
+        <koun-category-section [list]="list1"></koun-category-section>
+        <koun-category-section [list]="list2"></koun-category-section>
+        <koun-category-section [list]="list3"></koun-category-section>
+        <koun-category-section [list]="list4"></koun-category-section>
+        <koun-category-section [list]="list5"></koun-category-section>
+    </div>
+</div>

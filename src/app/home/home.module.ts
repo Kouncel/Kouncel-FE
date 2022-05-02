@@ -16,12 +16,19 @@ import { CreateInstructorComponent } from './instructor/create-instructor/create
 import { CourseComponent } from './course/course.component';
 import { CourseItemComponent } from './course/course-item/course-item.component';
 import { CreateCourseComponent } from './course/create-course/create-course.component';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpInterceptorService } from '../shared/error-interceptor.service';
+import { ListingComponent } from './category/listing/listing.component';
+import { CategorySectionComponent } from './category/category-section/category-section.component';
+import { CourseDetailComponent } from './course/course-detail/course-detail.component';
 
 const routes: Routes = [
   { component: HomeComponent, path: '' },
   { component: CourseComponent, path: 'courses' },
   { component: CategoryComponent, path: 'categories' },
+  { component: ListingComponent, path: 'list-categories' },
   { component: InstructorComponent, path: 'instructors' },
+  { component: CourseDetailComponent, path: 'course' },
 ];
 
 @NgModule({
@@ -36,6 +43,9 @@ const routes: Routes = [
     CourseComponent,
     CourseItemComponent,
     CreateCourseComponent,
+    ListingComponent,
+    CategorySectionComponent,
+    CourseDetailComponent,
   ],
   imports: [
     CommonModule,
@@ -43,7 +53,14 @@ const routes: Routes = [
     AuthenticationModule,
     ReactiveFormsModule,
     NzUploadModule,
-    RouterModule.forRoot(routes),
+    RouterModule.forRoot(routes, {
+      scrollPositionRestoration: 'enabled',
+    }),
   ],
+  providers: [ {
+    provide: HTTP_INTERCEPTORS,
+    useClass: HttpInterceptorService,
+    multi: true
+  }]
 })
 export class HomeModule {}

@@ -1,0 +1,62 @@
+.courses-holder {
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    display: block;
+    position: relative;
+}
+.course-item {
+    width: 25%;
+    display: inline-block;
+    height: 500px;
+    padding: 0 10px;
+}
+.course-info {
+    text-align: center;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    background-image: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0.9));
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+.course-details {
+    background-position: center;
+    background-size: cover;
+    border-radius: 10px;
+    height: 100%;
+    position: relative;
+}
+hr {
+    width: 20%;
+    max-width: 60px;
+    margin-bottom: 10px;
+}
+.see-more {
+    position: absolute;
+    width: 100%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.carousel-controls {
+    position: absolute;
+    z-index: 1;
+    font-size: 30px;
+    width: 75px;
+    height: 75px;
+    border-radius: 50%;
+    top: 50%;
+    transform: translateY(-50%);
+}
+.left-btn {
+    left: -39px;
+}
+.right-btn {
+    right: -16px;
+}
+.general-holder {
+    position: relative;
+}

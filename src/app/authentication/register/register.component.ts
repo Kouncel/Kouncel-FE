@@ -71,7 +71,6 @@ export class RegisterComponent implements OnInit, OnDestroy {
 
   register() {
     this.formGroup.markAsDirty();
-    console.log();
     if (this.formGroup.valid) {
       const registrationOb = { ...this.formGroup.value };
       registrationOb.professionId = '0459cc91-7bce-422b-98c7-fe0b8a054b94';

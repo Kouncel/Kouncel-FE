@@ -29,10 +29,8 @@ export class CreateCategoryComponent implements OnInit {
         nameAr: this.formGroup.get('title').value + 'AR',
       })
       .subscribe((res) => {
-        console.log(res);
         location.reload();
       });
-    console.log('create category');
   }
   handleChange(e: any) {}
 }

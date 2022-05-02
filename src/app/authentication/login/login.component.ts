@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
 import { Observable, Subscription } from 'rxjs';
@@ -17,6 +17,7 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   constructor(
     private router: Router,
+    private route: ActivatedRoute,
     private authenticationService: AuthenticationService,
     private notification: NzNotificationService,
     translate: TranslateService
@@ -48,7 +49,11 @@ export class LoginComponent implements OnInit, OnDestroy {
           (authToken) => {
             localStorage.setItem('authToken', authToken.access_token);
             this.authenticationService.setLoggedInState(true);
-            this.router.navigate(['']);
+            if (this.route.snapshot.queryParams['returnUrl']) {
+            this.router.navigateByUrl(decodeURIComponent(this.route.snapshot.queryParams['returnUrl']));
+            } else {
+              this.router.navigate(['']);
+            }
           },
           (err) => {
             err?.error?.errors?.forEach((element: any) => {

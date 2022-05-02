@@ -1,0 +1,20 @@
+h1 {
+    margin-top: 100px;
+}
+.instructors-container {
+    padding-left: 100px;
+}
+.instructors-holder {
+    height: 600px;
+    margin-top: 50px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+.instructors-holder div{
+    background-size: cover;
+    background-position: center;
+}
+.explore-more {
+    position: absolute;
+    bottom: 0;
+}
