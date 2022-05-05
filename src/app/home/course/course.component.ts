@@ -34,15 +34,5 @@ export class CourseComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.courseService
-      .createCourse({
-        nameEn: 'Test' + Math.ceil(Math.random() * 1000) + 'EN',
-        nameAr: 'Test' + Math.ceil(Math.random() * 1000) + 'AR',
-      })
-      .subscribe((res) => {
-        console.log(res);
-        // location.reload();
-      });
-    console.log('create category');
   }
 }

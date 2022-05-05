@@ -1,0 +1,20 @@
+<div class="row" #detailsContainer>
+    <div class="col-md-12" style="position: relative;">
+        <h1>
+            Administration
+        </h1>
+        <hr style="float: left;" />
+        <br />
+    </div>
+    <a [routerLink]="['/categories']" routerLinkActive="router-link-active">All Categories</a>
+    >>
+    <a [routerLink]="['/create-category']" routerLinkActive="router-link-active">Create Category</a>
+    <div></div>
+    <a [routerLink]="['/instructors']" routerLinkActive="router-link-active">All Instructors</a>
+    >>
+    <a [routerLink]="['/create-instructor']" routerLinkActive="router-link-active">Create Instructor</a>
+    <div></div>
+    <a [routerLink]="['/courses']" routerLinkActive="router-link-active">All Courses</a>
+    >>
+    <a [routerLink]="['/create-course']" routerLinkActive="router-link-active">Create Course</a>
+</div>

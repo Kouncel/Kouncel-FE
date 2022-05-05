@@ -15,6 +15,7 @@ import { AuthenticationModule } from './authentication/authentication.module';
 import { HomeModule } from './home/home.module';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { AdministrationModule } from './administration/administration.module';
 
 registerLocaleData(en);
 
@@ -34,6 +35,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     HttpClientModule,
     BrowserAnimationsModule,
     AuthenticationModule,
+    AdministrationModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

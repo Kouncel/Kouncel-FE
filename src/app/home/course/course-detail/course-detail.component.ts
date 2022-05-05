@@ -6,6 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./course-detail.component.scss']
 })
 export class CourseDetailComponent implements OnInit {
+  shareModalActive = false;
+  
   courseImage =  `https://source.unsplash.com/random/500x700?sig=${Math.ceil(
       Math.random() * 1000
     )}`;

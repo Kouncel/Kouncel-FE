@@ -27,7 +27,7 @@
                 </a>
             </div>
             <div class="col course-actions">
-                <a href="#"><i class="fa fa-share-square-o" aria-hidden="true"></i><br />
+                <a (click)="shareModalActive = true"><i class="fa fa-share-square-o" aria-hidden="true"></i><br />
                     <p>SHARE</p>
                 </a>
             </div>
@@ -113,3 +113,45 @@
         </div>
     </div>
 </div>
+
+<koun-modal *ngIf="shareModalActive" (closeModal)="shareModalActive=false" [theme]="'light'" [size]="'small'">
+    <div class="share-course">
+        <h1 class="share-course-title">
+            Share this course with your friends
+        </h1>
+        <div class="row">
+            <div class="col">
+                <div class="row">
+                    <div class="col-md-12">
+                        <a href="#" class="share-btn linkedin"><i class="fa fa-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="row">
+                    <div class="col-md-12">
+                        <a href="#" class="share-btn facebook"><i class="fa fa-facebook"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="row">
+                    <div class="col-md-12">
+                        <a href="#" class="share-btn twitter"><i class="fa fa-twitter"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="row">
+                    <div class="col-md-12">
+                        <a href="#" class="share-btn email"><i class="fa fa-envelope"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row manual-share">
+            <div class="col-md-9"><div class="row"><div class="col-md-12"><div class="course-link">www.link.com/coursename</div></div></div></div>
+            <div class="col-md-3"><div class="row"><div class="col-md-12"><a href="#" class="share-btn copy">Copy Link</a></div></div></div>
+        </div>
+    </div>
+</koun-modal>

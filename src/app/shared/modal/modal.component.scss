@@ -30,3 +30,19 @@
 ::ng-deep .modal-container hr {
   float: left;
 }
+
+.light button {
+  background-color: #fff !important;
+  color: #171717 !important;
+}
+.light .modal-container {
+  background-color: #fff !important;
+}
+.light * {
+  color: #000;
+}
+.small .modal-container {
+  width: 50%;
+  left: 50%;
+  transform: translateX(-50%);
+}

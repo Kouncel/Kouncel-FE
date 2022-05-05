@@ -25,9 +25,12 @@ import { CourseDetailComponent } from './course/course-detail/course-detail.comp
 const routes: Routes = [
   { component: HomeComponent, path: '' },
   { component: CourseComponent, path: 'courses' },
+  { component: CreateCourseComponent, path: 'create-course' },
   { component: CategoryComponent, path: 'categories' },
+  { component: CreateCategoryComponent, path: 'create-category' },
   { component: ListingComponent, path: 'list-categories' },
   { component: InstructorComponent, path: 'instructors' },
+  { component: CreateInstructorComponent, path: 'create-instructor' },
   { component: CourseDetailComponent, path: 'course/:id' },
 ];
 
