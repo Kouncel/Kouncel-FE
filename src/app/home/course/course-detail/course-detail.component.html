@@ -7,7 +7,7 @@
         <br />
         <h3>
             Instructor Name
-        </h3>
+        </h3> 
         <br />
         <p style="font-size: 22px;">
             Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text
@@ -72,7 +72,7 @@
                     <br/>
                     <p style="margin-bottom: 10px;">Course Index</p>
                     <ul>
-                        <li *ngFor="let item of lessons;" (click)="selectedLessonId = item.id"><div><p class="lesson-title">{{item.title}} <span style="float: right;" class="fa" [ngClass]="{'fa-chevron-down': selectedLessonId !== item.id, 'fa-chevron-up': selectedLessonId === item.id}"></span></p><div *ngIf="selectedLessonId===item.id" class="index-details" style="color: #858585;">{{item.body}}</div></div></li>
+                        <li *ngFor="let item of lessons;" (click)="selectedLessonId = item.id"><div><p class="lesson-title">{{item.title}} <span style="float: right;" class="lesson-expand-chevron fa" [ngClass]="{'fa-chevron-down': selectedLessonId !== item.id, 'fa-chevron-up': selectedLessonId === item.id}"></span></p><div *ngIf="selectedLessonId===item.id" class="index-details" style="color: #858585;">{{item.body}}</div></div></li>
                     </ul>
                 </div>
             </div>
@@ -108,7 +108,7 @@
             Lorem Ipsum
         </h3>
         <div class="faq-item" *ngFor="let item of faq" (click)="item.selected = !item.selected">
-            <div class="faq-question">{{item.question}} <span class="fa" [ngClass]="{'fa-chevron-down': !item.selected, 'fa-chevron-up': item.selected}" style="float: right;"></span></div>
+            <div class="faq-question">{{item.question}} <span class="faq-expand-chevron fa" [ngClass]="{'fa-chevron-down': !item.selected, 'fa-chevron-up': item.selected}" style="float: right;"></span></div>
             <div *ngIf="item.selected" class="faq-answer">{{item.answer}}</div>
         </div>
     </div>

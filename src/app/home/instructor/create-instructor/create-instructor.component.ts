@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
+import { InstructorService } from 'src/app/models/instructors.service';
 
 @Component({
   selector: 'koun-create-instructor',
@@ -10,7 +11,8 @@ import { TranslateService } from '@ngx-translate/core';
 export class CreateInstructorComponent implements OnInit {
   formGroup: FormGroup = new FormGroup({});
 
-  constructor(translate: TranslateService) {}
+  constructor(translate: TranslateService,
+    private instrcutorService: InstructorService) {}
 
   ngOnInit(): void {
     this.formGroup = new FormGroup({
@@ -20,6 +22,7 @@ export class CreateInstructorComponent implements OnInit {
   }
   create() {
     console.log('create category');
+    this.instrcutorService.createInstructor({nameEn: 'asda', nameAr:'sdasd'}).subscribe(res => console.log(res));
   }
   handleChange(e: any) {}
 }

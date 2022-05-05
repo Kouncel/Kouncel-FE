@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { AuthenticationService } from 'src/app/authentication/authentication.service';
+import { InstructorService } from 'src/app/models/instructors.service';
 import { LookupsService } from 'src/app/models/lookups.service';
 
 @Component({
@@ -13,12 +14,11 @@ export class InstructorComponent implements OnInit {
   createModalActive: boolean;
   constructor(
     private lookupService: LookupsService,
+    private instructorsService: InstructorService,
     public authenticationService: AuthenticationService,
     translate: TranslateService
   ) {
-    this.lookupService
-      .getCategories()
-      .subscribe((categories) => (this.categories = categories));
+    this.instructorsService.getAllInstructors().subscribe(res => console.log(res))
   }
 
   ngOnInit(): void {}

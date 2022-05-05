@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CourseDetailComponent implements OnInit {
   shareModalActive = false;
-  
+
   courseImage =  `https://source.unsplash.com/random/500x700?sig=${Math.ceil(
       Math.random() * 1000
     )}`;
@@ -75,7 +75,8 @@ export class CourseDetailComponent implements OnInit {
     {selected: false, id: 8, question: 'Lorem Ipsum Question?', answer: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting industry.'},
   ];
   
-  constructor() { }
+  constructor(
+  ) { }
 
   ngOnInit(): void {
   }

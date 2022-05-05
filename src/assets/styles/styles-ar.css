@@ -42,6 +42,19 @@ h1 {
   float: right;
 }
 
+.see-all, .faq-expand-chevron, .lesson-expand-chevron {
+  float: left !important;
+}
+.see-all .fa {
+  transform: rotate(180deg);
+}
+.left-btn {
+  left: -15px !important;
+}
+.right-btn {
+  right: -40px !important;
+}
+
 /* responsiveness */
 @media (max-width: 992px) {
   .header-buttons > div:first-child {

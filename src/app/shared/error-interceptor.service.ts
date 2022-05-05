@@ -29,7 +29,7 @@ export class HttpInterceptorService implements HttpInterceptor {
             this.notification.create(
               'error',
               'An Error Occured',
-              'An Error Occured',
+              error?.message,
               { nzPlacement: 'bottomRight' }
             );
           }
