@@ -4,10 +4,10 @@ import { BehaviorSubject, map, Observable, of } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 @Injectable({ providedIn: 'root' })
-export class InstructorService {
+export class LessonService {
   constructor(private httpClient: HttpClient) {}
 
-  getAllInstructors(): Observable<any> {
+  getAllLessons(): Observable<any> {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
@@ -16,36 +16,30 @@ export class InstructorService {
     };
 
     return this.httpClient
-      .get(`${environment.baseUrl}instructor`, httpOptions)
+      .get(`${environment.baseUrl}lessons`, httpOptions)
       .pipe(map((res) => res));
   }
 
-  createInstructor(instructor: any) {
+  createLesson(lesson: any) {
     const httpOptions = {
       headers: new HttpHeaders({
-        // 'Content-Type': 'application/json',
-        'Content-Type': 'multipart/form-data',
+        'Content-Type': 'application/json',
         Authorization: `Bearer ${localStorage.getItem('authToken')}`,
       }),
     };
     const params = new HttpParams({
-      fromObject: instructor,
+      fromObject: lesson,
     });
 
-    const formData = new FormData();
-    formData.append('image', instructor.image);
-    formData.append('nameEn', instructor.nameEn);
-    formData.append('nameAr', instructor.nameAr);
-
     return this.httpClient.post(
-      `${environment.baseUrl}instructor`,
+      `${environment.baseUrl}lessons`,
       // params.toString(),
-      formData,
+      lesson,
       httpOptions
     );
   }
 
-  deleteInstructor(id: any) {
+  deleteLesson(id: any) {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
@@ -54,7 +48,7 @@ export class InstructorService {
     };
 
     return this.httpClient.delete(
-      `${environment.baseUrl}instructor/${id}`,
+      `${environment.baseUrl}lessons/${id}`,
       // params.toString(),
       httpOptions
     );

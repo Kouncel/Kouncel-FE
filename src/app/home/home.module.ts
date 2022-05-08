@@ -8,7 +8,7 @@ import { CategoryItemComponent } from './category/category-item/category-item.co
 import { SharedModule } from '../shared/shared.module';
 import { AuthenticationModule } from '../authentication/authentication.module';
 import { CreateCategoryComponent } from './category/create-category/create-category.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NzUploadModule } from 'ng-zorro-antd/upload';
 import { InstructorComponent } from './instructor/instructor.component';
 import { InstructorItemComponent } from './instructor/instructor-item/instructor-item.component';
@@ -21,6 +21,9 @@ import { HttpInterceptorService } from '../shared/error-interceptor.service';
 import { ListingComponent } from './category/listing/listing.component';
 import { CategorySectionComponent } from './category/category-section/category-section.component';
 import { CourseDetailComponent } from './course/course-detail/course-detail.component';
+import { CreateLessonComponent } from './lesson/create-lesson/create-lesson.component';
+import { ListLessonsComponent } from './lesson/list-lessons/list-lessons.component';
+import { LessonComponent } from './lesson/lesson.component';
 
 const routes: Routes = [
   { component: HomeComponent, path: '' },
@@ -29,6 +32,8 @@ const routes: Routes = [
   { component: CategoryComponent, path: 'categories' },
   { component: CreateCategoryComponent, path: 'create-category' },
   { component: ListingComponent, path: 'list-categories' },
+  { component: CreateLessonComponent, path: 'create-lesson' },
+  { component: LessonComponent, path: 'lessons' },
   { component: InstructorComponent, path: 'instructors' },
   { component: CreateInstructorComponent, path: 'create-instructor' },
   { component: CourseDetailComponent, path: 'course/:id' },
@@ -49,12 +54,16 @@ const routes: Routes = [
     ListingComponent,
     CategorySectionComponent,
     CourseDetailComponent,
+    CreateLessonComponent,
+    ListLessonsComponent,
+    LessonComponent,
   ],
   imports: [
     CommonModule,
     SharedModule,
     AuthenticationModule,
     ReactiveFormsModule,
+    FormsModule,
     NzUploadModule,
     RouterModule.forRoot(routes, {
       scrollPositionRestoration: 'enabled',

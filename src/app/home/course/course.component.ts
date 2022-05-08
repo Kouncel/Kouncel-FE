@@ -35,4 +35,11 @@ export class CourseComponent implements OnInit {
 
   ngOnInit(): void {
   }
+
+  courseCreated(e: any) {
+    e.title = e.nameEn;
+    e.description = e.description || e.nameEn || '';
+    e.image = `https://source.unsplash.com/random/300x200?sig=${Math.ceil(Math.random()*1000)}`;
+    this.categories.push(e);
+  }
 }

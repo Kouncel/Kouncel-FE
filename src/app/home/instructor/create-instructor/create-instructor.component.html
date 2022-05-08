@@ -36,13 +36,15 @@
         </label>
         <br />
         <br />
-        <nz-upload nzAction="http(s)://www.hashemian.com/tools/form-post-tester.php/joe123"
+        <!-- <nz-upload nzAction="http(s)://www.hashemian.com/tools/form-post-tester.php/joe123" -->
+        <nz-upload
             [nzHeaders]="{ authorization: 'authorization-text' }" (nzChange)="handleChange($event)">
             <button nz-button>
                 <i nz-icon nzType="upload"></i>
                 Click to Upload Image
             </button>
         </nz-upload>
+        <input type="file" formControlName="myImage" (change)="create()"/>
         <br />
         <button type="submit">{{ 'CREATE' | translate }}</button>
         <br />

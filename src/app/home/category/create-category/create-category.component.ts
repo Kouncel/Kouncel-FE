@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
+import { NzNotificationService } from 'ng-zorro-antd/notification';
 import { CategoryService } from 'src/app/models/categories.service';
 
 @Component({
@@ -9,11 +10,13 @@ import { CategoryService } from 'src/app/models/categories.service';
   styleUrls: ['./create-category.component.scss'],
 })
 export class CreateCategoryComponent implements OnInit {
+  @Output() created: EventEmitter<any> = new EventEmitter<any>();
   formGroup: FormGroup = new FormGroup({});
 
   constructor(
     translate: TranslateService,
-    private categoryService: CategoryService
+    private categoryService: CategoryService,
+    private notification: NzNotificationService,
   ) {}
 
   ngOnInit(): void {
@@ -29,7 +32,16 @@ export class CreateCategoryComponent implements OnInit {
         nameAr: this.formGroup.get('title').value + 'AR',
       })
       .subscribe((res) => {
-        location.reload();
+        this.created.emit({
+          nameEn: this.formGroup.get('title').value + 'EN',
+          nameAr: this.formGroup.get('title').value + 'AR',
+        });
+        this.notification.create(
+        'success',
+        'Success',
+        'Category created successfully',
+        { nzPlacement: 'bottomRight' }
+      );
       });
   }
   handleChange(e: any) {}

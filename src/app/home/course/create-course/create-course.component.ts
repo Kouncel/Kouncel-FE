@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { NzNotificationService } from 'ng-zorro-antd/notification';
 import { CourseService } from 'src/app/models/courses.service';
 
 @Component({
@@ -7,8 +8,10 @@ import { CourseService } from 'src/app/models/courses.service';
   styleUrls: ['./create-course.component.scss']
 })
 export class CreateCourseComponent implements OnInit {
-
-  constructor(private courseService: CourseService) { }
+  @Output() created: EventEmitter<any> = new EventEmitter<any>();
+  title: string;
+  constructor(private courseService: CourseService,
+    private notification: NzNotificationService,) { }
 
   ngOnInit(): void {
   }
@@ -16,12 +19,20 @@ export class CreateCourseComponent implements OnInit {
   create() {
     this.courseService
       .createCourse({
-        nameEn: 'Test' + Math.ceil(Math.random() * 1000) + 'EN',
-        nameAr: 'Test' + Math.ceil(Math.random() * 1000) + 'AR',
+        nameEn: this.title + 'EN',
+        nameAr: this.title + 'AR',
       })
       .subscribe((res) => {
-        console.log(res);
-        // location.reload();
+        this.created.emit({
+          nameEn: this.title + 'EN',
+          nameAr: this.title + 'AR',
+        });
+        this.notification.create(
+        'success',
+        'Success',
+        'Course created successfully',
+        { nzPlacement: 'bottomRight' }
+      );
       });
   }
 

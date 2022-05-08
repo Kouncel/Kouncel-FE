@@ -17,5 +17,5 @@
 </div>
 
 <koun-modal *ngIf="createModalActive" (closeModal)="createModalActive=false">
-    <koun-create-category></koun-create-category>
+    <koun-create-category (created)="categoryCreated($event)"></koun-create-category>
 </koun-modal>

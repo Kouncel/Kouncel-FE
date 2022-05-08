@@ -17,5 +17,5 @@
 </div>
 
 <koun-modal *ngIf="createModalActive" (closeModal)="createModalActive=false">
-    <koun-create-course></koun-create-course>
+    <koun-create-course (created)="courseCreated($event)"></koun-create-course>
 </koun-modal>

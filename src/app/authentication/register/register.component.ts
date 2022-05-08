@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
 import { Subscription } from 'rxjs';
 import { LookupsService } from 'src/app/models/lookups.service';
+import { ProfessionsService } from 'src/app/models/professions.service';
 import { UtilsService } from 'src/app/shared/utils.service';
 import { AuthenticationService } from '../authentication.service';
 
@@ -30,8 +31,12 @@ export class RegisterComponent implements OnInit, OnDestroy {
     private router: Router,
     private authenticationService: AuthenticationService,
     private lookupsService: LookupsService,
+    private professionsService: ProfessionsService,
     private notification: NzNotificationService
   ) {
+    this.professionsService.getAllProfessions().subscribe((res: any) => {
+      this.professions = res['data'];
+    });
     this.lookupsService
       .getCountries()
       .subscribe((countries) => (this.countries = countries));

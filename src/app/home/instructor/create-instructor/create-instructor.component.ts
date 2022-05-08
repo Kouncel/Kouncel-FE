@@ -17,12 +17,16 @@ export class CreateInstructorComponent implements OnInit {
   ngOnInit(): void {
     this.formGroup = new FormGroup({
       title: new FormControl('', [Validators.required]),
+      myImage: new FormControl()
       // description: new FormControl('', [Validators.required]),
     });
   }
   create() {
+    console.log(this.formGroup.value);
     console.log('create category');
-    this.instrcutorService.createInstructor({nameEn: 'asda', nameAr:'sdasd'}).subscribe(res => console.log(res));
+    this.instrcutorService.createInstructor({nameEn: 'asda', nameAr:'sdasd', image: this.formGroup.get('myImage').value}).subscribe(res => console.log(res));
   }
-  handleChange(e: any) {}
+  handleChange(e: any) {
+    console.log(e);
+  }
 }
