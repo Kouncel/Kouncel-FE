@@ -20,11 +20,7 @@
             </div>
         </div>
     </div>
-    <div class="details-container">
-        <koun-category-section [list]="list1"></koun-category-section>
-        <koun-category-section [list]="list2"></koun-category-section>
-        <koun-category-section [list]="list3"></koun-category-section>
-        <koun-category-section [list]="list4"></koun-category-section>
-        <koun-category-section [list]="list5"></koun-category-section>
+    <div class="details-container" *ngFor="let item of categories">
+        <koun-category-section [list]="item?.list" [title]="item?.name"></koun-category-section>
     </div>
 </div>

@@ -1,4 +1,5 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { CategoryService } from 'src/app/models/categories.service';
 
 @Component({
   selector: 'koun-listing',
@@ -8,6 +9,7 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 export class ListingComponent implements OnInit {
   @ViewChild('detailsContainer', { static: false })
   detailsContainer: ElementRef;
+  categories: any[] = [];
 
   instructorsArr: string[] = [
     `https://source.unsplash.com/random/500x700?sig=${Math.ceil(
@@ -24,104 +26,28 @@ export class ListingComponent implements OnInit {
     )}`,
   ];
 
-  list1 = [
-    {
-      image: `https://source.unsplash.com/random/500x700?sig=${Math.ceil(
-        Math.random() * 1000
-      )}`,
-    },
-    {
-      image: `https://source.unsplash.com/random/500x700?sig=${Math.ceil(
-        Math.random() * 1000
-      )}`,
-    },
-    {
-      image: `https://source.unsplash.com/random/500x700?sig=${Math.ceil(
-        Math.random() * 1000
-      )}`,
-    },
-    {
-      image: `https://source.unsplash.com/random/500x700?sig=${Math.ceil(
-        Math.random() * 1000
-      )}`,
-    },
-    {
-      image: `https://source.unsplash.com/random/500x700?sig=${Math.ceil(
-        Math.random() * 1000
-      )}`,
-    },
-    {
-      image: `https://source.unsplash.com/random/500x700?sig=${Math.ceil(
-        Math.random() * 1000
-      )}`,
-    },
-  ];
+  constructor(
+    private categoriesService: CategoryService
+  ) {}
 
-  list2 = [
-    {
-      image: `https://source.unsplash.com/random/500x700?sig=${Math.ceil(
-        Math.random() * 1000
-      )}`,
-    },
-    {
-      image: `https://source.unsplash.com/random/500x700?sig=${Math.ceil(
-        Math.random() * 1000
-      )}`,
-    },
-    {
-      image: `https://source.unsplash.com/random/500x700?sig=${Math.ceil(
-        Math.random() * 1000
-      )}`,
-    },
-  ];
-
-  list5 = [
-    {
-      image: `https://source.unsplash.com/random/500x700?sig=${Math.ceil(
-        Math.random() * 1000
-      )}`,
-    },
-    {
-      image: `https://source.unsplash.com/random/500x700?sig=${Math.ceil(
-        Math.random() * 1000
-      )}`,
-    },
-    {
-      image: `https://source.unsplash.com/random/500x700?sig=${Math.ceil(
-        Math.random() * 1000
-      )}`,
-    },
-    {
-      image: `https://source.unsplash.com/random/500x700?sig=${Math.ceil(
-        Math.random() * 1000
-      )}`,
-    },
-  ];
-
-  list3 = [
-    {
-      image: `https://source.unsplash.com/random/500x700?sig=${Math.ceil(
-        Math.random() * 1000
-      )}`,
-    },
-    {
-      image: `https://source.unsplash.com/random/500x700?sig=${Math.ceil(
-        Math.random() * 1000
-      )}`,
-    },
-  ];
-
-  list4 = [
-    {
-      image: `https://source.unsplash.com/random/500x700?sig=${Math.ceil(
-        Math.random() * 1000
-      )}`,
-    },
-  ];
-
-  constructor() {}
-
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.categoriesService.getAllCategories().subscribe(
+      res => {
+        res.forEach((element: any, i: number) => {
+          const numOfElements = Math.ceil(Math.random() * 7);
+          const list = [];
+          for (let i =0 ; i < numOfElements; i++) {
+            list.push({image: `https://source.unsplash.com/random/500x700?sig=${Math.ceil(
+              Math.random() * 1000
+            )}`});
+          }
+          element.list = list;
+          element.name = element.nameEn || element.nameAr;
+        });
+        this.categories = res;
+      }
+    );
+  }
 
   scrollToDetails() {
     document
