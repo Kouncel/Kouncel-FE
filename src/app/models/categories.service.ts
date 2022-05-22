@@ -16,7 +16,7 @@ export class CategoryService {
     };
 
     return this.httpClient
-      .get(`${environment.baseUrl}category`, httpOptions)
+      .get(`${localStorage.getItem('baseUrl')}category`, httpOptions)
       .pipe(map((res) => res));
   }
 
@@ -32,7 +32,7 @@ export class CategoryService {
     });
 
     return this.httpClient.post(
-      `${environment.baseUrl}category`,
+      `${localStorage.getItem('baseUrl')}category`,
       // params.toString(),
       category,
       httpOptions
@@ -48,7 +48,7 @@ export class CategoryService {
     };
 
     return this.httpClient.delete(
-      `${environment.baseUrl}category/${id}`,
+      `${localStorage.getItem('baseUrl')}category/${id}`,
       // params.toString(),
       httpOptions
     );

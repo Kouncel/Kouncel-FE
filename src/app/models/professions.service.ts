@@ -16,7 +16,7 @@ export class ProfessionsService {
     };
 
     return this.httpClient
-      .get(`${environment.baseUrl}professions?page=1&size=0`, httpOptions)
+      .get(`${localStorage.getItem('baseUrl')}professions?page=1&size=0`, httpOptions)
       .pipe(map((res) => res));
   }
 }

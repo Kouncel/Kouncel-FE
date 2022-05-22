@@ -16,7 +16,7 @@ export class LessonService {
     };
 
     return this.httpClient
-      .get(`${environment.baseUrl}lessons`, httpOptions)
+      .get(`${localStorage.getItem('baseUrl')}lessons`, httpOptions)
       .pipe(map((res) => res));
   }
 
@@ -32,7 +32,7 @@ export class LessonService {
     });
 
     return this.httpClient.post(
-      `${environment.baseUrl}lessons`,
+      `${localStorage.getItem('baseUrl')}lessons`,
       // params.toString(),
       lesson,
       httpOptions
@@ -48,7 +48,7 @@ export class LessonService {
     };
 
     return this.httpClient.delete(
-      `${environment.baseUrl}lessons/${id}`,
+      `${localStorage.getItem('baseUrl')}lessons/${id}`,
       // params.toString(),
       httpOptions
     );

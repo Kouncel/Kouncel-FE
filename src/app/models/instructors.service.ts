@@ -16,7 +16,7 @@ export class InstructorService {
     };
 
     return this.httpClient
-      .get(`${environment.baseUrl}instructor`, httpOptions)
+      .get(`${localStorage.getItem('baseUrl')}instructor`, httpOptions)
       .pipe(map((res) => res));
   }
 
@@ -38,7 +38,7 @@ export class InstructorService {
     formData.append('nameAr', instructor.nameAr);
 
     return this.httpClient.post(
-      `${environment.baseUrl}instructor`,
+      `${localStorage.getItem('baseUrl')}instructor`,
       // params.toString(),
       formData,
       httpOptions
@@ -54,7 +54,7 @@ export class InstructorService {
     };
 
     return this.httpClient.delete(
-      `${environment.baseUrl}instructor/${id}`,
+      `${localStorage.getItem('baseUrl')}instructor/${id}`,
       // params.toString(),
       httpOptions
     );
