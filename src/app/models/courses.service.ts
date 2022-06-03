@@ -20,6 +20,19 @@ export class CourseService {
       .pipe(map((res) => res));
   }
 
+  getCourse(courseId: any): Observable<any> {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${localStorage.getItem('authToken')}`,
+      }),
+    };
+
+    return this.httpClient
+      .get(`${localStorage.getItem('baseUrl')}courses/${courseId}`, httpOptions)
+      .pipe(map((res) => res));
+  }
+
   createCourse(course: any) {
     const httpOptions = {
       headers: new HttpHeaders({

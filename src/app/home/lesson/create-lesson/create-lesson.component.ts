@@ -1,15 +1,47 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { NzNotificationService } from 'ng-zorro-antd/notification';
+import { LessonService } from 'src/app/models/lesson.service';
 
 @Component({
   selector: 'koun-create-lesson',
   templateUrl: './create-lesson.component.html',
-  styleUrls: ['./create-lesson.component.scss']
+  styleUrls: ['./create-lesson.component.scss'],
 })
 export class CreateLessonComponent implements OnInit {
+  @Input() courseId: any;
+  @Output() created: EventEmitter<any> = new EventEmitter<any>();
+  title: string;
 
-  constructor() { }
+  constructor(
+    private lessonService: LessonService,
+    private notification: NzNotificationService
+  ) {}
 
-  ngOnInit(): void {
+  ngOnInit(): void {}
+
+  create() {
+    this.lessonService
+      .createLesson(this.courseId, {
+        nameEn: this.title + 'EN',
+        nameAr: this.title + 'AR',
+        descriptionEn: 'test lesson',
+        descriptionAr: 'كورس',
+        order: 20,
+      })
+      .subscribe((res) => {
+        this.created.emit({
+          nameEn: this.title + 'EN',
+          nameAr: this.title + 'AR',
+          descriptionEn: 'test lesson',
+          descriptionAr: 'كورس',
+          order: 20,
+        });
+        this.notification.create(
+          'success',
+          'Success',
+          'Lesson created successfully',
+          { nzPlacement: 'bottomRight' }
+        );
+      });
   }
-
 }

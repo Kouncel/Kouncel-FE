@@ -74,6 +74,24 @@ export class AuthenticationService {
     );
   }
 
+  refreshToken(refreshToken: any): Observable<any> {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+      }),
+    };
+    const params = new HttpParams({
+      fromObject: refreshToken,
+    });
+
+    return this.httpClient.post(
+      `${localStorage.getItem('baseUrl')}accounts/refreshtoken`,
+      // params.toString(),
+      refreshToken,
+      httpOptions
+    );
+  }
+
   setLoggedInState(state: boolean) {
     this.isLoggedIn.next(state);
   }

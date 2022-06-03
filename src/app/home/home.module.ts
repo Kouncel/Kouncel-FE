@@ -33,7 +33,7 @@ const routes: Routes = [
   { component: CreateCategoryComponent, path: 'create-category' },
   { component: ListingComponent, path: 'list-categories' },
   { component: CreateLessonComponent, path: 'create-lesson' },
-  { component: LessonComponent, path: 'lessons' },
+  { component: LessonComponent, path: 'course/:id/lessons' },
   { component: InstructorComponent, path: 'instructors' },
   { component: CreateInstructorComponent, path: 'create-instructor' },
   { component: CourseDetailComponent, path: 'course/:id' },

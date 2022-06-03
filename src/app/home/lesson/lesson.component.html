@@ -1,1 +1,22 @@
-<p>lesson works!</p>
+<div class="page-container">
+    <div class="page-title">
+        <br />
+        <h1>
+            Course Details and Lessons
+        </h1>
+        <button *ngIf="(authenticationService.isAdmin | async)" class="create-btn" (click)="createModalActive=true"><i
+                class="fa fa-plus" aria-hidden="true"></i></button>
+        <hr />
+    </div>
+    <div class="row">
+        <h2>Course Name: <small>{{course?.nameEn}}</small></h2>
+        <h3>Lessons: </h3>
+        <ul>
+            <li *ngFor="let item of lessons">{{item.nameEn}}</li>
+        </ul>
+    </div>
+</div>
+
+<koun-modal *ngIf="createModalActive" (closeModal)="createModalActive=false">
+    <koun-create-lesson (created)="lessonCreated($event)" [courseId]="courseId"></koun-create-lesson>
+</koun-modal>
