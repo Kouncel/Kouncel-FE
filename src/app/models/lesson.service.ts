@@ -7,7 +7,7 @@ import { environment } from 'src/environments/environment';
 export class LessonService {
   constructor(private httpClient: HttpClient) {}
 
-  getAllLessons(): Observable<any> {
+  getAllLessons(courseId: any): Observable<any> {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
@@ -16,11 +16,11 @@ export class LessonService {
     };
 
     return this.httpClient
-      .get(`${localStorage.getItem('baseUrl')}lessons`, httpOptions)
+      .get(`${localStorage.getItem('baseUrl')}courses/${courseId}/lessons`, httpOptions)
       .pipe(map((res) => res));
   }
 
-  createLesson(lesson: any) {
+  createLesson(courseId: any, lesson: any) {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
@@ -32,7 +32,7 @@ export class LessonService {
     });
 
     return this.httpClient.post(
-      `${localStorage.getItem('baseUrl')}lessons`,
+      `${localStorage.getItem('baseUrl')}courses/${courseId}/lessons`,
       // params.toString(),
       lesson,
       httpOptions

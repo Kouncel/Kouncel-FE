@@ -22,6 +22,7 @@ export class AuthGuard implements CanActivate {
     this.router.navigate(['/login'], {
       queryParams: { returnUrl: encodeURIComponent(state.url) },
     });
+    // TODO: call refresh token
     return false;
   }
 }
