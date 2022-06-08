@@ -48,6 +48,7 @@ export class LoginComponent implements OnInit, OnDestroy {
         .subscribe(
           (authToken) => {
             localStorage.setItem('authToken', authToken.access_token);
+            localStorage.setItem('refreshToken', authToken.refresh_token);
             this.authenticationService.setLoggedInState(true);
             if (this.route.snapshot.queryParams['returnUrl']) {
             this.router.navigateByUrl(decodeURIComponent(this.route.snapshot.queryParams['returnUrl']));

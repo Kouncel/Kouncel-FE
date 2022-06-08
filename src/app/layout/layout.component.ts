@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { UtilsService } from '../shared/utils.service';
+import jwt_decode from "jwt-decode";
+import { AuthenticationService } from '../authentication/authentication.service';
 
 @Component({
   selector: 'koun-layout',
@@ -8,12 +10,19 @@ import { UtilsService } from '../shared/utils.service';
   styleUrls: ['./layout.component.scss'],
 })
 export class LayoutComponent implements OnInit {
-  constructor(translate: TranslateService, utilsService: UtilsService) {
+  constructor(translate: TranslateService, utilsService: UtilsService,
+    private authenticationService: AuthenticationService) {
     // this language will be used as a fallback when a translation isn't found in the current language
     translate.setDefaultLang('en');
     utilsService.languageSource.subscribe((lang) => {
       translate.use(lang);
     });
+    try {
+      const decodedJWT: any = jwt_decode(localStorage.getItem('authToken'));
+      this.authenticationService.setIsAdminState(!!decodedJWT['realm_access']['roles'].find((r: any) => r === 'Kadmin'));
+    } catch(e) {
+      console.log(e)
+    }
   }
 
   ngOnInit(): void {}

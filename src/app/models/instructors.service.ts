@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { BehaviorSubject, map, Observable, of } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import * as $ from "jquery";
 
 @Injectable({ providedIn: 'root' })
 export class InstructorService {
@@ -21,10 +22,35 @@ export class InstructorService {
   }
 
   createInstructor(instructor: any) {
+    console.log(instructor)
+      var form = new FormData();
+      form.append("image", instructor.image, "Screen Shot 2022-05-08 at 1.35.10 PM.png");
+      delete instructor.image;
+      form.append("instructor", JSON.stringify(instructor));
+
+      var settings: any = {
+        "url": `${localStorage.getItem('baseUrl')}instructor`,
+        "method": "POST",
+        "timeout": 0,
+        "processData": false,
+        "mimeType": "multipart/form-data",
+        "contentType": false,
+        "data": form
+      };
+
+      $.ajax(settings).done(function (response) {
+        console.log(response);
+      });
+
+      return of({});
+
+/*
+
     const httpOptions = {
       headers: new HttpHeaders({
         // 'Content-Type': 'application/json',
         'Content-Type': 'multipart/form-data',
+        // 'Content-Type': 'application/x-www-form-urlencoded',
         Authorization: `Bearer ${localStorage.getItem('authToken')}`,
       }),
     };
@@ -34,15 +60,14 @@ export class InstructorService {
 
     const formData = new FormData();
     formData.append('image', instructor.image);
-    formData.append('nameEn', instructor.nameEn);
-    formData.append('nameAr', instructor.nameAr);
+    delete instructor.image;
+    formData.append('instructor', JSON.stringify(instructor))
 
     return this.httpClient.post(
       `${localStorage.getItem('baseUrl')}instructor`,
-      // params.toString(),
       formData,
       httpOptions
-    );
+    ); */
   }
 
   deleteInstructor(id: any) {

@@ -7,11 +7,13 @@ import {
   Router,
   RouterStateSnapshot,
 } from '@angular/router';
+import { AuthenticationService } from './authentication.service';
+
 @Injectable({
   providedIn: 'root',
 })
 export class AuthGuard implements CanActivate {
-  constructor(private router: Router) {}
+  constructor(private router: Router,) {}
   canActivate(
     routeSnapshot: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
@@ -22,7 +24,6 @@ export class AuthGuard implements CanActivate {
     this.router.navigate(['/login'], {
       queryParams: { returnUrl: encodeURIComponent(state.url) },
     });
-    // TODO: call refresh token
     return false;
   }
 }
