@@ -34,7 +34,7 @@ export class CourseService {
   }
 
   createCourse(course: any) {
-    const httpOptions = {
+    const httpOptions: any = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
         Authorization: `Bearer ${localStorage.getItem('authToken')}`,
@@ -46,6 +46,25 @@ export class CourseService {
 
     return this.httpClient.post(
       `${localStorage.getItem('baseUrl')}courses`,
+      // params.toString(),
+      course,
+      httpOptions,
+    );
+  }
+
+  editCourse(courseId: any, course: any) {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${localStorage.getItem('authToken')}`,
+      }),
+    };
+    const params = new HttpParams({
+      fromObject: course,
+    });
+
+    return this.httpClient.put(
+      `${localStorage.getItem('baseUrl')}courses/${courseId}`,
       // params.toString(),
       course,
       httpOptions

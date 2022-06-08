@@ -1,2 +1,12 @@
 <input [(ngModel)]="title" placeholder="Course title" name="title" />
+<select [(ngModel)]="categoryId">
+    <option *ngFor="let item of categories" [value]="item.id">
+        {{item.nameEn}}
+    </option>
+</select>
+<select [(ngModel)]="instructorId">
+    <option *ngFor="let item of instructors" [value]="item.id">
+        {{item.nameEn}}
+    </option>
+</select>
 <button (click)="create()">Create</button>

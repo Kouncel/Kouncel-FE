@@ -21,10 +21,11 @@ export class CreateInstructorComponent implements OnInit {
       // description: new FormControl('', [Validators.required]),
     });
   }
-  create() {
+  create(e: any) {
+    console.log(e);
     console.log(this.formGroup.value);
     console.log('create category');
-    this.instrcutorService.createInstructor({nameEn: 'asda', nameAr:'sdasd', image: this.formGroup.get('myImage').value}).subscribe(res => console.log(res));
+    this.instrcutorService.createInstructor({nameEn: 'En' + Math.ceil(Math.random() * 1000), nameAr:'Ar' + Math.ceil(Math.random() * 1000), image: e.target.files[0]}).subscribe(res => console.log(res));
   }
   handleChange(e: any) {
     console.log(e);

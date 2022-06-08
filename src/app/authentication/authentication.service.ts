@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { BehaviorSubject, Observable, of } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import jwt_decode from "jwt-decode";
 
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
@@ -10,7 +11,7 @@ export class AuthenticationService {
   );
   isLoggedInSource = this.isLoggedIn.asObservable();
 
-  isAdmin: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(true);
+  isAdmin: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   isAdminSource = this.isAdmin.asObservable();
 
   constructor(private httpClient: HttpClient) {}
@@ -78,6 +79,7 @@ export class AuthenticationService {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
+        // Authorization: `Bearer ${localStorage.getItem('authToken')}`,
       }),
     };
     const params = new HttpParams({
@@ -85,15 +87,19 @@ export class AuthenticationService {
     });
 
     return this.httpClient.post(
-      `${localStorage.getItem('baseUrl')}accounts/refreshtoken`,
+      `${localStorage.getItem('baseUrl')}accounts/refresh`,
       // params.toString(),
-      refreshToken,
+      {refreshToken},
       httpOptions
     );
   }
 
   setLoggedInState(state: boolean) {
     this.isLoggedIn.next(state);
+    try {
+      const decodedJWT: any = jwt_decode(localStorage.getItem('authToken'));
+      this.setIsAdminState(!!decodedJWT['realm_access']['roles'].find((r: any) => r === 'Kadmin'));
+    } catch(e) { }
   }
   setIsAdminState(isAdmin: boolean) {
     this.isAdmin.next(isAdmin);

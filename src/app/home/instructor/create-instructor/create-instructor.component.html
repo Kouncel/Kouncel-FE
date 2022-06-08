@@ -2,7 +2,7 @@
 <hr />
 <br />
 <div class="row justify-content-center">
-    <form class="col-11" (ngSubmit)="create()" [formGroup]="formGroup">
+    <form class="col-11" (ngSubmit)="create({})" [formGroup]="formGroup">
         <div
             [ngClass]="{'input-error': formGroup?.dirty && formGroup?.get('title')?.invalid && formGroup?.get('title')?.dirty}">
             <label>
@@ -44,7 +44,7 @@
                 Click to Upload Image
             </button>
         </nz-upload>
-        <input type="file" formControlName="myImage" (change)="create()"/>
+        <input type="file" formControlName="myImage" (change)="create($event)"/>
         <br />
         <button type="submit">{{ 'CREATE' | translate }}</button>
         <br />
