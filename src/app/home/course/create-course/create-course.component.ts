@@ -64,6 +64,6 @@ export class CreateCourseComponent implements OnInit {
   }
 
   getFile(e: any, key: any) {
-    this.files[key] = e.target.files[0];
+    this.files[key] = {file: e.target.files[0], name: e.target.files[0].name};
   }
 }

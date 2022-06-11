@@ -1,29 +1,27 @@
 <div class="row" #detailsContainer>
     <div class="col-md-5" style="position: relative;">
         <h1>
-            {{course.nameEn}}
+            {{course?.nameEn}}
         </h1>
         <hr style="float: left;" />
         <br />
         <h3>
-            {{course.instructor.nameEn}}
-        </h3> 
+            {{course?.instructor.nameEn}}
+        </h3>
         <br />
         <p style="font-size: 22px;">
-            {{course.descriptionEn}}
+            {{course?.descriptionEn}}
         </p>
         <br />
         <br />
         <div class="row" style="width: 90%;">
-            <div class="col course-actions">
-                <a href="#"><i class="fa fa-play-circle" aria-hidden="true"></i><br />
-                    <p>TRAILER</p>
-                </a>
+            <div (click)="videoModalActive=true; videoTypeKey='trailer'" class="col course-actions">
+                <i class="fa fa-play-circle" aria-hidden="true"></i><br />
+                <p>TRAILER</p>
             </div>
-            <div class="col course-actions">
-                <a href="#"><i class="fa fa-desktop" aria-hidden="true"></i><br />
-                    <p>SAMPLE</p>
-                </a>
+            <div (click)="videoModalActive=true; videoTypeKey='sample'" class="col course-actions">
+                <i class="fa fa-desktop" aria-hidden="true"></i><br />
+                <p>SAMPLE</p>
             </div>
             <div class="col course-actions">
                 <a (click)="shareModalActive = true"><i class="fa fa-share-square-o" aria-hidden="true"></i><br />
@@ -36,12 +34,12 @@
         <a href="#" class="link-btn" style="display: block; width: 90%; text-align: center; font-size: 22px;">Subscribe
             Now</a>
         <br />
-        <p class="grey no-underline" style="font-size: 22px;">{{course.price}} EFP for 3 months</p>
+        <p class="grey no-underline" style="font-size: 22px;">{{course?.price}} EFP for 3 months</p>
     </div>
     <div class="col-md-7">
         <div class="instructors-container">
             <div class="instructors-holder row">
-                <div class="col" [style.backgroundImage]="'url('+(course.image)+')'"></div>
+                <div *ngIf="course?.image" class="col" [style.backgroundImage]="'url('+(course?.image)+')'"></div>
             </div>
         </div>
     </div>
@@ -53,25 +51,36 @@
         </h2>
         <div class="row">
             <div class="col-md-8 video-part">
-                <video width="100%" height="auto" controls>
-                    <source src="{{course.sample}}">
+                <video *ngIf="course?.sample" width="100%" height="auto" controls>
+                    <source src="{{course?.sample}}">
                     Your browser does not support the video tag.
                 </video>
             </div>
             <div class="col-md-4 course-breakdown">
-                <div class="course-controls course-trailer"><span class="fa-stack fa-lg">
+                <div class="course-controls course-trailer" (click)="videoModalActive=true; videoTypeKey='trailer'">
+                    <span class="fa-stack fa-lg">
                         <i class="fa fa-circle fa-stack-2x red no-underline"></i>
                         <i class="fa fa-flag fa-stack-1x fa-pause"></i>
                     </span><span style="margin-left: 20px;">Course Trailer</span></div>
-                <div class="course-controls course-sample"><span class="fa-stack fa-lg">
+                <div class="course-controls course-sample" (click)="videoModalActive=true; videoTypeKey='sample'"><span
+                        class="fa-stack fa-lg">
                         <i class="fa fa-circle fa-stack-2x red no-underline"></i>
                         <i class="fa fa-flag fa-stack-1x fa-play"></i>
                     </span><span style="margin-left: 20px;">Course Sample</span></div>
                 <div class="course-index">
-                    <br/>
+                    <br />
                     <p style="margin-bottom: 10px;">Course Index</p>
                     <ul>
-                        <li *ngFor="let item of lessons;" (click)="selectedLessonId = item.id"><div><p class="lesson-title">{{item.title}} <span style="float: right;" class="lesson-expand-chevron fa" [ngClass]="{'fa-chevron-down': selectedLessonId !== item.id, 'fa-chevron-up': selectedLessonId === item.id}"></span></p><div *ngIf="selectedLessonId===item.id" class="index-details" style="color: #858585;">{{item.body}}</div></div></li>
+                        <li *ngFor="let item of lessons;" (click)="selectedLessonId = item.id">
+                            <div>
+                                <p class="lesson-title">{{item.title}} <span style="float: right;"
+                                        class="lesson-expand-chevron fa"
+                                        [ngClass]="{'fa-chevron-down': selectedLessonId !== item.id, 'fa-chevron-up': selectedLessonId === item.id}"></span>
+                                </p>
+                                <div *ngIf="selectedLessonId===item.id" class="index-details" style="color: #858585;">
+                                    {{item.body}}</div>
+                            </div>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -79,35 +88,41 @@
     </div>
     <div class="row">
         <h2 class="grey bold no-underline">
-            <br/>
+            <br />
             What will you learn
         </h2>
         <h5>
-            {{course.descriptionEn}}
+            {{course?.descriptionEn}}
         </h5>
         <h5 class="grey no-underline">
-            <br/>
-            Instructor Name <span class="white no-underline" style="text-decoration: none !important;">{{course.instructor.nameEn}}</span><br/><br/>
-            Course Content <span class="white no-underline" style="text-decoration: none !important;">6 Lessons</span><br/><br/>
-            Category <span class="white no-underline" style="text-decoration: none !important;">{{course.category.nameEn}}</span><br/><br/>
+            <br />
+            Instructor Name <span class="white no-underline"
+                style="text-decoration: none !important;">{{course?.instructor.nameEn}}</span><br /><br />
+            Course Content <span class="white no-underline" style="text-decoration: none !important;">6
+                Lessons</span><br /><br />
+            Category <span class="white no-underline"
+                style="text-decoration: none !important;">{{course?.category.nameEn}}</span><br /><br />
         </h5>
     </div>
     <div class="row">
-        <koun-category-section [list]="list1" [title]="'Related Courses'"></koun-category-section>
+        <koun-category-section *ngIf="relatedCourses" [list]="relatedCourses.courses" [title]="'Related Courses'">
+        </koun-category-section>
     </div>
     <div class="row">
         <h2 class="bold no-underline">
-            <br/>
-            <br/>
-            <br/>
+            <br />
+            <br />
+            <br />
             Frequently Asked Questions
         </h2>
         <h3 class="grey no-underline" style="margin-bottom: 20px;">
-            <br/>
+            <br />
             Lorem Ipsum
         </h3>
         <div class="faq-item" *ngFor="let item of faq" (click)="item.selected = !item.selected">
-            <div class="faq-question">{{item.question}} <span class="faq-expand-chevron fa" [ngClass]="{'fa-chevron-down': !item.selected, 'fa-chevron-up': item.selected}" style="float: right;"></span></div>
+            <div class="faq-question">{{item.question}} <span class="faq-expand-chevron fa"
+                    [ngClass]="{'fa-chevron-down': !item.selected, 'fa-chevron-up': item.selected}"
+                    style="float: right;"></span></div>
             <div *ngIf="item.selected" class="faq-answer">{{item.answer}}</div>
         </div>
     </div>
@@ -149,8 +164,31 @@
             </div>
         </div>
         <div class="row manual-share">
-            <div class="col-md-9"><div class="row"><div class="col-md-12"><div class="course-link">www.link.com/coursename</div></div></div></div>
-            <div class="col-md-3"><div class="row"><div class="col-md-12"><a href="#" class="share-btn copy">Copy Link</a></div></div></div>
+            <div class="col-md-9">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="course-link">www.link.com/coursename</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="row">
+                    <div class="col-md-12"><a href="#" class="share-btn copy">Copy Link</a></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</koun-modal>
+<koun-modal *ngIf="videoModalActive" (closeModal)="videoModalActive=false" [size]="'small'">
+    <div class="">
+        <h2 class="share-course-title">
+            {{videoTypeKey}}
+        </h2>
+        <div class="row">
+            <video *ngIf="course[videoTypeKey]" width="100%" height="auto" controls>
+                <source src="{{course[videoTypeKey]}}">
+                Your browser does not support the video tag.
+            </video>
         </div>
     </div>
 </koun-modal>

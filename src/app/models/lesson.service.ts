@@ -23,10 +23,13 @@ export class LessonService {
   createLesson(courseId: any, lesson: any) {
     const httpOptions = {
       headers: new HttpHeaders({
-        'Content-Type': 'application/json',
+        'Content-Type': 'multipart/form-data',
+        // 'Content-Type': 'application/json',
         Authorization: `Bearer ${localStorage.getItem('authToken')}`,
       }),
     };
+    var form = new FormData();
+    form.append("course", JSON.stringify(lesson));
     const params = new HttpParams({
       fromObject: lesson,
     });
@@ -34,7 +37,7 @@ export class LessonService {
     return this.httpClient.post(
       `${localStorage.getItem('baseUrl')}courses/${courseId}/lessons`,
       // params.toString(),
-      lesson,
+      form,
       httpOptions
     );
   }

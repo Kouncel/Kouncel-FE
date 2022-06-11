@@ -55,12 +55,14 @@ export class CourseService {
 
   editCourse(courseId: any, course: any, files: any) {
 
+
     console.log(course)
     var form = new FormData();
-    form.append("coverImage", files['coverImage'], `file-${Math.random()}`);
-    form.append("image", files['image'], `file-${Math.random()}`);
-    form.append("trailer", files['trailer'], `file-${Math.random()}`);
-    form.append("sample", files['sample'], `file-${Math.random()}`);
+
+    form.append("cover", files['coverImage'].file, files['coverImage'].name);
+    form.append("image", files['image'].file, files['coverImage'].name);
+    form.append("trailer", files['trailer'].file, files['coverImage'].name);
+    form.append("sample", files['sample'].file, files['coverImage'].name);
     delete course["id"];
     delete course["coverImage"];
     delete course["image"];

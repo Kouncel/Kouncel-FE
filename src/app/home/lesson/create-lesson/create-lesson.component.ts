@@ -11,6 +11,7 @@ export class CreateLessonComponent implements OnInit {
   @Input() courseId: any;
   @Output() created: EventEmitter<any> = new EventEmitter<any>();
   title: string;
+  description: string;
 
   constructor(
     private lessonService: LessonService,
@@ -24,16 +25,16 @@ export class CreateLessonComponent implements OnInit {
       .createLesson(this.courseId, {
         nameEn: this.title + 'EN',
         nameAr: this.title + 'AR',
-        descriptionEn: 'test lesson',
-        descriptionAr: 'كورس',
-        order: 20,
+        descriptionEn: this.description + 'EN',
+        descriptionAr: this.description + 'AR',
+        // order: 20,
       })
       .subscribe((res) => {
         this.created.emit({
           nameEn: this.title + 'EN',
           nameAr: this.title + 'AR',
-          descriptionEn: 'test lesson',
-          descriptionAr: 'كورس',
+          descriptionEn: this.description + 'EN',
+          descriptionAr: this.description + 'AR',
           order: 20,
         });
         this.notification.create(
