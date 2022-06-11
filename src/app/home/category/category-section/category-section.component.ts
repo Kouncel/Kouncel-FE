@@ -20,9 +20,6 @@ export class CategorySectionComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.subscribers = [];
-    this.list.forEach(element => {
-      element.id = Math.ceil(Math.random()*1000);
-    });
 
     this.subscribers.push(this.utilsService.languageSource.subscribe((lang) => {
       this.isRTL = lang === 'ar';

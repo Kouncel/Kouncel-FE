@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { BehaviorSubject, map, Observable, of } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import * as $ from "jquery";
 
 @Injectable({ providedIn: 'root' })
 export class CourseService {
@@ -52,23 +53,60 @@ export class CourseService {
     );
   }
 
-  editCourse(courseId: any, course: any) {
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${localStorage.getItem('authToken')}`,
-      }),
+  editCourse(courseId: any, course: any, files: any) {
+
+
+    console.log(course)
+    var form = new FormData();
+
+    form.append("cover", files['coverImage'].file, files['coverImage'].name);
+    form.append("image", files['image'].file, files['coverImage'].name);
+    form.append("trailer", files['trailer'].file, files['coverImage'].name);
+    form.append("sample", files['sample'].file, files['coverImage'].name);
+    delete course["id"];
+    delete course["coverImage"];
+    delete course["image"];
+    delete course["trailer"];
+    delete course["sample"];
+    delete course["category"];
+    delete course["instructor"];
+
+    form.append("course", JSON.stringify(course));
+
+    var settings: any = {
+      "url": `${localStorage.getItem('baseUrl')}courses/${courseId}`,
+      "method": "PUT",
+      "timeout": 0, 
+      "processData": false,
+      "mimeType": "multipart/form-data",
+      "contentType": false,
+      headers: {'Authorization': `Bearer ${localStorage.getItem('authToken')}`},
+      "data": form
     };
-    const params = new HttpParams({
-      fromObject: course,
+
+    $.ajax(settings).done(function (response) {
+      console.log(response);
     });
 
-    return this.httpClient.put(
-      `${localStorage.getItem('baseUrl')}courses/${courseId}`,
-      // params.toString(),
-      course,
-      httpOptions
-    );
+    return of({});
+
+
+    // const httpOptions = {
+    //   headers: new HttpHeaders({
+    //     'Content-Type': 'application/json',
+    //     Authorization: `Bearer ${localStorage.getItem('authToken')}`,
+    //   }),
+    // };
+    // const params = new HttpParams({
+    //   fromObject: course,
+    // });
+
+    // return this.httpClient.put(
+    //   `${localStorage.getItem('baseUrl')}courses/${courseId}`,
+    //   // params.toString(),
+    //   course,
+    //   httpOptions
+    // );
   }
 
   deleteCourse(id: any) {

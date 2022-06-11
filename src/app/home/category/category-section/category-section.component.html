@@ -22,14 +22,14 @@
         <div class="course-item" *ngFor="let item of list"
             [style.width.%]="list.length >= 4 ? 25 : list.length === 3 ? 33.33 : list.length === 2 ? 50 : 100 ">
             <a [routerLink]="['/course/'+item.id]" routerLinkActive="router-link-active" >
-                <div class="course-details" [style.backgroundImage]="'url('+(item.image)+')'">
+                <div class="course-details" [style.backgroundImage]="'url('+(item.coverImage)+')'">
                     <div class="course-info">
                         <h3>
-                            Course Name
+                            {{item.nameEn}}
                         </h3>
                         <hr />
                         <h4>
-                            Instructor Name
+                            {{item?.instructor?.nameEn}}
                         </h4>
                     </div>
                 </div>

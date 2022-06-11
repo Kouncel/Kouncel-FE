@@ -18,7 +18,9 @@ export class InstructorComponent implements OnInit {
     public authenticationService: AuthenticationService,
     translate: TranslateService
   ) {
-    this.instructorsService.getAllInstructors().subscribe(res => console.log(res))
+    this.instructorsService.getAllInstructors().subscribe(res => {
+      this.categories = res;
+    });
   }
 
   ngOnInit(): void {}

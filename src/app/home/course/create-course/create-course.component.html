@@ -1,12 +1,23 @@
 <input [(ngModel)]="title" placeholder="Course title" name="title" />
+Category:
 <select [(ngModel)]="categoryId">
     <option *ngFor="let item of categories" [value]="item.id">
-        {{item.nameEn}}
+        {{item.nameEn}} ({{item?.courses?.length}})
     </option>
 </select>
+Instructor
 <select [(ngModel)]="instructorId">
     <option *ngFor="let item of instructors" [value]="item.id">
         {{item.nameEn}}
     </option>
 </select>
+Image
+<input type="file" placeholder="image" (change)="getFile($event, 'image')"/>
+Cover Image
+<input type="file" placeholder="coverImage" (change)="getFile($event, 'coverImage')"/>
+Sample
+<input type="file" placeholder="sample" (change)="getFile($event, 'sample')"/>
+Trailer
+<input type="file" placeholder="trailer" (change)="getFile($event, 'trailer')"/>
+
 <button (click)="create()">Create</button>

@@ -40,9 +40,9 @@ export class RegisterComponent implements OnInit, OnDestroy {
     this.lookupsService
       .getCountries()
       .subscribe((countries) => (this.countries = countries));
-    this.lookupsService
-      .getProfessions()
-      .subscribe((professions) => (this.professions = professions));
+    // this.lookupsService
+    //   .getProfessions()
+    //   .subscribe((professions) => (this.professions = professions));
   }
 
   ngOnInit(): void {

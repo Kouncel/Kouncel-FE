@@ -46,6 +46,7 @@ export class HttpInterceptorService implements HttpInterceptor {
               authToken => {
                 localStorage.setItem('authToken', authToken.access_token);
                 localStorage.setItem('refreshToken', authToken.refresh_token);
+                location.reload();
               },
               err => {
                 this.router.navigate(['/login'], {

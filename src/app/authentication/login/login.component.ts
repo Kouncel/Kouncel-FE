@@ -38,6 +38,9 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   login() {
+    localStorage.getItem('authToken');
+    localStorage.getItem('refreshToken');
+    this.authenticationService.setLoggedInState(false);
     this.formGroup.markAsDirty();
     if (this.formGroup.valid) {
       this.authenticationService
