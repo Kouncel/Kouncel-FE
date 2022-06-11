@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { BehaviorSubject, map, Observable, of } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import * as $ from "jquery";
 
 @Injectable({ providedIn: 'root' })
 export class LessonService {
@@ -20,26 +21,28 @@ export class LessonService {
       .pipe(map((res) => res));
   }
 
-  createLesson(courseId: any, lesson: any) {
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'multipart/form-data',
-        // 'Content-Type': 'application/json',
-        Authorization: `Bearer ${localStorage.getItem('authToken')}`,
-      }),
-    };
+  createLesson(courseId: any, lesson: any, files: any) {
     var form = new FormData();
-    form.append("course", JSON.stringify(lesson));
-    const params = new HttpParams({
-      fromObject: lesson,
+
+    form.append("video", files['video'].file, files['video'].name);
+    form.append("lesson", JSON.stringify(lesson));
+
+    var settings: any = {
+      "url": `${localStorage.getItem('baseUrl')}courses/${courseId}/lessons`,
+      "method": "POST",
+      "timeout": 0, 
+      "processData": false,
+      "mimeType": "multipart/form-data",
+      "contentType": false,
+      headers: {'Authorization': `Bearer ${localStorage.getItem('authToken')}`},
+      "data": form
+    };
+
+    $.ajax(settings).done(function (response) {
+      console.log(response);
     });
 
-    return this.httpClient.post(
-      `${localStorage.getItem('baseUrl')}courses/${courseId}/lessons`,
-      // params.toString(),
-      form,
-      httpOptions
-    );
+    return of({});
   }
 
   deleteLesson(id: any) {

@@ -73,12 +73,12 @@
                     <ul>
                         <li *ngFor="let item of lessons;" (click)="selectedLessonId = item.id">
                             <div>
-                                <p class="lesson-title">{{item.title}} <span style="float: right;"
+                                <p class="lesson-title">{{item.nameEn}} <span style="float: right;"
                                         class="lesson-expand-chevron fa"
                                         [ngClass]="{'fa-chevron-down': selectedLessonId !== item.id, 'fa-chevron-up': selectedLessonId === item.id}"></span>
                                 </p>
                                 <div *ngIf="selectedLessonId===item.id" class="index-details" style="color: #858585;">
-                                    {{item.body}}</div>
+                                    {{item.descriptionEn}}</div>
                             </div>
                         </li>
                     </ul>
@@ -98,7 +98,7 @@
             <br />
             Instructor Name <span class="white no-underline"
                 style="text-decoration: none !important;">{{course?.instructor.nameEn}}</span><br /><br />
-            Course Content <span class="white no-underline" style="text-decoration: none !important;">6
+            Course Content <span class="white no-underline" style="text-decoration: none !important;">{{lessons?.length}}
                 Lessons</span><br /><br />
             Category <span class="white no-underline"
                 style="text-decoration: none !important;">{{course?.category.nameEn}}</span><br /><br />

@@ -12,6 +12,7 @@ export class CreateLessonComponent implements OnInit {
   @Output() created: EventEmitter<any> = new EventEmitter<any>();
   title: string;
   description: string;
+  files: any = {};
 
   constructor(
     private lessonService: LessonService,
@@ -28,7 +29,7 @@ export class CreateLessonComponent implements OnInit {
         descriptionEn: this.description + 'EN',
         descriptionAr: this.description + 'AR',
         // order: 20,
-      })
+      }, this.files)
       .subscribe((res) => {
         this.created.emit({
           nameEn: this.title + 'EN',
@@ -44,5 +45,9 @@ export class CreateLessonComponent implements OnInit {
           { nzPlacement: 'bottomRight' }
         );
       });
+  }
+
+  getFile(e: any, key: any) {
+    this.files[key] = {file: e.target.files[0], name: e.target.files[0].name};
   }
 }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CategoryService } from 'src/app/models/categories.service';
 import { CourseService } from 'src/app/models/courses.service';
+import { LessonService } from 'src/app/models/lesson.service';
 
 @Component({
   selector: 'koun-course-detail',
@@ -14,44 +15,8 @@ export class CourseDetailComponent implements OnInit {
   relatedCourses: any;
   videoTypeKey: any;
   videoModalActive: any;
+  lessons: any;
 
-  lessons = [
-    {
-      id: 1,
-      title: '1. Lesson Title',
-      body: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
-    },
-    {
-      id: 2,
-      title: '2. Lesson Title',
-      body: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
-    },
-    {
-      id: 3,
-      title: '3. Lesson Title',
-      body: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
-    },
-    {
-      id: 4,
-      title: '4. Lesson Title',
-      body: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
-    },
-    {
-      id: 5,
-      title: '5. Lesson Title',
-      body: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
-    },
-    {
-      id: 6,
-      title: '6. Lesson Title',
-      body: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
-    },
-    {
-      id: 7,
-      title: '7. Lesson Title',
-      body: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
-    },
-  ];
   selectedLessonId: any;
 
   faq = [
@@ -118,6 +83,7 @@ export class CourseDetailComponent implements OnInit {
     router: Router,
     private courseService: CourseService,
     private categoryService: CategoryService,
+    private lessonService: LessonService,
   ) {}
 
   ngOnInit(): void {
@@ -126,6 +92,10 @@ export class CourseDetailComponent implements OnInit {
       this.courseService.getCourse(params.id).subscribe((course: any) => {
         console.log(course);
         this.course = course;
+      });
+      this.lessonService.getAllLessons(params.id).subscribe((lessons: any) => {
+        console.log(lessons);
+        this.lessons = lessons.data;
       });
       this.categoryService.getAllCategories().subscribe((courses: any) => {
         const courseIndex = Math.floor(Math.random() * courses.length);
