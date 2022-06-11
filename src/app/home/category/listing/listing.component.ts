@@ -33,15 +33,8 @@ export class ListingComponent implements OnInit {
   ngOnInit(): void {
     this.categoriesService.getAllCategories().subscribe(
       res => {
+        res = res.filter((c: any) => c.courses.length);
         res.forEach((element: any, i: number) => {
-          const numOfElements = Math.ceil(Math.random() * 7);
-          const list = [];
-          for (let i =0 ; i < numOfElements; i++) {
-            list.push({image: `https://source.unsplash.com/random/500x700?sig=${Math.ceil(
-              Math.random() * 1000
-            )}`});
-          }
-          element.list = list;
           element.name = element.nameEn || element.nameAr;
         });
         this.categories = res;

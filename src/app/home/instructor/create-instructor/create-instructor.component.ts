@@ -10,14 +10,17 @@ import { InstructorService } from 'src/app/models/instructors.service';
 })
 export class CreateInstructorComponent implements OnInit {
   formGroup: FormGroup = new FormGroup({});
+  myImage: any;
 
-  constructor(translate: TranslateService,
-    private instrcutorService: InstructorService) {}
+  constructor(
+    translate: TranslateService,
+    private instrcutorService: InstructorService
+  ) {}
 
   ngOnInit(): void {
     this.formGroup = new FormGroup({
       title: new FormControl('', [Validators.required]),
-      myImage: new FormControl()
+      myImage: new FormControl(),
       // description: new FormControl('', [Validators.required]),
     });
   }
@@ -25,9 +28,18 @@ export class CreateInstructorComponent implements OnInit {
     console.log(e);
     console.log(this.formGroup.value);
     console.log('create category');
-    this.instrcutorService.createInstructor({nameEn: 'En' + Math.ceil(Math.random() * 1000), nameAr:'Ar' + Math.ceil(Math.random() * 1000), image: e.target.files[0]}).subscribe(res => console.log(res));
+    this.myImage = e.target.files[0];
   }
   handleChange(e: any) {
     console.log(e);
+  }
+  createInstructor() {
+    this.instrcutorService
+      .createInstructor({
+        nameEn: this.formGroup.get('title').value + 'En',
+        nameAr: this.formGroup.get('title').value + 'Ar',
+        image: this.myImage,
+      })
+      .subscribe((res) => console.log(res));
   }
 }

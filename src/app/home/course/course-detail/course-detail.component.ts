@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { CourseService } from 'src/app/models/courses.service';
 
 @Component({
   selector: 'koun-course-detail',
@@ -7,6 +9,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CourseDetailComponent implements OnInit {
   shareModalActive = false;
+  course: any = {instructor: {}, category: {}};
 
   courseImage =  `https://source.unsplash.com/random/500x700?sig=${Math.ceil(
       Math.random() * 1000
@@ -75,10 +78,20 @@ export class CourseDetailComponent implements OnInit {
     {selected: false, id: 8, question: 'Lorem Ipsum Question?', answer: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting industry.'},
   ];
   
-  constructor(
-  ) { }
+  constructor(private route: ActivatedRoute, router: Router, private courseService: CourseService) { }
 
   ngOnInit(): void {
+    this.route.params.subscribe(
+      (params: any) => {
+        console.log(params);
+        this.courseService.getCourse(params.id).subscribe(
+          (course: any) => {
+            console.log(course)
+            this.course = course;
+          }
+        );
+      }
+    )
   }
 
 }

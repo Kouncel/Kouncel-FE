@@ -1,17 +1,16 @@
 <div class="row" #detailsContainer>
     <div class="col-md-5" style="position: relative;">
         <h1>
-            Course Name
+            {{course.nameEn}}
         </h1>
         <hr style="float: left;" />
         <br />
         <h3>
-            Instructor Name
+            {{course.instructor.nameEn}}
         </h3> 
         <br />
         <p style="font-size: 22px;">
-            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text
-            of the printing and typesetting industry.
+            {{course.descriptionEn}}
         </p>
         <br />
         <br />
@@ -37,12 +36,12 @@
         <a href="#" class="link-btn" style="display: block; width: 90%; text-align: center; font-size: 22px;">Subscribe
             Now</a>
         <br />
-        <p class="grey no-underline" style="font-size: 22px;">1,500 EFP for 3 months</p>
+        <p class="grey no-underline" style="font-size: 22px;">{{course.price}} EFP for 3 months</p>
     </div>
     <div class="col-md-7">
         <div class="instructors-container">
             <div class="instructors-holder row">
-                <div class="col" [style.backgroundImage]="'url('+(courseImage)+')'"></div>
+                <div class="col" [style.backgroundImage]="'url('+(course.image)+')'"></div>
             </div>
         </div>
     </div>
@@ -55,7 +54,7 @@
         <div class="row">
             <div class="col-md-8 video-part">
                 <video width="100%" height="auto" controls>
-                    <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+                    <source src="{{course.sample}}">
                     Your browser does not support the video tag.
                 </video>
             </div>
@@ -84,13 +83,13 @@
             What will you learn
         </h2>
         <h5>
-            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+            {{course.descriptionEn}}
         </h5>
         <h5 class="grey no-underline">
             <br/>
-            Instructor Name <span class="white no-underline" style="text-decoration: none !important;">AlHassan Fahmy</span><br/><br/>
+            Instructor Name <span class="white no-underline" style="text-decoration: none !important;">{{course.instructor.nameEn}}</span><br/><br/>
             Course Content <span class="white no-underline" style="text-decoration: none !important;">6 Lessons</span><br/><br/>
-            Category <span class="white no-underline" style="text-decoration: none !important;">Category Name</span><br/><br/>
+            Category <span class="white no-underline" style="text-decoration: none !important;">{{course.category.nameEn}}</span><br/><br/>
         </h5>
     </div>
     <div class="row">
