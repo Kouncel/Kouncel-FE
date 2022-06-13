@@ -22,27 +22,22 @@ export class InstructorService {
   }
 
   createInstructor(instructor: any) {
-    console.log(instructor)
       var form = new FormData();
       form.append("image", instructor.image, "Screen Shot 2022-05-08 at 1.35.10 PM.png");
       delete instructor.image;
       form.append("instructor", JSON.stringify(instructor));
 
-      var settings: any = {
-        "url": `${localStorage.getItem('baseUrl')}instructor`,
-        "method": "POST",
-        "timeout": 0,
-        "processData": false,
-        "mimeType": "multipart/form-data",
-        "contentType": false,
-        "data": form
+      const httpOptions = {
+        headers: new HttpHeaders({
+          Authorization: `Bearer ${localStorage.getItem('authToken')}`,
+        }),
       };
-
-      $.ajax(settings).done(function (response) {
-        console.log(response);
-      });
-
-      return of({});
+  
+      return this.httpClient.post(
+        `${localStorage.getItem('baseUrl')}instructor`,
+        form,
+        httpOptions
+      ).pipe(retryWhen((errors) => errors.pipe(delay(2000))));
 
 /*
 

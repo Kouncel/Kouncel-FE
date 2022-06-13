@@ -27,11 +27,15 @@ export class HttpInterceptorService implements HttpInterceptor {
     req: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
-    let headers = req.headers.set(
-      'Authorization',
-      `Bearer ${localStorage.getItem('authToken')}`
-    );
-
+    let headers;
+    if (req.url.indexOf('accounts/login') === -1
+      && req.url.indexOf('accounts/forgot-password') === -1
+      && req.url.indexOf('accounts/register') === -1) {
+      headers = req.headers.set(
+        'Authorization',
+        `Bearer ${localStorage.getItem('authToken')}`
+      );
+    }
     if (!this.isRefreshingToken) {
       this.isRefreshingToken = true;
 
@@ -45,7 +49,7 @@ export class HttpInterceptorService implements HttpInterceptor {
                 (authToken) => {
                   localStorage.setItem('authToken', authToken.access_token);
                   localStorage.setItem(
-                    'refreshToke n',
+                    'refreshToken',
                     authToken.refresh_token
                   );
                   // location.reload();

@@ -3,6 +3,7 @@ import { LookupsService } from 'src/app/models/lookups.service';
 import { TranslateService } from '@ngx-translate/core';
 import { AuthenticationService } from 'src/app/authentication/authentication.service';
 import { CategoryService } from 'src/app/models/categories.service';
+import { UtilsService } from 'src/app/shared/utils.service';
 
 @Component({
   selector: 'koun-category',
@@ -12,11 +13,15 @@ import { CategoryService } from 'src/app/models/categories.service';
 export class CategoryComponent implements OnInit {
   categories: any[];
   createModalActive: boolean;
+  subscribers: any = [];
+  isRTL: boolean;
+
   constructor(
     private lookupService: LookupsService,
     public authenticationService: AuthenticationService,
     private categoryService: CategoryService,
-    translate: TranslateService
+    translate: TranslateService,
+    private utilsService: UtilsService
   ) {
     
     this.categoryService.getAllCategories().subscribe(
@@ -33,7 +38,13 @@ export class CategoryComponent implements OnInit {
     //   .subscribe((categories) => (this.categories = categories));
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.subscribers = [];
+
+    this.subscribers.push(this.utilsService.languageSource.subscribe((lang) => {
+      this.isRTL = lang === 'ar';
+    }));
+  }
 
   categoryCreated(e: any) {
     e.title = e.nameEn;

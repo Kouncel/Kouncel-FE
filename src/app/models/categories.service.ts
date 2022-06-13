@@ -37,7 +37,7 @@ export class CategoryService {
       // params.toString(),
       category,
       httpOptions
-    );
+    ).pipe(retryWhen((errors) => errors.pipe(delay(2000))));
   }
 
   deleteCategory(id: any) {

@@ -11,7 +11,14 @@ import { InstructorService } from 'src/app/models/instructors.service';
 })
 export class CreateCourseComponent implements OnInit {
   @Output() created: EventEmitter<any> = new EventEmitter<any>();
-  title: string;
+  nameEn: string;
+  nameAr: string;
+  descriptionAr: string;
+  descriptionEn: string;
+  overviewAr: string;
+  overviewEn: string;
+  price: number;
+  status: string = 'DRAFT';
   categoryId: any;
   categories: any[];
   instructors: any[];
@@ -36,22 +43,22 @@ export class CreateCourseComponent implements OnInit {
   create() {
     this.courseService
       .createCourse({
-        nameEn: this.title + 'EN',
-        nameAr: this.title + 'AR',
+        nameEn: this.nameEn,
+        nameAr: this.nameAr,
       })
       .subscribe((res: any) => {
         this.created.emit({
-          nameEn: this.title + 'EN',
-          nameAr: this.title + 'AR',
+          nameEn: this.nameEn,
+          nameAr: this.nameAr,
         });
         res['instructorId'] = this.instructorId;
         res['categoryId'] = this.categoryId;
-        res['descriptionAr'] = Math.random();
-        res['descriptionEn'] = Math.random();
-        res['overviewAr'] = Math.random();
-        res['overviewEn'] = Math.random();
-        res['price'] = Math.random();
-        res['status']= 'PUBLISHED';
+        res['descriptionAr'] = this.descriptionAr;
+        res['descriptionEn'] = this.descriptionEn;
+        res['overviewAr'] = this.overviewAr;
+        res['overviewEn'] = this.overviewEn;
+        res['price'] = this.price;
+        res['status']= this.status;
         this.courseService.editCourse(res['id'], res, this.files).subscribe((res) => {
           this.notification.create(
             'success',

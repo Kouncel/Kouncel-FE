@@ -2,14 +2,22 @@
 <hr />
 <br />
 <div class="row justify-content-center">
-    <form class="col-11" (ngSubmit)="create({})" [formGroup]="formGroup">
+    <form class="col-11" (ngSubmit)="createInstructor()" [formGroup]="formGroup">
         <div
-            [ngClass]="{'input-error': formGroup?.dirty && formGroup?.get('title')?.invalid && formGroup?.get('title')?.dirty}">
+            [ngClass]="{'input-error': formGroup?.dirty && formGroup?.get('nameEn')?.invalid && formGroup?.get('nameEn')?.dirty}">
             <label>
-                {{ 'TITLE' | translate }}
+                {{ 'TITLE' | translate }} En
             </label>
             <br />
-            <input type="text" name="title" formControlName="title" placeholder="{{'TITLE' | translate }}" />
+            <input type="text" name="nameEn" formControlName="nameEn" placeholder="{{'TITLE' | translate }} En" />
+        </div>
+        <div
+            [ngClass]="{'input-error': formGroup?.dirty && formGroup?.get('nameAr')?.invalid && formGroup?.get('nameAr')?.dirty}">
+            <label>
+                {{ 'TITLE' | translate }} Ar
+            </label>
+            <br />
+            <input type="text" name="nameAr" formControlName="nameAr" placeholder="{{'TITLE' | translate }} Ar" />
         </div>
         <br />
         <!-- <div
@@ -36,17 +44,9 @@
         </label>
         <br />
         <br />
-        <!-- <nz-upload nzAction="http(s)://www.hashemian.com/tools/form-post-tester.php/joe123" -->
-        <nz-upload
-            [nzHeaders]="{ authorization: 'authorization-text' }" (nzChange)="handleChange($event)">
-            <button nz-button>
-                <i nz-icon nzType="upload"></i>
-                Click to Upload Image
-            </button>
-        </nz-upload>
         <input type="file" formControlName="myImage" (change)="create($event)"/>
         <br />
-        <button type="submit" (click)="createInstructor()">{{ 'CREATE' | translate }}</button>
+        <button type="submit">{{ 'CREATE' | translate }}</button>
         <br />
         <br />
         <br />

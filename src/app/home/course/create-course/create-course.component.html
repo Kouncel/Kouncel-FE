@@ -1,4 +1,5 @@
-<input [(ngModel)]="title" placeholder="Course title" name="title" />
+<input [(ngModel)]="nameEn" placeholder="Course title En" name="nameEn" />
+<input [(ngModel)]="nameAr" placeholder="Course title Ar" name="nameAr" />
 Category:
 <select [(ngModel)]="categoryId">
     <option *ngFor="let item of categories" [value]="item.id">
@@ -11,6 +12,33 @@ Instructor
         {{item.nameEn}}
     </option>
 </select>
+
+Price
+<input placeholder="Price" name="price" [(ngModel)]="price"/>
+
+
+Description En
+<input placeholder="Description En" name="descriptionEn" [(ngModel)]="descriptionEn"/>
+
+
+Description Ar
+<input placeholder="Description Ar" name="descriptionAr" [(ngModel)]="descriptionAr"/>
+
+
+Overview En
+<input placeholder="Overview En" name="overviewEn" [(ngModel)]="overviewEn"/>
+
+
+Overview Ar
+<input placeholder="Overview Ar" name="overviewAr" [(ngModel)]="overviewAr"/>
+
+
+Status
+<select placeholder="Status" [(ngModel)]="status">
+    <option value="DRAFT">Draft</option>
+    <option value="PUBLISHED">Published</option>
+</select>
+
 Image
 <input type="file" placeholder="image" (change)="getFile($event, 'image')"/>
 Cover Image
