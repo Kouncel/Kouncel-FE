@@ -1,16 +1,16 @@
 <div class="row" #detailsContainer>
     <div class="col-md-5" style="position: relative;">
         <h1>
-            {{course?.nameEn}}
+            {{isRTL ? course?.nameAr : course?.nameEn}}
         </h1>
         <hr style="float: left;" />
         <br />
         <h3>
-            {{course?.instructor.nameEn}}
+            {{isRTL ? course?.instructor.nameAr : course?.instructor.nameEn}}
         </h3>
         <br />
         <p style="font-size: 22px;">
-            {{course?.descriptionEn}}
+            {{isRTL ? course?.descriptionAr : course?.descriptionEn}}
         </p>
         <br />
         <br />
@@ -73,12 +73,12 @@
                     <ul>
                         <li *ngFor="let item of lessons;" (click)="selectedLessonId = item.id">
                             <div>
-                                <p class="lesson-title">{{item.nameEn}} <span style="float: right;"
+                                <p class="lesson-title">{{isRTL ? item.nameAr : item.nameEn}} <span style="float: right;"
                                         class="lesson-expand-chevron fa"
                                         [ngClass]="{'fa-chevron-down': selectedLessonId !== item.id, 'fa-chevron-up': selectedLessonId === item.id}"></span>
                                 </p>
                                 <div *ngIf="selectedLessonId===item.id" class="index-details" style="color: #858585;">
-                                    {{item.descriptionEn}}</div>
+                                    {{isRTL ? item.descriptionAr : item.descriptionEn}}</div>
                             </div>
                         </li>
                     </ul>
@@ -92,16 +92,16 @@
             What will you learn
         </h2>
         <h5>
-            {{course?.overviewEn}}
+            {{isRTL ? course?.overviewAr : course?.overviewEn}}
         </h5>
         <h5 class="grey no-underline">
             <br />
             Instructor Name <span class="white no-underline"
-                style="text-decoration: none !important;">{{course?.instructor.nameEn}}</span><br /><br />
+                style="text-decoration: none !important;">{{isRTL ? course?.instructor.nameAr : course?.instructor.nameEn}}</span><br /><br />
             Course Content <span class="white no-underline" style="text-decoration: none !important;">{{lessons?.length}}
                 Lessons</span><br /><br />
             Category <span class="white no-underline"
-                style="text-decoration: none !important;">{{course?.category.nameEn}}</span><br /><br />
+                style="text-decoration: none !important;">{{isRTL ? course?.category.nameAr : course?.category.nameEn}}</span><br /><br />
         </h5>
     </div>
     <div class="row">

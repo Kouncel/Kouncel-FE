@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { CategoryService } from 'src/app/models/categories.service';
 import { CourseService } from 'src/app/models/courses.service';
 import { LessonService } from 'src/app/models/lesson.service';
+import { UtilsService } from 'src/app/shared/utils.service';
 
 @Component({
   selector: 'koun-course-detail',
@@ -16,6 +17,8 @@ export class CourseDetailComponent implements OnInit {
   videoTypeKey: any;
   videoModalActive: any;
   lessons: any;
+  isRTL: boolean;
+  subscribers: any = [];
 
   selectedLessonId: any;
 
@@ -84,6 +87,7 @@ export class CourseDetailComponent implements OnInit {
     private courseService: CourseService,
     private categoryService: CategoryService,
     private lessonService: LessonService,
+    private utilsService: UtilsService
   ) {}
 
   ngOnInit(): void {
@@ -103,5 +107,10 @@ export class CourseDetailComponent implements OnInit {
         console.log(courses);
       });
     });
+    this.subscribers = [];
+
+    this.subscribers.push(this.utilsService.languageSource.subscribe((lang) => {
+      this.isRTL = lang === 'ar';
+    }));
   }
 }
