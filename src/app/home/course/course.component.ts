@@ -24,7 +24,7 @@ export class CourseComponent implements OnInit {
         this.categories = res.data.map((c: any) => {
           c.title = c.nameEn;
           c.description = c.description || c.nameEn || '';
-          c.image = `https://source.unsplash.com/random/300x200?sig=${Math.ceil(
+          c.image = c.coverImage || `https://source.unsplash.com/random/300x200?sig=${Math.ceil(
             Math.random() * 1000
           )}`;
           return c;

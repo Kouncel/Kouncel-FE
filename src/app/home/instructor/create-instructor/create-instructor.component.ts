@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
+import { NzNotificationService } from 'ng-zorro-antd/notification';
 import { InstructorService } from 'src/app/models/instructors.service';
 
 @Component({
@@ -14,32 +15,34 @@ export class CreateInstructorComponent implements OnInit {
 
   constructor(
     translate: TranslateService,
-    private instrcutorService: InstructorService
+    private instrcutorService: InstructorService,
+    private notification: NzNotificationService,
   ) {}
 
   ngOnInit(): void {
     this.formGroup = new FormGroup({
-      title: new FormControl('', [Validators.required]),
+      nameEn: new FormControl('', [Validators.required]),
+      nameAr: new FormControl('', [Validators.required]),
       myImage: new FormControl(),
       // description: new FormControl('', [Validators.required]),
     });
   }
   create(e: any) {
-    console.log(e);
-    console.log(this.formGroup.value);
-    console.log('create category');
     this.myImage = e.target.files[0];
-  }
-  handleChange(e: any) {
-    console.log(e);
   }
   createInstructor() {
     this.instrcutorService
       .createInstructor({
-        nameEn: this.formGroup.get('title').value + 'En',
-        nameAr: this.formGroup.get('title').value + 'Ar',
+        nameEn: this.formGroup.get('nameEn').value,
+        nameAr: this.formGroup.get('nameAr').value,
         image: this.myImage,
       })
-      .subscribe((res) => console.log(res));
+      .subscribe((res) => {
+        this.notification.create(
+          'success',
+          'Success',
+          'Instructor created successfully',
+          { nzPlacement: 'bottomRight' }
+      );});
   }
 }

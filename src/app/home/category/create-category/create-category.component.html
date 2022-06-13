@@ -4,15 +4,24 @@
 <div class="row justify-content-center">
     <form class="col-11" (ngSubmit)="create()" [formGroup]="formGroup">
         <div
-            [ngClass]="{'input-error': formGroup?.dirty && formGroup?.get('title')?.invalid && formGroup?.get('title')?.dirty}">
+            [ngClass]="{'input-error': formGroup?.dirty && formGroup?.get('nameEn')?.invalid && formGroup?.get('nameEn')?.dirty}">
             <label>
-                {{ 'TITLE' | translate }}
+                {{ 'TITLE' | translate }} En
             </label>
             <br />
-            <input type="text" name="title" formControlName="title" placeholder="{{'TITLE' | translate }}" />
+            <input type="text" name="nameEn" formControlName="nameEn" placeholder="{{'TITLE' | translate }} En" />
         </div>
         <br />
         <div
+            [ngClass]="{'input-error': formGroup?.dirty && formGroup?.get('nameAr')?.invalid && formGroup?.get('nameAr')?.dirty}">
+            <label>
+                {{ 'TITLE' | translate }} Ar
+            </label>
+            <br />
+            <input type="text" name="nameAr" formControlName="nameAr" placeholder="{{'TITLE' | translate }} Ar" />
+        </div>
+        <br />
+        <!-- <div
             [ngClass]="{'input-error': formGroup?.dirty && formGroup?.get('description')?.invalid && formGroup?.get('description')?.dirty}">
             <label>
                 {{ 'DESCRIPTION' | translate }}
@@ -20,7 +29,7 @@
             <br />
             <input type="text" name="description" formControlName="description"
                 placeholder="{{'DESCRIPTION' | translate }}" />
-        </div>
+        </div> -->
         <div *ngIf="formGroup?.dirty && formGroup?.invalid" class="form-errors">
             <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
             <ul>
@@ -31,7 +40,7 @@
                     {{'DESCRIPTION' | translate}} {{'REQUIRED' | translate}}</li>
             </ul>
         </div>
-        <label>
+        <!-- <label>
             {{ 'IMAGE' | translate }}
         </label>
         <br />
@@ -43,7 +52,7 @@
                 Click to Upload Image
             </button>
         </nz-upload>
-        <br />
+        <br /> -->
         <button type="submit">{{ 'CREATE' | translate }}</button>
         <br />
         <br />

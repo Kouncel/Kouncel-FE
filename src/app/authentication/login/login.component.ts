@@ -21,7 +21,10 @@ export class LoginComponent implements OnInit, OnDestroy {
     private authenticationService: AuthenticationService,
     private notification: NzNotificationService,
     translate: TranslateService
-  ) {}
+  ) {
+    localStorage.removeItem('authToken');
+    localStorage.removeItem('refreshToken');
+  }
 
   ngOnInit(): void {
     this.formGroup = new FormGroup({
@@ -38,8 +41,8 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   login() {
-    localStorage.getItem('authToken');
-    localStorage.getItem('refreshToken');
+    localStorage.removeItem('authToken');
+    localStorage.removeItem('refreshToken');
     this.authenticationService.setLoggedInState(false);
     this.formGroup.markAsDirty();
     if (this.formGroup.valid) {
@@ -53,8 +56,8 @@ export class LoginComponent implements OnInit, OnDestroy {
             localStorage.setItem('authToken', authToken.access_token);
             localStorage.setItem('refreshToken', authToken.refresh_token);
             this.authenticationService.setLoggedInState(true);
-            if (this.route.snapshot.queryParams['returnUrl']) {
-            this.router.navigateByUrl(decodeURIComponent(this.route.snapshot.queryParams['returnUrl']));
+            if (this.route.snapshot.queryParams['returnUrl'] && this.route.snapshot.queryParams['returnUrl'].indexOf('login') === -1) {
+              this.router.navigateByUrl(decodeURIComponent(this.route.snapshot.queryParams['returnUrl']));
             } else {
               this.router.navigate(['']);
             }

@@ -21,20 +21,21 @@ export class CreateCategoryComponent implements OnInit {
 
   ngOnInit(): void {
     this.formGroup = new FormGroup({
-      title: new FormControl('', [Validators.required]),
+      nameEn: new FormControl('', [Validators.required]),
+      nameAr: new FormControl('', [Validators.required]),
       description: new FormControl('', [Validators.required]),
     });
   }
   create() {
     this.categoryService
       .createCategory({
-        nameEn: this.formGroup.get('title').value + 'EN',
-        nameAr: this.formGroup.get('title').value + 'AR',
+        nameEn: this.formGroup.get('nameEn').value,
+        nameAr: this.formGroup.get('nameAr').value,
       })
       .subscribe((res) => {
         this.created.emit({
-          nameEn: this.formGroup.get('title').value + 'EN',
-          nameAr: this.formGroup.get('title').value + 'AR',
+          nameEn: this.formGroup.get('nameEn').value,
+          nameAr: this.formGroup.get('nameAr').value,
         });
         this.notification.create(
         'success',

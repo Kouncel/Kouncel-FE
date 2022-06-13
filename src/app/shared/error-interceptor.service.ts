@@ -1,59 +1,67 @@
-import { Injectable } from "@angular/core";
+import { Injectable } from '@angular/core';
 import {
   HttpEvent,
   HttpHandler,
   HttpInterceptor,
-  HttpRequest
-} from "@angular/common/http";
-import { Observable, throwError } from "rxjs";
-import { catchError, retryWhen, tap, delay } from "rxjs/operators";
-import { ActivatedRoute, Router, RouterStateSnapshot } from "@angular/router";
+  HttpRequest,
+} from '@angular/common/http';
+import { Observable, throwError } from 'rxjs';
+import { catchError, retryWhen, tap, delay, finalize } from 'rxjs/operators';
+import { ActivatedRoute, Router, RouterStateSnapshot } from '@angular/router';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
-import { AuthenticationService } from "../authentication/authentication.service";
+import { AuthenticationService } from '../authentication/authentication.service';
 
 @Injectable()
 export class HttpInterceptorService implements HttpInterceptor {
+  isRefreshingToken: boolean = false;
   retryLimit = 3;
   attempt = 0;
 
-  constructor(public router: Router,
+  constructor(
+    public router: Router,
     private notification: NzNotificationService,
-    private authenticationService: AuthenticationService,) {}
+    private authenticationService: AuthenticationService
+  ) {}
 
   intercept(
     req: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
-    return next.handle(req).pipe(
-      // retryWhen((errors) =>
-      //   errors.pipe(delay(this.attempt * 2000),
-      //     tap((error) => {
-      //       console.log('tap');
-      //       if (
-      //         ++this.attempt >= this.retryLimit ||
-      //         (error.status !== 401 && error.status !== 400 && error.status !== 403)
-      //       ) {
-      //           console.log('fail to auth   ', this.attempt)
-      //         throw error;
-      //       }
-      //     })
-      //   )
-      // ),delay(this.attempt * 2000),
-      catchError(error => {
-        console.log('error occured', error);
+    let headers;
+    if (req.url.indexOf('accounts/login') === -1
+      && req.url.indexOf('accounts/forgot-password') === -1
+      && req.url.indexOf('accounts/register') === -1) {
+      headers = req.headers.set(
+        'Authorization',
+        `Bearer ${localStorage.getItem('authToken')}`
+      );
+    }
+    if (!this.isRefreshingToken) {
+      this.isRefreshingToken = true;
+
+      return next.handle(req.clone({ headers: headers })).pipe(
+        catchError((error) => {
+          console.log('error occured', error);
           if (error.status === 401) {
-            this.authenticationService.refreshToken(localStorage.getItem('refreshToken')).subscribe(
-              authToken => {
-                localStorage.setItem('authToken', authToken.access_token);
-                localStorage.setItem('refreshToken', authToken.refresh_token);
-                location.reload();
-              },
-              err => {
-                this.router.navigate(['/login'], {
-                  queryParams: { returnUrl: encodeURIComponent(this.router.url) },
-                });
-              }
-            );
+            this.authenticationService
+              .refreshToken(localStorage.getItem('refreshToken'))
+              .subscribe(
+                (authToken) => {
+                  localStorage.setItem('authToken', authToken.access_token);
+                  localStorage.setItem(
+                    'refreshToken',
+                    authToken.refresh_token
+                  );
+                  // location.reload();
+                },
+                (err) => {
+                  this.router.navigate(['/login'], {
+                    queryParams: {
+                      returnUrl: encodeURIComponent(this.router.url),
+                    },
+                  });
+                }
+              );
           } else {
             this.notification.create(
               'error',
@@ -62,8 +70,14 @@ export class HttpInterceptorService implements HttpInterceptor {
               { nzPlacement: 'bottomRight' }
             );
           }
-        return throwError(error.message);
-      })
-    );
+          return throwError(error.message);
+        }),
+        finalize(() => {
+          this.isRefreshingToken = false;
+        })
+      );
+    } else {
+      return next.handle(req);
+    }
   }
 }

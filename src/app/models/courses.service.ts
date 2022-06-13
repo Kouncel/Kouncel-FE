@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import { BehaviorSubject, map, Observable, of } from 'rxjs';
+import { BehaviorSubject, delay, map, Observable, of, retryWhen } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import * as $ from "jquery";
 
@@ -18,7 +18,7 @@ export class CourseService {
 
     return this.httpClient
       .get(`${localStorage.getItem('baseUrl')}courses`, httpOptions)
-      .pipe(map((res) => res));
+      .pipe(map((res) => res), retryWhen((errors) => errors.pipe(delay(2000))));
   }
 
   getCourse(courseId: any): Observable<any> {
@@ -31,7 +31,7 @@ export class CourseService {
 
     return this.httpClient
       .get(`${localStorage.getItem('baseUrl')}courses/${courseId}`, httpOptions)
-      .pipe(map((res) => res));
+      .pipe(map((res) => res), retryWhen((errors) => errors.pipe(delay(2000))));
   }
 
   createCourse(course: any) {

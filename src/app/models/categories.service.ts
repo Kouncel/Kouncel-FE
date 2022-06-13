@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import { BehaviorSubject, map, Observable, of } from 'rxjs';
+import { BehaviorSubject, delay, map, Observable, of, retry, retryWhen } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 @Injectable({ providedIn: 'root' })
@@ -8,6 +8,7 @@ export class CategoryService {
   constructor(private httpClient: HttpClient) {}
 
   getAllCategories(): Observable<any> {
+    console.log(localStorage.getItem('authToken'));
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
@@ -17,7 +18,7 @@ export class CategoryService {
 
     return this.httpClient
       .get(`${localStorage.getItem('baseUrl')}category`, httpOptions)
-      .pipe(map((res) => res));
+      .pipe(map((res) => res), retryWhen((errors) => errors.pipe(delay(2000))));
   }
 
   createCategory(category: any) {
@@ -36,7 +37,7 @@ export class CategoryService {
       // params.toString(),
       category,
       httpOptions
-    );
+    ).pipe(retryWhen((errors) => errors.pipe(delay(2000))));
   }
 
   deleteCategory(id: any) {
