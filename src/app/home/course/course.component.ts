@@ -11,8 +11,9 @@ import { LookupsService } from 'src/app/models/lookups.service';
   styleUrls: ['./course.component.scss'],
 })
 export class CourseComponent implements OnInit {
-  categories: any[];
+  courses: any[];
   createModalActive: boolean;
+  selectedCourse: any;
   constructor(
     private lookupService: LookupsService,
     public authenticationService: AuthenticationService,
@@ -21,7 +22,7 @@ export class CourseComponent implements OnInit {
   ) {
     this.courseService.getAllCourses().subscribe((res) => {
       if (res && res.data) {
-        this.categories = res.data.map((c: any) => {
+        this.courses = res.data.map((c: any) => {
           c.title = c.nameEn;
           c.description = c.description || c.nameEn || '';
           c.image = c.coverImage || `https://source.unsplash.com/random/300x200?sig=${Math.ceil(
@@ -36,10 +37,15 @@ export class CourseComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  handleEditCourse(e: any) {
+    this.selectedCourse = this.courses.find(c => c.id == e);
+    this.createModalActive = true;
+  }
+
   courseCreated(e: any) {
     e.title = e.nameEn;
     e.description = e.description || e.nameEn || '';
     e.image = `https://source.unsplash.com/random/300x200?sig=${Math.ceil(Math.random()*1000)}`;
-    this.categories.push(e);
+    this.courses.push(e);
   }
 }

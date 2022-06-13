@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { AuthenticationService } from 'src/app/authentication/authentication.service';
 import { CategoryService } from 'src/app/models/categories.service';
 
@@ -10,17 +10,19 @@ import { CategoryService } from 'src/app/models/categories.service';
 export class CourseItemComponent implements OnInit {
   @Input() id: string;
   @Input() title: string = 'Category Title';
+  @Input() status: string = 'DRAFT';
   @Input() description: string;
   @Input() image: string;
+  @Output() edit: EventEmitter<any> = new EventEmitter<any>();
 
   constructor(public authenticationService: AuthenticationService,
     private categoryService: CategoryService) {}
 
   ngOnInit(): void {}
 
-  edit(e: any) {
+  editCourse(e: any) {
     e.preventDefault();
-    alert('Edit');
+    this.edit.emit(this.id);
   }
   delete(e: any) {
     e.preventDefault();
