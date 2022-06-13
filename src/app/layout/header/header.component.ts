@@ -4,6 +4,7 @@ import { AuthenticationService } from 'src/app/authentication/authentication.ser
 import { UtilsService } from 'src/app/shared/utils.service';
 import { TranslateService } from '@ngx-translate/core';
 import { LookupsService } from 'src/app/models/lookups.service';
+import { CategoryService } from 'src/app/models/categories.service';
 
 @Component({
   selector: 'koun-header',
@@ -17,14 +18,15 @@ export class HeaderComponent implements OnInit {
     public authenticationService: AuthenticationService,
     public utilsService: UtilsService,
     public lookupsService: LookupsService,
+    public categoriesService: CategoryService,
     private router: Router,
     translate: TranslateService
   ) {}
 
   ngOnInit(): void {
-    this.lookupsService.getCategories().subscribe((res) => {
-      this.categories = res.slice(0, 5);
-    });
+    // this.categoriesService.getAllCategories().subscribe(res => {
+    //   this.categories = res
+    // });
     this.utilsService.languageSource.subscribe((lang) => {
       this.addRemoveRtlStyles(lang);
     });
