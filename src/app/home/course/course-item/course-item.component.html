@@ -1,7 +1,7 @@
 <a href="course/{{id}}/lessons">
     <div class="card-holder" [title]="title">
         <div class="admin-controls" *ngIf="(authenticationService.isAdmin | async)">
-            <i (click)="edit($event)" class="fa fa-pencil-square-o" aria-hidden="true"></i>
+            <i (click)="editCourse($event)" class="fa fa-pencil-square-o" aria-hidden="true"></i>
             <i (click)="delete($event)" class="fa fa-trash-o" aria-hidden="true"></i>
         </div>
         <div class="card-img" [style.backgroundImage]="'url('+(image)+')'">
@@ -12,6 +12,9 @@
             </h5>
             <p [title]="description">
                 {{description | ellipses}}
+            </p>
+            <p>
+                Status: {{status}}
             </p>
         </div>
     </div>

@@ -27,22 +27,18 @@ export class LessonService {
     form.append("video", files['video'].file, files['video'].name);
     form.append("lesson", JSON.stringify(lesson));
 
-    var settings: any = {
-      "url": `${localStorage.getItem('baseUrl')}courses/${courseId}/lessons`,
-      "method": "POST",
-      "timeout": 0, 
-      "processData": false,
-      "mimeType": "multipart/form-data",
-      "contentType": false,
-      headers: {'Authorization': `Bearer ${localStorage.getItem('authToken')}`},
-      "data": form
+    const httpOptions = {
+      headers: new HttpHeaders({
+        Authorization: `Bearer ${localStorage.getItem('authToken')}`,
+      }),
     };
 
-    $.ajax(settings).done(function (response) {
-      console.log(response);
-    });
+    return this.httpClient.post(
+      `${localStorage.getItem('baseUrl')}courses/${courseId}/lessons`,
+      form,
+      httpOptions
+    ).pipe(map((res) => res), retryWhen((errors) => errors.pipe(delay(2000))));
 
-    return of({});
   }
 
   deleteLesson(id: any) {

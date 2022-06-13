@@ -1,6 +1,6 @@
 <input [(ngModel)]="nameEn" placeholder="Course title En" name="nameEn" />
 <input [(ngModel)]="nameAr" placeholder="Course title Ar" name="nameAr" />
-Category:
+Category
 <select [(ngModel)]="categoryId">
     <option *ngFor="let item of categories" [value]="item.id">
         {{item.nameEn}} ({{item?.courses?.length}})

@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
 import { CategoryService } from 'src/app/models/categories.service';
 import { CourseService } from 'src/app/models/courses.service';
@@ -11,6 +11,7 @@ import { InstructorService } from 'src/app/models/instructors.service';
 })
 export class CreateCourseComponent implements OnInit {
   @Output() created: EventEmitter<any> = new EventEmitter<any>();
+  @Input() course: any;
   nameEn: string;
   nameAr: string;
   descriptionAr: string;
@@ -38,10 +39,33 @@ export class CreateCourseComponent implements OnInit {
     this.instructorService.getAllInstructors().subscribe((res) => {
       this.instructors = res;
     });
+    if (this.course) {
+      this.nameEn = this.course.nameEn;
+      this.nameAr = this.course.nameAr;
+      this.descriptionAr = this.course.descriptionAr;
+      this.descriptionEn = this.course.descriptionEn;
+      this.overviewAr = this.course.overviewAr;
+      this.overviewEn = this.course.overviewEn;
+      this.price = this.course.price;
+      this.status = this.course.status;
+      this.categoryId = this.course.category.id;
+      this.instructorId = this.course.instructor.id;
+    }
   }
 
   create() {
-    this.courseService
+    if (this.course) {
+      this.course.categoryId = this.categoryId;
+      this.course.instructorId = this.instructorId;
+      this.courseService.editCourse(this.course.id, {...this.course}, this.files).subscribe((res) => {
+        this.notification.create(
+          'success',
+          'Success',
+          'Course created successfully',
+          { nzPlacement: 'bottomRight' }
+        );
+      });
+    } else { this.courseService
       .createCourse({
         nameEn: this.nameEn,
         nameAr: this.nameAr,
@@ -68,6 +92,7 @@ export class CreateCourseComponent implements OnInit {
           );
         });
       });
+    }
   }
 
   getFile(e: any, key: any) {

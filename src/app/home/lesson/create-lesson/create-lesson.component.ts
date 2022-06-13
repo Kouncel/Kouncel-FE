@@ -10,8 +10,10 @@ import { LessonService } from 'src/app/models/lesson.service';
 export class CreateLessonComponent implements OnInit {
   @Input() courseId: any;
   @Output() created: EventEmitter<any> = new EventEmitter<any>();
-  title: string;
-  description: string;
+  nameEn: string;
+  nameAr: string;
+  descriptionEn: string;
+  descriptionAr: string;
   files: any = {};
 
   constructor(
@@ -24,18 +26,18 @@ export class CreateLessonComponent implements OnInit {
   create() {
     this.lessonService
       .createLesson(this.courseId, {
-        nameEn: this.title + 'EN',
-        nameAr: this.title + 'AR',
-        descriptionEn: this.description + 'EN',
-        descriptionAr: this.description + 'AR',
+        nameEn: this.nameEn + 'EN',
+        nameAr: this.nameAr + 'AR',
+        descriptionEn: this.descriptionEn + 'EN',
+        descriptionAr: this.descriptionAr + 'AR',
         // order: 20,
       }, this.files)
       .subscribe((res) => {
         this.created.emit({
-          nameEn: this.title + 'EN',
-          nameAr: this.title + 'AR',
-          descriptionEn: this.description + 'EN',
-          descriptionAr: this.description + 'AR',
+          nameEn: this.nameEn + 'EN',
+          nameAr: this.nameAr + 'AR',
+          descriptionEn: this.descriptionEn + 'EN',
+          descriptionAr: this.descriptionAr + 'AR',
           order: 20,
         });
         this.notification.create(

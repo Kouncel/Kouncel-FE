@@ -50,7 +50,7 @@ export class CourseService {
       // params.toString(),
       course,
       httpOptions,
-    );
+    ).pipe(map((res) => res), retryWhen((errors) => errors.pipe(delay(2000))));
   }
 
   editCourse(courseId: any, course: any, files: any) {
@@ -59,11 +59,21 @@ export class CourseService {
     console.log(course)
     var form = new FormData();
 
-    form.append("cover", files['coverImage'].file, files['coverImage'].name);
-    form.append("image", files['image'].file, files['coverImage'].name);
-    form.append("trailer", files['trailer'].file, files['coverImage'].name);
-    form.append("sample", files['sample'].file, files['coverImage'].name);
+    if (files['coverImage']) {
+      form.append('cover', files['coverImage'].file, files['coverImage'].name);
+    }
+    if (files['image']) {
+      form.append('image', files['image'].file, files['image'].name);
+    }
+    if (files['trailer']) {
+      form.append('trailer', files['trailer'].file, files['trailer'].name);
+    }
+    if (files['sample']) {
+      form.append('sample', files['sample'].file, files['sample'].name);
+    }
     delete course["id"];
+    delete course["title"];
+    delete course["description"];
     delete course["coverImage"];
     delete course["image"];
     delete course["trailer"];
@@ -73,40 +83,18 @@ export class CourseService {
 
     form.append("course", JSON.stringify(course));
 
-    var settings: any = {
-      "url": `${localStorage.getItem('baseUrl')}courses/${courseId}`,
-      "method": "PUT",
-      "timeout": 0, 
-      "processData": false,
-      "mimeType": "multipart/form-data",
-      "contentType": false,
-      headers: {'Authorization': `Bearer ${localStorage.getItem('authToken')}`},
-      "data": form
+    const httpOptions = {
+      headers: new HttpHeaders({
+        Authorization: `Bearer ${localStorage.getItem('authToken')}`,
+      }),
     };
 
-    $.ajax(settings).done(function (response) {
-      console.log(response);
-    });
+    return this.httpClient.put(
+      `${localStorage.getItem('baseUrl')}courses/${courseId}`,
+      form,
+      httpOptions
+    ).pipe(map((res) => res), retryWhen((errors) => errors.pipe(delay(2000))));
 
-    return of({});
-
-
-    // const httpOptions = {
-    //   headers: new HttpHeaders({
-    //     'Content-Type': 'application/json',
-    //     Authorization: `Bearer ${localStorage.getItem('authToken')}`,
-    //   }),
-    // };
-    // const params = new HttpParams({
-    //   fromObject: course,
-    // });
-
-    // return this.httpClient.put(
-    //   `${localStorage.getItem('baseUrl')}courses/${courseId}`,
-    //   // params.toString(),
-    //   course,
-    //   httpOptions
-    // );
   }
 
   deleteCourse(id: any) {

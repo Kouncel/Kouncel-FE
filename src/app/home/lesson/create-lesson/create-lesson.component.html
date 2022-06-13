@@ -1,5 +1,7 @@
-<input name="name" [(ngModel)]="title" placeholder="Lesson Title" />
-<input name="description" [(ngModel)]="description" placeholder="Lesson Description" />
+<input name="name" [(ngModel)]="nameEn" placeholder="Lesson Name En" />
+<input name="name" [(ngModel)]="nameAr" placeholder="Lesson Name En" />
+<input name="description" [(ngModel)]="descriptionEn" placeholder="Lesson Description En" />
+<input name="description" [(ngModel)]="descriptionAr" placeholder="Lesson Description Ar" />
 Video
 <input type="file" placeholder="video" (change)="getFile($event, 'video')"/>
 <button (click)="create()">Create</button>

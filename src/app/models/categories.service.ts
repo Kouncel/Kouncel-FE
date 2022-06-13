@@ -8,7 +8,6 @@ export class CategoryService {
   constructor(private httpClient: HttpClient) {}
 
   getAllCategories(): Observable<any> {
-    console.log(localStorage.getItem('authToken'));
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
