@@ -30,7 +30,8 @@ export class HttpInterceptorService implements HttpInterceptor {
     let headers;
     if (req.url.indexOf('accounts/login') === -1
       && req.url.indexOf('accounts/forgot-password') === -1
-      && req.url.indexOf('accounts/register') === -1) {
+      && req.url.indexOf('accounts/register') === -1
+      && req.url.indexOf('professions') === -1) {
       headers = req.headers.set(
         'Authorization',
         `Bearer ${localStorage.getItem('authToken')}`
