@@ -26,18 +26,18 @@ export class CreateLessonComponent implements OnInit {
   create() {
     this.lessonService
       .createLesson(this.courseId, {
-        nameEn: this.nameEn + 'EN',
-        nameAr: this.nameAr + 'AR',
-        descriptionEn: this.descriptionEn + 'EN',
-        descriptionAr: this.descriptionAr + 'AR',
+        nameEn: this.nameEn,
+        nameAr: this.nameAr,
+        descriptionEn: this.descriptionEn,
+        descriptionAr: this.descriptionAr,
         // order: 20,
       }, this.files)
       .subscribe((res) => {
         this.created.emit({
-          nameEn: this.nameEn + 'EN',
-          nameAr: this.nameAr + 'AR',
-          descriptionEn: this.descriptionEn + 'EN',
-          descriptionAr: this.descriptionAr + 'AR',
+          nameEn: this.nameEn,
+          nameAr: this.nameAr,
+          descriptionEn: this.descriptionEn,
+          descriptionAr: this.descriptionAr,
           order: 20,
         });
         this.notification.create(

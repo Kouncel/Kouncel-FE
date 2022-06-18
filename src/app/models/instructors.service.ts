@@ -17,7 +17,7 @@ export class InstructorService {
     };
 
     return this.httpClient
-      .get(`${localStorage.getItem('baseUrl')}instructor`, httpOptions)
+      .get(`${environment.baseUrl || localStorage.getItem('baseUrl')}instructor`, httpOptions)
       .pipe(map((res) => res), retryWhen((errors) => errors.pipe(delay(2000))));
   }
 
@@ -34,7 +34,7 @@ export class InstructorService {
       };
   
       return this.httpClient.post(
-        `${localStorage.getItem('baseUrl')}instructor`,
+        `${environment.baseUrl || localStorage.getItem('baseUrl')}instructor`,
         form,
         httpOptions
       ).pipe(retryWhen((errors) => errors.pipe(delay(2000))));
@@ -59,7 +59,7 @@ export class InstructorService {
     formData.append('instructor', JSON.stringify(instructor))
 
     return this.httpClient.post(
-      `${localStorage.getItem('baseUrl')}instructor`,
+      `${environment.baseUrl || localStorage.getItem('baseUrl')}instructor`,
       formData,
       httpOptions
     ); */
@@ -74,7 +74,7 @@ export class InstructorService {
     };
 
     return this.httpClient.delete(
-      `${localStorage.getItem('baseUrl')}instructor/${id}`,
+      `${environment.baseUrl || localStorage.getItem('baseUrl')}instructor/${id}`,
       // params.toString(),
       httpOptions
     );

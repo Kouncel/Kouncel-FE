@@ -64,12 +64,24 @@ export class HttpInterceptorService implements HttpInterceptor {
                 }
               );
           } else {
-            this.notification.create(
-              'error',
-              'An Error Occured',
-              error?.message,
-              { nzPlacement: 'bottomRight' }
-            );
+            console.log(error);
+            if (error && error.error && error.error.errors) {
+              error.error.errors.forEach((element: any) => {
+                this.notification.create(
+                  'error',
+                  element.error,
+                  element.error_description,
+                  { nzPlacement: 'bottomRight' }
+                );
+              });
+            } else {
+              this.notification.create(
+                'error',
+                'An Error Occured',
+                error?.message,
+                { nzPlacement: 'bottomRight' }
+              );
+            }
           }
           return throwError(error.message);
         }),

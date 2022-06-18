@@ -57,11 +57,19 @@ export class CreateCourseComponent implements OnInit {
     if (this.course) {
       this.course.categoryId = this.categoryId;
       this.course.instructorId = this.instructorId;
+      this.course.nameEn = this.nameEn;
+      this.course.nameAr = this.nameAr;
+      this.course.descriptionAr = this.descriptionAr;
+      this.course.descriptionEn = this.descriptionEn;
+      this.course.overviewAr = this.overviewAr;
+      this.course.overviewEn = this.overviewEn;
+      this.course.price = this.price;
+      this.course.status = this.status;
       this.courseService.editCourse(this.course.id, {...this.course}, this.files).subscribe((res) => {
         this.notification.create(
           'success',
           'Success',
-          'Course created successfully',
+          'Course edited successfully',
           { nzPlacement: 'bottomRight' }
         );
       });

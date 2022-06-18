@@ -68,6 +68,7 @@ const routes: Routes = [
     NzUploadModule,
     RouterModule.forRoot(routes, {
       scrollPositionRestoration: 'enabled',
+      useHash: true
     }),
   ],
   providers: [ {

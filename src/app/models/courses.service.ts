@@ -17,7 +17,7 @@ export class CourseService {
     };
 
     return this.httpClient
-      .get(`${localStorage.getItem('baseUrl')}courses`, httpOptions)
+      .get(`${environment.baseUrl || localStorage.getItem('baseUrl')}courses`, httpOptions)
       .pipe(map((res) => res), retryWhen((errors) => errors.pipe(delay(2000))));
   }
 
@@ -30,7 +30,7 @@ export class CourseService {
     };
 
     return this.httpClient
-      .get(`${localStorage.getItem('baseUrl')}courses/${courseId}`, httpOptions)
+      .get(`${environment.baseUrl || localStorage.getItem('baseUrl')}courses/${courseId}`, httpOptions)
       .pipe(map((res) => res), retryWhen((errors) => errors.pipe(delay(2000))));
   }
 
@@ -46,7 +46,7 @@ export class CourseService {
     });
 
     return this.httpClient.post(
-      `${localStorage.getItem('baseUrl')}courses`,
+      `${environment.baseUrl || localStorage.getItem('baseUrl')}courses`,
       // params.toString(),
       course,
       httpOptions,
@@ -90,7 +90,7 @@ export class CourseService {
     };
 
     return this.httpClient.put(
-      `${localStorage.getItem('baseUrl')}courses/${courseId}`,
+      `${environment.baseUrl || localStorage.getItem('baseUrl')}courses/${courseId}`,
       form,
       httpOptions
     ).pipe(map((res) => res), retryWhen((errors) => errors.pipe(delay(2000))));
@@ -106,7 +106,7 @@ export class CourseService {
     };
 
     return this.httpClient.delete(
-      `${localStorage.getItem('baseUrl')}courses/${id}`,
+      `${environment.baseUrl || localStorage.getItem('baseUrl')}courses/${id}`,
       // params.toString(),
       httpOptions
     );
