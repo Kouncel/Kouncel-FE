@@ -16,7 +16,7 @@ export class CategoryService {
     };
 
     return this.httpClient
-      .get(`${localStorage.getItem('baseUrl')}category`, httpOptions)
+      .get(`${environment.baseUrl || localStorage.getItem('baseUrl')}category`, httpOptions)
       .pipe(map((res) => res), retryWhen((errors) => errors.pipe(delay(2000))));
   }
 
@@ -32,7 +32,7 @@ export class CategoryService {
     });
 
     return this.httpClient.post(
-      `${localStorage.getItem('baseUrl')}category`,
+      `${environment.baseUrl || localStorage.getItem('baseUrl')}category`,
       // params.toString(),
       category,
       httpOptions
@@ -48,7 +48,7 @@ export class CategoryService {
     };
 
     return this.httpClient.delete(
-      `${localStorage.getItem('baseUrl')}category/${id}`,
+      `${environment.baseUrl || localStorage.getItem('baseUrl')}category/${id}`,
       // params.toString(),
       httpOptions
     );

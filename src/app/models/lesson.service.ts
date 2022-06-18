@@ -17,7 +17,7 @@ export class LessonService {
     };
 
     return this.httpClient
-      .get(`${localStorage.getItem('baseUrl')}courses/${courseId}/lessons`, httpOptions)
+      .get(`${environment.baseUrl || localStorage.getItem('baseUrl')}courses/${courseId}/lessons`, httpOptions)
       .pipe(map((res) => res), retryWhen((errors) => errors.pipe(delay(2000))));
   }
 
@@ -34,7 +34,7 @@ export class LessonService {
     };
 
     return this.httpClient.post(
-      `${localStorage.getItem('baseUrl')}courses/${courseId}/lessons`,
+      `${environment.baseUrl || localStorage.getItem('baseUrl')}courses/${courseId}/lessons`,
       form,
       httpOptions
     ).pipe(map((res) => res), retryWhen((errors) => errors.pipe(delay(2000))));
@@ -50,7 +50,7 @@ export class LessonService {
     };
 
     return this.httpClient.delete(
-      `${localStorage.getItem('baseUrl')}lessons/${id}`,
+      `${environment.baseUrl || localStorage.getItem('baseUrl')}lessons/${id}`,
       // params.toString(),
       httpOptions
     );

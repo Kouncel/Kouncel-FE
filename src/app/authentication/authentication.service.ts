@@ -31,7 +31,7 @@ export class AuthenticationService {
     });
 
     return this.httpClient.post(
-      `${localStorage.getItem('baseUrl')}accounts/login`,
+      `${environment.baseUrl || localStorage.getItem('baseUrl')}accounts/login`,
       formObject,
       httpOptions
     );
@@ -50,7 +50,7 @@ export class AuthenticationService {
     });
 
     return this.httpClient.post(
-      `${localStorage.getItem('baseUrl')}accounts/forgot-password`,
+      `${environment.baseUrl || localStorage.getItem('baseUrl')}accounts/forgot-password`,
       // params.toString(),
       { email },
       httpOptions
@@ -68,7 +68,7 @@ export class AuthenticationService {
     });
 
     return this.httpClient.post(
-      `${localStorage.getItem('baseUrl')}accounts/register`,
+      `${environment.baseUrl || localStorage.getItem('baseUrl')}accounts/register`,
       // params.toString(),
       registrationObj,
       httpOptions
@@ -87,7 +87,7 @@ export class AuthenticationService {
     });
 
     return this.httpClient.post(
-      `${localStorage.getItem('baseUrl')}accounts/refresh`,
+      `${environment.baseUrl || localStorage.getItem('baseUrl')}accounts/refresh`,
       // params.toString(),
       {refreshToken},
       httpOptions

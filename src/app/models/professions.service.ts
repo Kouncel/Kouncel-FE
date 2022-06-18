@@ -15,7 +15,7 @@ export class ProfessionsService {
     };
 
     return this.httpClient
-      .get(`${localStorage.getItem('baseUrl')}professions?page=1&size=0`, httpOptions)
+      .get(`${environment.baseUrl || localStorage.getItem('baseUrl')}professions?page=1&size=0`, httpOptions)
       .pipe(map((res) => res), retryWhen((errors) => errors.pipe(delay(2000))));
   }
 }

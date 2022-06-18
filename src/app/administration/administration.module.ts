@@ -16,6 +16,7 @@ const routes: Routes = [
     CommonModule,
     RouterModule.forRoot(routes, {
       scrollPositionRestoration: 'enabled',
+      useHash: true
     }),
   ]
 })

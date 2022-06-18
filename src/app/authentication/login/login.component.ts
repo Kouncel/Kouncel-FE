@@ -63,7 +63,7 @@ export class LoginComponent implements OnInit, OnDestroy {
             }
           },
           (err) => {
-            err?.error?.errors?.forEach((element: any) => {
+            err?.errors?.forEach((element: any) => {
               this.notification.create(
                 'error',
                 'Registration Error',
