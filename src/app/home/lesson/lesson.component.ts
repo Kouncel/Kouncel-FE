@@ -37,7 +37,7 @@ export class LessonComponent implements OnInit {
   lessonCreated(e: any) {
     e.title = e.nameEn;
     e.description = e.description || e.nameEn || '';
-    e.image = `https://source.unsplash.com/random/300x200?sig=${Math.ceil(Math.random()*1000)}`;
+    e.image = `https://picsum.photos/700?random=${Math.ceil(Math.random()*1000)}`;
     this.lessons.push(e);
     this.createModalActive = false;
   }
