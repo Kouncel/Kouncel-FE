@@ -54,9 +54,6 @@ export class CourseService {
   }
 
   editCourse(courseId: any, course: any, files: any) {
-
-
-    console.log(course)
     var form = new FormData();
 
     if (files['coverImage']) {

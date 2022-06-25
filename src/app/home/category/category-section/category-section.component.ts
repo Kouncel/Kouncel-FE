@@ -70,7 +70,6 @@ export class CategorySectionComponent implements OnInit, OnDestroy {
           .offsetWidth *
         (this.list.length - 3);
     }
-    console.log(this.globalScroll);
     if (this.isRTL) {
       this.coursesHolder.nativeElement.scroll({top: 0, left: this.globalScroll * -1, behavior: 'smooth'});
     } else {

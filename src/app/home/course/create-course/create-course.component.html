@@ -36,19 +36,35 @@ Overview Ar
 <input placeholder="Overview Ar" name="overviewAr" [(ngModel)]="overviewAr"/>
 
 
-Status
+<!-- Status
 <select placeholder="Status" [(ngModel)]="status">
     <option value="DRAFT">Draft</option>
     <option value="PUBLISHED">Published</option>
-</select>
+</select> -->
 
 Image
 <input type="file" placeholder="image" (change)="getFile($event, 'image')"/>
+<div *ngIf="course?.image"><img src="{{course.image}}" width="auto" height="100px" /><br/><br/><hr style="display: block; width: 100%"/><br/><br/></div>
 Cover Image
 <input type="file" placeholder="coverImage" (change)="getFile($event, 'coverImage')"/>
+<div *ngIf="course?.coverImage"><img src="{{course.coverImage}}" width="auto" height="100px" /><br/><br/><hr style="display: block; width: 100%"/><br/><br/></div>
 Sample
 <input type="file" placeholder="sample" (change)="getFile($event, 'sample')"/>
+<div *ngIf="course?.sample">
+    
+            <video *ngIf="course?.sample" width="auto" height="100%" controls>
+                <source src="{{course.sample}}">
+                Your browser does not support the video tag.
+            </video>
+    <br/><br/><hr style="display: block; width: 100%"/><br/><br/></div>
 Trailer
 <input type="file" placeholder="trailer" (change)="getFile($event, 'trailer')"/>
+<div *ngIf="course?.trailer">
+    
+            <video *ngIf="course?.trailer" width="auto" height="100%" controls>
+                <source src="{{course.trailer}}">
+                Your browser does not support the video tag.
+            </video>
+    <br/><br/><hr style="display: block; width: 100%"/><br/><br/></div>
 
 <button (click)="create()">Create</button>

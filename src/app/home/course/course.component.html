@@ -10,7 +10,7 @@
     </div>
     <div class="row">
         <koun-course-item *ngFor="let item of courses" (edit)="handleEditCourse($event)" [id]="item.id"
-            [status]="item.status" [title]="item.title" [description]="item.description" [image]="item.image"
+            [status]="item.status" [title]="item.title" [course]="item" [description]="item.description" [image]="item.image"
             class="col-lg-3 col-md-4 col-sm-6 col-xs">
         </koun-course-item>
 

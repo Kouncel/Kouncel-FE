@@ -1,3 +1,4 @@
+<div class="course-holder">
 <a href="course/{{id}}/lessons">
     <div class="card-holder" [title]="title">
         <div class="admin-controls" *ngIf="(authenticationService.isAdmin | async)">
@@ -19,3 +20,6 @@
         </div>
     </div>
 </a>
+<button style="background-color: green;" *ngIf="showPublishButton" (click)="publishCourse($event, 'PUBLISHED')">Publish</button>
+<button *ngIf="status === 'PUBLISHED'" (click)="publishCourse($event, 'DRAFT')">UnPublish</button>
+</div>

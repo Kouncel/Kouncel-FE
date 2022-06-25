@@ -73,7 +73,8 @@ export class CreateCourseComponent implements OnInit {
           { nzPlacement: 'bottomRight' }
         );
       });
-    } else { this.courseService
+    } else { 
+      this.courseService
       .createCourse({
         nameEn: this.nameEn,
         nameAr: this.nameAr,
