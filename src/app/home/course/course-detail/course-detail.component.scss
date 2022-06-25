@@ -30,6 +30,14 @@ h1 {
     padding: 10px 20px;
     border-radius: 10px;
     margin-bottom: 10px;
+    cursor: pointer;
+}
+.course-controls .fa-flag {
+    font-size: 14px;
+}
+.info-title {
+    width: 185px;
+    display: inline-block;
 }
 ul {
     list-style: none;

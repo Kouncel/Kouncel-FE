@@ -15,7 +15,7 @@ export class CourseDetailComponent implements OnInit {
   shareModalActive = false;
   course: any = { instructor: {}, category: {} };
   relatedCourses: any;
-  videoTypeKey: any;
+  videoTypeKey: any = 'trailer';
   videoModalActive: any;
   lessons: any;
   isRTL: boolean;

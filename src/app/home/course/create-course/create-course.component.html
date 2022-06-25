@@ -43,13 +43,13 @@ Overview Ar
 </select> -->
 
 Image
-<input type="file" placeholder="image" (change)="getFile($event, 'image')"/>
+<input type="file" accept=".jpg, .png, .jpeg, .gif, .bmp, .tif, .tiff|image/*" placeholder="image" (change)="getFile($event, 'image')"/>
 <div *ngIf="course?.image"><img src="{{course.image}}" width="auto" height="100px" /><br/><br/><hr style="display: block; width: 100%"/><br/><br/></div>
 Cover Image
-<input type="file" placeholder="coverImage" (change)="getFile($event, 'coverImage')"/>
+<input type="file" accept=".jpg, .png, .jpeg, .gif, .bmp, .tif, .tiff|image/*" placeholder="coverImage" (change)="getFile($event, 'coverImage')"/>
 <div *ngIf="course?.coverImage"><img src="{{course.coverImage}}" width="auto" height="100px" /><br/><br/><hr style="display: block; width: 100%"/><br/><br/></div>
 Sample
-<input type="file" placeholder="sample" (change)="getFile($event, 'sample')"/>
+<input type="file" accept="video/*" placeholder="sample" (change)="getFile($event, 'sample')"/>
 <div *ngIf="course?.sample">
     
             <video *ngIf="course?.sample" width="auto" height="100%" controls>
@@ -58,7 +58,7 @@ Sample
             </video>
     <br/><br/><hr style="display: block; width: 100%"/><br/><br/></div>
 Trailer
-<input type="file" placeholder="trailer" (change)="getFile($event, 'trailer')"/>
+<input type="file" accept="video/*" placeholder="trailer" (change)="getFile($event, 'trailer')"/>
 <div *ngIf="course?.trailer">
     
             <video *ngIf="course?.trailer" width="auto" height="100%" controls>
