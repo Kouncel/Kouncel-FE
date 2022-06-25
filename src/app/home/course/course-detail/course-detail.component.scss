@@ -95,6 +95,9 @@ ul li:last-child {
     font-size: 18px;
     height: 60px;
     padding: 14px 15px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 .manual-share {
     margin-top: 15px;

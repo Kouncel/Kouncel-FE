@@ -24,7 +24,6 @@ import { CourseDetailComponent } from './course/course-detail/course-detail.comp
 import { CreateLessonComponent } from './lesson/create-lesson/create-lesson.component';
 import { ListLessonsComponent } from './lesson/list-lessons/list-lessons.component';
 import { LessonComponent } from './lesson/lesson.component';
-import { RetryHttpInterceptorService } from '../shared/retry-interceptor.service';
 
 const routes: Routes = [
   { component: HomeComponent, path: '' },
@@ -76,11 +75,6 @@ const routes: Routes = [
     useClass: HttpInterceptorService,
     multi: true
   }
-  // , {
-  //   provide: HTTP_INTERCEPTORS,
-  //   useClass: RetryHttpInterceptorService,
-  //   multi: true
-  // }
 ]
 })
 export class HomeModule {}

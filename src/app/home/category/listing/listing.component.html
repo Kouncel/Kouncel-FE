@@ -1,11 +1,11 @@
 <div class="row" #detailsContainer>
     <div class="col-md-5" style="position: relative;">
         <h1>
-            Master Law With MENA's Top Counsellors
+            {{lang === 'en' ? headerData.titleEn : headerData.titleAr}}
         </h1>
         <br />
         <h4>
-            All you need to start and improve your career in law, will find it here
+            {{lang === 'en' ? headerData.bodyEn : headerData.bodyAr}}
         </h4>
         <a class="explore-more" (click)="scrollToDetails()">
             <h3 class="red" style="text-decoration: none !important;">
@@ -16,7 +16,8 @@
     <div class="col-md-7">
         <div class="instructors-container">
             <div class="instructors-holder row">
-                <div *ngFor="let item of instructorsArr" class="col" [style.backgroundImage]="'url('+(item)+')'"></div>
+                <!-- <div *ngFor="let item of instructorsArr" class="col" [style.backgroundImage]="'url('+(headerData.image)+')'"></div> -->
+                <div class="col" [style.backgroundImage]="'url('+(headerData.image)+')'"></div>
             </div>
         </div>
     </div>

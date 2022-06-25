@@ -11,7 +11,10 @@
                     <li nz-menu-item>
                         <a [routerLink]="['/']" routerLinkActive="router-link-active">{{ 'HOME' | translate }}</a>
                     </li>
-                    <li nz-submenu [nzTitle]="titleTpl">
+                    <li nz-menu-item>
+                        <a [routerLink]="['/list-categories']" routerLinkActive="router-link-active">{{ 'CATEGORIES' | translate }}</a>
+                    </li>
+                    <!-- <li nz-submenu [nzTitle]="titleTpl">
                         <ul>
                             <li nz-menu-group>
                                 <ul>
@@ -19,7 +22,7 @@
                                 </ul>
                             </li>
                         </ul>
-                    </li>
+                    </li> -->
                     <li nz-menu-item>
                         {{ 'SEARCH' | translate }}
                     </li>

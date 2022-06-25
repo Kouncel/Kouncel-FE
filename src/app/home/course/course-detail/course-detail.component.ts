@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { NzNotificationService } from 'ng-zorro-antd/notification';
 import { CategoryService } from 'src/app/models/categories.service';
 import { CourseService } from 'src/app/models/courses.service';
 import { LessonService } from 'src/app/models/lesson.service';
@@ -19,6 +20,7 @@ export class CourseDetailComponent implements OnInit {
   lessons: any;
   isRTL: boolean;
   subscribers: any = [];
+  courseUrl: string;
 
   selectedLessonId: any;
 
@@ -87,30 +89,46 @@ export class CourseDetailComponent implements OnInit {
     private courseService: CourseService,
     private categoryService: CategoryService,
     private lessonService: LessonService,
-    private utilsService: UtilsService
+    private utilsService: UtilsService,
+    private notification: NzNotificationService
   ) {}
 
   ngOnInit(): void {
     this.route.params.subscribe((params: any) => {
-      console.log(params);
       this.courseService.getCourse(params.id).subscribe((course: any) => {
-        console.log(course);
+        this.courseUrl = location.href;
         this.course = course;
+        this.categoryService
+          .getAllCategories()
+          .subscribe((catgegories: any) => {
+            const currentCategory = catgegories.find(
+              (c: any) => c.id === this.course.category.id
+            );
+            this.relatedCourses = currentCategory.courses.filter(
+              (c: any) => c.id !== this.course.id
+            );
+          });
       });
       this.lessonService.getAllLessons(params.id).subscribe((lessons: any) => {
-        console.log(lessons);
         this.lessons = lessons.data;
-      });
-      this.categoryService.getAllCategories().subscribe((courses: any) => {
-        const courseIndex = Math.floor(Math.random() * courses.length);
-        this.relatedCourses = courses[courseIndex];
-        console.log(courses);
       });
     });
     this.subscribers = [];
 
-    this.subscribers.push(this.utilsService.languageSource.subscribe((lang) => {
-      this.isRTL = lang === 'ar';
-    }));
+    this.subscribers.push(
+      this.utilsService.languageSource.subscribe((lang) => {
+        this.isRTL = lang === 'ar';
+      })
+    );
+  }
+
+  copyToClipboard() {
+    navigator.clipboard.writeText(this.courseUrl);
+    this.notification.create(
+      'success',
+      'Copied to clipboard',
+      '',
+      { nzPlacement: 'bottomRight' }
+    );
   }
 }

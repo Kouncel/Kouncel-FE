@@ -10,6 +10,7 @@ import { catchError, retryWhen, tap, delay, finalize } from 'rxjs/operators';
 import { ActivatedRoute, Router, RouterStateSnapshot } from '@angular/router';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
 import { AuthenticationService } from '../authentication/authentication.service';
+import { errors } from '../models/errors.const';
 
 @Injectable()
 export class HttpInterceptorService implements HttpInterceptor {
@@ -42,7 +43,6 @@ export class HttpInterceptorService implements HttpInterceptor {
 
       return next.handle(req.clone({ headers: headers })).pipe(
         catchError((error) => {
-          console.log('error occured', error);
           if (error.status === 401) {
             this.authenticationService
               .refreshToken(localStorage.getItem('refreshToken'))
@@ -53,26 +53,36 @@ export class HttpInterceptorService implements HttpInterceptor {
                     'refreshToken',
                     authToken.refresh_token
                   );
-                  // location.reload();
                 },
                 (err) => {
-                  this.router.navigate(['/login'], {
-                    queryParams: {
-                      returnUrl: encodeURIComponent(this.router.url),
-                    },
-                  });
+                  if (location.href.indexOf('returnUrl') === -1) {
+                    this.router.navigate(['/login'], {
+                      queryParams: {
+                        returnUrl: encodeURIComponent(this.router.url),
+                      },
+                    });
+                  }
                 }
               );
           } else {
-            console.log(error);
             if (error && error.error && error.error.errors) {
               error.error.errors.forEach((element: any) => {
-                this.notification.create(
-                  'error',
-                  element.error,
-                  element.error_description,
-                  { nzPlacement: 'bottomRight' }
-                );
+                if (errors[element.error] !== undefined) {
+                  const lang  = localStorage.getItem('lang') || 'en';
+                  this.notification.create(
+                    'error',
+                    lang === 'en' ? 'Error' : 'حدث خطأ',
+                    errors[element.error][lang],
+                    { nzPlacement: 'bottomRight' }
+                  );
+                } else {
+                  this.notification.create(
+                    'error',
+                    element.error,
+                    element.error_description,
+                    { nzPlacement: 'bottomRight' }
+                  );
+                }
               });
             } else {
               this.notification.create(

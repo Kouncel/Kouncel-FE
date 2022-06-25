@@ -3,7 +3,7 @@
 <br />
 <h3>
     {{title}}
-    <small *ngIf="list.length > 4" class="see-all">
+    <small *ngIf="list.length > 10" class="see-all">
         <a href="#" style="float: right;">
             See all
             <i class="fa fa-chevron-right" aria-hidden="true"></i>
@@ -35,7 +35,7 @@
                 </div>
             </a>
         </div>
-        <div class="course-item" [style.width.%]="25" *ngIf="list.length > 4">
+        <div class="course-item" [style.width.%]="25" *ngIf="list.length > 10">
             <div class="course-details" [style.background]="'#272727'">
                 <h3 class="see-more">
                     See More<br />Courses
