@@ -12,7 +12,7 @@ Body Ar
 <input placeholder="Body Ar" name="bodyAr" [(ngModel)]="header.bodyAr"/>
 
 Image
-<input type="file" placeholder="image" (change)="getFile($event, 'image')"/>
+<input type="file" accept=".jpg, .png, .jpeg, .gif, .bmp, .tif, .tiff|image/*" placeholder="image" (change)="getFile($event, 'image')"/>
 <div *ngIf="header?.image"><img src="{{header.image}}" width="auto" height="100px" /><br/><br/><hr style="display: block; width: 100%"/><br/><br/></div>
 
 <button (click)="save()">Save</button>

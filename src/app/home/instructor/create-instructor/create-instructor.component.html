@@ -44,7 +44,7 @@
         </label>
         <br />
         <br />
-        <input type="file" formControlName="myImage" (change)="create($event)"/>
+        <input type="file" accept=".jpg, .png, .jpeg, .gif, .bmp, .tif, .tiff|image/*" formControlName="myImage" (change)="create($event)"/>
         <br />
         <button type="submit">{{ 'CREATE' | translate }}</button>
         <br />

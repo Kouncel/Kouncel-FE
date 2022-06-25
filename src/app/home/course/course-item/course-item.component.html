@@ -1,25 +1,26 @@
 <div class="course-holder">
-<a [routerLink]="['/course/'+id+'/lessons']" routerLinkActive="router-link-active">
-    <div class="card-holder" [title]="title">
-        <div class="admin-controls" *ngIf="(authenticationService.isAdmin | async)">
-            <i (click)="editCourse($event)" class="fa fa-pencil-square-o" aria-hidden="true"></i>
-            <i (click)="delete($event)" class="fa fa-trash-o" aria-hidden="true"></i>
-        </div>
-        <div class="card-img" [style.backgroundImage]="'url('+(image)+')'">
-        </div>
-        <div class="card-body">
-            <h5>
-                {{title}}
-            </h5>
-            <p [title]="description">
-                {{description | ellipses}}
-            </p>
-            <p>
-                Status: {{status}}
-            </p>
-        </div>
+    <div class="admin-controls" *ngIf="(authenticationService.isAdmin | async)">
+        <i (click)="editCourse($event)" class="fa fa-pencil-square-o" aria-hidden="true"></i>
+        <i (click)="delete($event)" class="fa fa-trash-o" aria-hidden="true"></i>
     </div>
-</a>
-<button style="background-color: green;" *ngIf="showPublishButton" (click)="publishCourse($event, 'PUBLISHED')">Publish</button>
-<button *ngIf="status === 'PUBLISHED'" (click)="publishCourse($event, 'DRAFT')">UnPublish</button>
+    <a [routerLink]="['/course/'+id+'/lessons']" routerLinkActive="router-link-active">
+        <div class="card-holder" [title]="title">
+            <div class="card-img" [style.backgroundImage]="'url('+(image)+')'">
+            </div>
+            <div class="card-body">
+                <h5>
+                    {{title}}
+                </h5>
+                <p [title]="description">
+                    {{description | ellipses}}
+                </p>
+                <p>
+                    Status: {{status}}
+                </p>
+            </div>
+        </div>
+    </a>
+    <button style="background-color: green;" *ngIf="showPublishButton"
+        (click)="publishCourse($event, 'PUBLISHED')">Publish</button>
+    <button *ngIf="status === 'PUBLISHED'" (click)="publishCourse($event, 'DRAFT')">UnPublish</button>
 </div>

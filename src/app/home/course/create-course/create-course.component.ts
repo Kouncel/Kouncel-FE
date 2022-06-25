@@ -48,8 +48,12 @@ export class CreateCourseComponent implements OnInit {
       this.overviewEn = this.course.overviewEn;
       this.price = this.course.price;
       this.status = this.course.status;
-      this.categoryId = this.course.category.id;
-      this.instructorId = this.course.instructor.id;
+      if (this.course.category) {
+        this.categoryId = this.course.category.id;
+      }
+      if (this.course.instructor) {
+        this.instructorId = this.course.instructor.id;
+      }
     }
   }
 
