@@ -15,8 +15,6 @@ import { errors } from '../models/errors.const';
 @Injectable()
 export class HttpInterceptorService implements HttpInterceptor {
   isRefreshingToken: boolean = false;
-  retryLimit = 3;
-  attempt = 0;
 
   constructor(
     public router: Router,
@@ -93,7 +91,7 @@ export class HttpInterceptorService implements HttpInterceptor {
               );
             }
           }
-          return throwError(error.message);
+          return throwError(error);
         }),
         finalize(() => {
           this.isRefreshingToken = false;

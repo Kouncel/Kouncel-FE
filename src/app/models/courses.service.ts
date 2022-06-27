@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import { BehaviorSubject, delay, map, Observable, of, retryWhen } from 'rxjs';
+import { BehaviorSubject, delay, map, mergeMap, Observable, of, retryWhen, take, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import * as $ from "jquery";
 
@@ -18,7 +18,18 @@ export class CourseService {
 
     return this.httpClient
       .get(`${environment.baseUrl || localStorage.getItem('baseUrl')}courses`, httpOptions)
-      .pipe(map((res) => res), retryWhen((errors) => errors.pipe(delay(2000))));
+      .pipe(map((res) => res), retryWhen((obs) => {
+        return obs.pipe(
+          mergeMap((response) => {
+            if (response.status === 401) {
+              return of(response).pipe(delay(2000), take(9));
+            }
+            return throwError({
+              error: 'Unknown error for asynchronous function:' + response,
+            });
+          })
+        );
+      }));
   }
 
   getCourse(courseId: any): Observable<any> {
@@ -31,7 +42,18 @@ export class CourseService {
 
     return this.httpClient
       .get(`${environment.baseUrl || localStorage.getItem('baseUrl')}courses/${courseId}`, httpOptions)
-      .pipe(map((res) => res), retryWhen((errors) => errors.pipe(delay(2000))));
+      .pipe(map((res) => res), retryWhen((obs) => {
+        return obs.pipe(
+          mergeMap((response) => {
+            if (response.status === 401) {
+              return of(response).pipe(delay(2000), take(9));
+            }
+            return throwError({
+              error: 'Unknown error for asynchronous function:' + response,
+            });
+          })
+        );
+      }));
   }
 
   createCourse(course: any) {
@@ -50,7 +72,18 @@ export class CourseService {
       // params.toString(),
       course,
       httpOptions,
-    ).pipe(map((res) => res), retryWhen((errors) => errors.pipe(delay(2000))));
+    ).pipe(map((res) => res), retryWhen((obs) => {
+      return obs.pipe(
+        mergeMap((response) => {
+          if (response.status === 401) {
+            return of(response).pipe(delay(2000), take(9));
+          }
+          return throwError({
+            error: 'Unknown error for asynchronous function:' + response,
+          });
+        })
+      );
+    }));
   }
 
   editCourse(courseId: any, course: any, files: any) {
@@ -90,7 +123,18 @@ export class CourseService {
       `${environment.baseUrl || localStorage.getItem('baseUrl')}courses/${courseId}`,
       form,
       httpOptions
-    ).pipe(map((res) => res), retryWhen((errors) => errors.pipe(delay(2000))));
+    ).pipe(map((res) => res), retryWhen((obs) => {
+      return obs.pipe(
+        mergeMap((response) => {
+          if (response.status === 401) {
+            return of(response).pipe(delay(2000), take(9));
+          }
+          return throwError({
+            error: 'Unknown error for asynchronous function:' + response,
+          });
+        })
+      );
+    }));
 
   }
 
