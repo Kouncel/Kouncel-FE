@@ -53,7 +53,7 @@
             </button>
         </nz-upload>
         <br /> -->
-        <button type="submit">{{ 'CREATE' | translate }}</button>
+        <button type="submit" [disabled]="isLoading"> <i *ngIf="isLoading" class="fa fa-spinner fa-pulse fa-fw"></i> {{ 'CREATE' | translate }}</button>
         <br />
         <br />
         <br />

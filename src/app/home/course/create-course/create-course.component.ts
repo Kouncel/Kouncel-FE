@@ -25,6 +25,8 @@ export class CreateCourseComponent implements OnInit {
   instructors: any[];
   instructorId: any[];
   files: any = {};
+  isLoading: boolean;
+
   constructor(
     private courseService: CourseService,
     private categoryService: CategoryService,
@@ -58,6 +60,7 @@ export class CreateCourseComponent implements OnInit {
   }
 
   create() {
+    this.isLoading = true;
     if (this.course) {
       this.course.categoryId = this.categoryId;
       this.course.instructorId = this.instructorId;
@@ -70,13 +73,14 @@ export class CreateCourseComponent implements OnInit {
       this.course.price = this.price;
       this.course.status = this.status;
       this.courseService.editCourse(this.course.id, {...this.course}, this.files).subscribe((res) => {
+        this.isLoading = false;
         this.notification.create(
           'success',
           'Success',
           'Course edited successfully',
           { nzPlacement: 'bottomRight' }
         );
-      });
+      }, err => this.isLoading = false);
     } else { 
       this.courseService
       .createCourse({
@@ -97,14 +101,15 @@ export class CreateCourseComponent implements OnInit {
         res['price'] = this.price;
         res['status']= this.status;
         this.courseService.editCourse(res['id'], res, this.files).subscribe((res) => {
+          this.isLoading = false
           this.notification.create(
             'success',
             'Success',
             'Course created successfully',
             { nzPlacement: 'bottomRight' }
           );
-        });
-      });
+        }, err => this.isLoading = false);
+      }, err => this.isLoading = false);
     }
   }
 

@@ -15,11 +15,11 @@
         <br />
         <br />
         <div class="row" style="width: 90%;">
-            <div (click)="videoModalActive=true; videoTypeKey='trailer'" class="col course-actions">
+            <div (click)="videoModalActive=true; overlayVideoTypeKey='trailer'" class="col course-actions">
                 <i class="fa fa-play-circle" aria-hidden="true"></i><br />
                 <p>TRAILER</p>
             </div>
-            <div (click)="videoModalActive=true; videoTypeKey='sample'" class="col course-actions">
+            <div (click)="videoModalActive=true; overlayVideoTypeKey='sample'" class="col course-actions">
                 <i class="fa fa-desktop" aria-hidden="true"></i><br />
                 <p>SAMPLE</p>
             </div>
@@ -51,11 +51,13 @@
         </h2>
         <div class="row">
             <div class="col-md-8 video-part">
-                <video *ngIf="course?.sample && videoTypeKey === 'sample'" width="100%" height="auto" autoplay controls controlsList="nodownload">
+                <video *ngIf="course?.sample && videoTypeKey === 'sample'" width="100%" height="auto" controls
+                    controlsList="nodownload">
                     <source src="{{course?.sample}}">
                     Your browser does not support the video tag.
                 </video>
-                <video *ngIf="course?.trailer && videoTypeKey === 'trailer'" width="100%" height="auto" autoplay controls controlsList="nodownload">
+                <video *ngIf="course?.trailer && videoTypeKey === 'trailer'" width="100%" height="auto"
+                    controls controlsList="nodownload">
                     <source src="{{course?.trailer}}">
                     Your browser does not support the video tag.
                 </video>
@@ -64,12 +66,14 @@
                 <div class="course-controls course-trailer" (click)="videoTypeKey='trailer'">
                     <span class="fa-stack fa-lg">
                         <i class="fa fa-circle fa-stack-2x red no-underline"></i>
-                        <i class="fa fa-flag fa-stack-1x" [ngClass]="{'fa-pause': videoTypeKey === 'trailer', 'fa-play': videoTypeKey !== 'trailer'}"></i>
-                    </span><span style="margin-left: 20px;">Course Trailer</span></div>
-                <div class="course-controls course-sample" (click)="videoTypeKey='sample'"><span
-                        class="fa-stack fa-lg">
+                        <i class="fa fa-flag fa-stack-1x"
+                            [ngClass]="{'fa-pause': videoTypeKey === 'trailer', 'fa-play': videoTypeKey !== 'trailer'}"></i>
+                    </span><span style="margin-left: 20px;">Course Trailer</span>
+                </div>
+                <div class="course-controls course-sample" (click)="videoTypeKey='sample'"><span class="fa-stack fa-lg">
                         <i class="fa fa-circle fa-stack-2x red no-underline"></i>
-                        <i class="fa fa-flag fa-stack-1x" [ngClass]="{'fa-pause': videoTypeKey === 'sample', 'fa-play': videoTypeKey !== 'sample'}"></i>
+                        <i class="fa fa-flag fa-stack-1x"
+                            [ngClass]="{'fa-pause': videoTypeKey === 'sample', 'fa-play': videoTypeKey !== 'sample'}"></i>
                     </span><span style="margin-left: 20px;">Course Sample</span></div>
                 <div class="course-index">
                     <br />
@@ -77,8 +81,8 @@
                     <ul>
                         <li *ngFor="let item of lessons;" (click)="selectedLessonId = item.id">
                             <div>
-                                <p class="lesson-title">{{isRTL ? item.nameAr : item.nameEn}} <span style="float: right;"
-                                        class="lesson-expand-chevron fa"
+                                <p class="lesson-title">{{isRTL ? item.nameAr : item.nameEn}} <span
+                                        style="float: right;" class="lesson-expand-chevron fa"
                                         [ngClass]="{'fa-chevron-down': selectedLessonId !== item.id, 'fa-chevron-up': selectedLessonId === item.id}"></span>
                                 </p>
                                 <div *ngIf="selectedLessonId===item.id" class="index-details" style="color: #858585;">
@@ -101,11 +105,14 @@
         <h5 class="grey no-underline">
             <br />
             <span class="grey no-underline info-title">Instructor Name </span><span class="white no-underline"
-                style="text-decoration: none !important;">{{isRTL ? course?.instructor.nameAr : course?.instructor.nameEn}}</span><br /><br />
-            <span class="grey no-underline info-title">Course Content </span><span class="white no-underline" style="text-decoration: none !important;">{{lessons?.length}}
+                style="text-decoration: none !important;">{{isRTL ? course?.instructor.nameAr :
+                course?.instructor.nameEn}}</span><br /><br />
+            <span class="grey no-underline info-title">Course Content </span><span class="white no-underline"
+                style="text-decoration: none !important;">{{lessons?.length}}
                 Lessons</span><br /><br />
             <span class="grey no-underline info-title">Category </span><span class="white no-underline"
-                style="text-decoration: none !important;">{{isRTL ? course?.category.nameAr : course?.category.nameEn}}</span><br /><br />
+                style="text-decoration: none !important;">{{isRTL ? course?.category.nameAr :
+                course?.category.nameEn}}</span><br /><br />
         </h5>
     </div>
     <div class="row" *ngIf="relatedCourses?.length">
@@ -141,21 +148,24 @@
             <div class="col">
                 <div class="row">
                     <div class="col-md-12">
-                        <a target="_blank" href="https://www.linkedin.com/sharing/share-offsite/?url={{courseUrl}}" class="share-btn linkedin"><i class="fa fa-linkedin"></i></a>
+                        <a target="_blank" href="https://www.linkedin.com/sharing/share-offsite/?url={{courseUrl}}"
+                            class="share-btn linkedin"><i class="fa fa-linkedin"></i></a>
                     </div>
                 </div>
             </div>
             <div class="col">
                 <div class="row">
                     <div class="col-md-12">
-                        <a target="_blank" href="https://www.facebook.com/share.php?u={{courseUrl}}" class="share-btn facebook"><i class="fa fa-facebook"></i></a>
+                        <a target="_blank" href="https://www.facebook.com/share.php?u={{courseUrl}}"
+                            class="share-btn facebook"><i class="fa fa-facebook"></i></a>
                     </div>
                 </div>
             </div>
             <div class="col">
                 <div class="row">
                     <div class="col-md-12">
-                        <a target="_blank" href="https://twitter.com/intent/tweet?url={{courseUrl}}" class="share-btn twitter"><i class="fa fa-twitter"></i></a>
+                        <a target="_blank" href="https://twitter.com/intent/tweet?url={{courseUrl}}"
+                            class="share-btn twitter"><i class="fa fa-twitter"></i></a>
                     </div>
                 </div>
             </div>
@@ -178,22 +188,40 @@
             </div>
             <div class="col-md-3">
                 <div class="row">
-                    <div class="col-md-12" style="cursor: pointer" (click)="copyToClipboard()"><a class="share-btn copy">Copy Link</a></div>
+                    <div class="col-md-12" style="cursor: pointer" (click)="copyToClipboard()"><a
+                            class="share-btn copy">Copy Link</a></div>
                 </div>
             </div>
         </div>
     </div>
 </koun-modal>
-<koun-modal *ngIf="videoModalActive" (closeModal)="videoModalActive=false" [size]="'small'">
-    <div class="">
+<div class="overlay-holder" *ngIf="videoModalActive">
+    <i class="fa fa-times grey" (click)="videoModalActive = false"></i>
+    <div class="overlay-content">
         <h2 class="share-course-title">
-            {{videoTypeKey}}
+            course {{overlayVideoTypeKey}}
         </h2>
         <div class="row">
-            <video *ngIf="course[videoTypeKey]" width="100%" height="auto" controls controlsList="nodownload">
-                <source src="{{course[videoTypeKey]}}">
+            <video *ngIf="course[overlayVideoTypeKey]" width="100%" height="auto" controls controlsList="nodownload">
+                <source src="{{course[overlayVideoTypeKey]}}">
                 Your browser does not support the video tag.
             </video>
         </div>
+        <div class="row">
+            <div class="col">
+                <h1>
+                    {{isRTL ? course?.nameAr : course?.nameEn}}
+                </h1>
+                <h3 class="grey no-underline">
+                    {{isRTL ? course?.instructor.nameAr : course?.instructor.nameEn}}
+                </h3>
+            </div>
+            <div class="col align-end">
+                <a href="#" class="link-btn"
+                    style="display: block; width: 90%; text-align: center; font-size: 22px;">Subscribe
+                    Now</a>
+                <p class="grey no-underline" style="font-size: 22px;">{{course?.price}} USD for 6 months</p>
+            </div>
+        </div>
     </div>
-</koun-modal>
+</div>

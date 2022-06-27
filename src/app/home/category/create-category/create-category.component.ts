@@ -12,6 +12,7 @@ import { CategoryService } from 'src/app/models/categories.service';
 export class CreateCategoryComponent implements OnInit {
   @Output() created: EventEmitter<any> = new EventEmitter<any>();
   formGroup: FormGroup = new FormGroup({});
+  isLoading: boolean;
 
   constructor(
     translate: TranslateService,
@@ -27,12 +28,14 @@ export class CreateCategoryComponent implements OnInit {
     });
   }
   create() {
+    this.isLoading = true;
     this.categoryService
       .createCategory({
         nameEn: this.formGroup.get('nameEn').value,
         nameAr: this.formGroup.get('nameAr').value,
       })
       .subscribe((res) => {
+        this.isLoading = false;
         this.created.emit({
           nameEn: this.formGroup.get('nameEn').value,
           nameAr: this.formGroup.get('nameAr').value,
@@ -43,7 +46,8 @@ export class CreateCategoryComponent implements OnInit {
         'Category created successfully',
         { nzPlacement: 'bottomRight' }
       );
-      });
+      } ,
+      err => this.isLoading = false);
   }
   handleChange(e: any) {}
 }

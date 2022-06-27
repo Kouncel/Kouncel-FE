@@ -46,7 +46,7 @@
         <br />
         <input type="file" accept=".jpg, .png, .jpeg, .gif, .bmp, .tif, .tiff|image/*" formControlName="myImage" (change)="create($event)"/>
         <br />
-        <button type="submit">{{ 'CREATE' | translate }}</button>
+        <button type="submit" [disabled]="isLoading"> <i *ngIf="isLoading" class="fa fa-spinner fa-pulse fa-fw"></i> {{ 'CREATE' | translate }}</button>
         <br />
         <br />
         <br />
