@@ -21,14 +21,14 @@
             <p style="margin-top: 20px;">Verification link has been sent to your email, please verify your email.</p>
             <br />
             <p class="grey no-underline">
-                E-mail: <a href="mailto:alhassan@mail.com" class="white">alhassan@mail.com</a>
+                E-mail: <a href="mailto:{{email}}" class="white">{{email}}</a>
             </p>
             <br />
             <br />
             <br />
             <br />
 
-            <p>Didn't receive verification e-mail? <a class="red" [routerLink]="['/register']"
+            <p>Didn't receive verification e-mail? <a class="red" (click)="resend()"
                     routerLinkActive="router-link-active">Resend</a></p>
         </div>
     </div>

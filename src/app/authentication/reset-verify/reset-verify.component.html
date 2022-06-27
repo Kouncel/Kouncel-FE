@@ -22,14 +22,14 @@
                 your inbox</p>
             <br />
             <p class="grey no-underline">
-                E-mail: <a href="mailto:alhassan@mail.com" class="white">mailto:alhassan@mail.com</a>
+                E-mail: <a href="mailto:{{email}}" class="white">mailto:{{email}}</a>
             </p>
             <br />
             <br />
             <br />
             <br />
 
-            <p>Didn't receive verification e-mail? <a class="red" [routerLink]="['/reset-password']"
+            <p>Didn't receive verification e-mail? <a class="red" (click)="resend()"
                     routerLinkActive="router-link-active">Resend</a></p>
         </div>
     </div>

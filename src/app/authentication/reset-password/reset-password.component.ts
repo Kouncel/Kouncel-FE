@@ -40,7 +40,7 @@ export class ResetPasswordComponent implements OnInit {
         .resetPassword(this.formGroup.get('email')?.value)
         .subscribe(
           (res) => {
-            this.router.navigate(['/reset-verify']);
+            this.router.navigate(['/reset-verify'], {queryParams: {email: this.formGroup.get('email')?.value}});
           },
           (err) => {
             err?.error?.errors?.forEach((element: any) => {

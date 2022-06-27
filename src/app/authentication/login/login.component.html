@@ -28,8 +28,11 @@
                     {{ 'PASSWORD' | translate }}
                 </label>
                 <br />
-                <input type="password" name="password" formControlName="password"
-                    placeholder="{{ 'ENTER-YOUR-PASSWORD' | translate }}" />
+                    <div class="password-holder">
+                        <input [type]="showHidePassword ? 'password' : 'text'" name="password" formControlName="password"
+                            placeholder="{{ 'ENTER-YOUR-PASSWORD' | translate }}" />
+                        <i class="fa show-hide-password" [ngClass]="{'fa-eye': showHidePassword, 'fa-eye-slash': !showHidePassword}" (click)="showHidePassword = !showHidePassword"></i>
+                    </div>
             </div>
             <br />
             <div *ngIf="formGroup?.dirty && formGroup?.invalid" class="form-errors">
