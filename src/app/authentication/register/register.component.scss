@@ -20,3 +20,19 @@ label {
   right: -40px;
   cursor: pointer;
 }
+.show-hide-password {
+  position: absolute;
+  top: 21px;
+  right: 10px;
+  cursor: pointer;
+  color: #a3a3a3 !important;
+  font-size: 20px;
+}
+.password-holder {
+  position: relative;
+  clear: both;
+}
+
+input[name$=assword] {
+  padding-right: 35px;  
+}

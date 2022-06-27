@@ -84,9 +84,16 @@
                 <i class="fa fa-exclamation-circle password-info" aria-hidden="true"
                     nzTooltipTitle="Password should be at least 6 characters, max 100 characters, should contain one uppercase, one lowercase and one special character"
                     nzTooltipPlacement="right" nz-tooltip></i>
-                <input type="password" name="password" formControlName="password" placeholder="Enter your password" />
-                <input type="password" name="confirmPassword" formControlName="confirmPassword"
-                    placeholder="Confirm your password" />
+                <div class="password-holder">
+                    <input [type]="showHidePassword ? 'password' : 'text'" name="password" formControlName="password"
+                        placeholder="Enter your password" />
+                    <i class="fa show-hide-password" [ngClass]="{'fa-eye': showHidePassword, 'fa-eye-slash': !showHidePassword}" (click)="showHidePassword = !showHidePassword"></i>
+                </div>
+                <div class="password-holder">
+                    <input [type]="showHidePassword ? 'password' : 'text'" name="confirmPassword" formControlName="confirmPassword"
+                        placeholder="Confirm your password" />
+                    <i class="fa show-hide-password" [ngClass]="{'fa-eye': showHidePassword, 'fa-eye-slash': !showHidePassword}" (click)="showHidePassword = !showHidePassword"></i>
+                </div>
             </div>
             <br />
             <div *ngIf="formGroup?.dirty && formGroup?.invalid" class="form-errors">

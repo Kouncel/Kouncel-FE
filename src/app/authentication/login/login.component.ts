@@ -14,6 +14,7 @@ import { AuthenticationService } from '../authentication.service';
 export class LoginComponent implements OnInit, OnDestroy {
   formGroup: FormGroup = new FormGroup({});
   subscriptions: Subscription[] = [];
+  showHidePassword = true;
 
   constructor(
     private router: Router,

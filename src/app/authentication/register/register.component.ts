@@ -26,6 +26,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
 
   countries: any[] = [];
   professions: any[] = [];
+  showHidePassword = true;
 
   constructor(
     private router: Router,
@@ -85,7 +86,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
         (authToken) => {
           // localStorage.setItem('authToken', authToken);
           // this.authenticationService.setLoggedInState(true);
-          this.router.navigate(['verify']);
+          this.router.navigate(['verify'], {queryParams: {email: this.formGroup.get('email')?.value}});
         },
         (err) => {
           err?.error?.errors?.forEach((element: any) => {

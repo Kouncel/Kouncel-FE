@@ -57,6 +57,26 @@ export class AuthenticationService {
     );
   }
 
+  sendVerifyEmail(email: string): Observable<any> {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        // 'Content-Type': 'application/x-www-form-urlencoded',
+      }),
+    };
+    const params = new HttpParams({
+      fromObject: {
+        email,
+      },
+    });
+
+    return this.httpClient.post(
+      `${environment.baseUrl || localStorage.getItem('baseUrl')}accounts/send-verify-email`,
+      // params.toString(),
+      { email },
+      httpOptions
+    );
+  }
+
   register(registrationObj: any): Observable<any> {
     const httpOptions = {
       headers: new HttpHeaders({
