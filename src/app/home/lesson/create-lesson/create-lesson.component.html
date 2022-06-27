@@ -2,9 +2,9 @@
 <hr />
 <br />
 <input name="name" [(ngModel)]="nameEn" placeholder="Lesson Name En" />
-<input name="name" [(ngModel)]="nameAr" placeholder="Lesson Name En" />
+<input name="name" [(ngModel)]="nameAr" placeholder="Lesson Name Ar" />
 <input name="description" [(ngModel)]="descriptionEn" placeholder="Lesson Description En" />
 <input name="description" [(ngModel)]="descriptionAr" placeholder="Lesson Description Ar" />
-Video
-<input type="file" placeholder="video" (change)="getFile($event, 'video')"/>
-<button (click)="create()">Create</button>
+<!-- Video
+<input type="file" placeholder="video" accept="video/*" (change)="getFile($event, 'video')"/> -->
+<button (click)="create()" [disabled]="isLoading"> <i *ngIf="isLoading" class="fa fa-spinner fa-pulse fa-fw"></i> Create</button>

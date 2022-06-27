@@ -24,20 +24,38 @@ export class LessonService {
   createLesson(courseId: any, lesson: any, files: any) {
     var form = new FormData();
 
-    form.append("video", files['video'].file, files['video'].name);
-    form.append("lesson", JSON.stringify(lesson));
+    // form.append("lesson", JSON.stringify(lesson));
 
     const httpOptions = {
       headers: new HttpHeaders({
+        'Content-Type': 'application/json',
         Authorization: `Bearer ${localStorage.getItem('authToken')}`,
       }),
     };
 
     return this.httpClient.post(
       `${environment.baseUrl || localStorage.getItem('baseUrl')}courses/${courseId}/lessons`,
-      form,
+      lesson,
       httpOptions
     ).pipe(map((res) => res), retryWhen((errors) => errors.pipe(delay(2000))));
+
+    // createLesson(courseId: any, lesson: any, files: any) {
+    //   var form = new FormData();
+  
+    //   form.append("video", files['video'].file, files['video'].name);
+    //   form.append("lesson", JSON.stringify(lesson));
+  
+    //   const httpOptions = {
+    //     headers: new HttpHeaders({
+    //       Authorization: `Bearer ${localStorage.getItem('authToken')}`,
+    //     }),
+    //   };
+  
+    //   return this.httpClient.post(
+    //     `${environment.baseUrl || localStorage.getItem('baseUrl')}courses/${courseId}/lessons`,
+    //     form,
+    //     httpOptions
+    //   ).pipe(map((res) => res), retryWhen((errors) => errors.pipe(delay(2000))));
 
   }
 

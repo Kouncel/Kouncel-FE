@@ -12,11 +12,12 @@ import { InstructorService } from 'src/app/models/instructors.service';
 export class CreateInstructorComponent implements OnInit {
   formGroup: FormGroup = new FormGroup({});
   myImage: any;
+  isLoading: boolean;
 
   constructor(
     translate: TranslateService,
     private instrcutorService: InstructorService,
-    private notification: NzNotificationService,
+    private notification: NzNotificationService
   ) {}
 
   ngOnInit(): void {
@@ -31,18 +32,24 @@ export class CreateInstructorComponent implements OnInit {
     this.myImage = e.target.files[0];
   }
   createInstructor() {
+    this.isLoading = true;
     this.instrcutorService
       .createInstructor({
         nameEn: this.formGroup.get('nameEn').value,
         nameAr: this.formGroup.get('nameAr').value,
         image: this.myImage,
       })
-      .subscribe((res) => {
-        this.notification.create(
-          'success',
-          'Success',
-          'Instructor created successfully',
-          { nzPlacement: 'bottomRight' }
-      );});
+      .subscribe(
+        (res) => {
+          this.isLoading = false;
+          this.notification.create(
+            'success',
+            'Success',
+            'Instructor created successfully',
+            { nzPlacement: 'bottomRight' }
+          );
+        },
+        (err) => (this.isLoading = false)
+      );
   }
 }

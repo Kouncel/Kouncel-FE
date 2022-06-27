@@ -16,6 +16,7 @@ export class CourseDetailComponent implements OnInit {
   course: any = { instructor: {}, category: {} };
   relatedCourses: any;
   videoTypeKey: any = 'trailer';
+  overlayVideoTypeKey: string = 'trailer';
   videoModalActive: any;
   lessons: any;
   isRTL: boolean;

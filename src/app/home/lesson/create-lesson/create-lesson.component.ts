@@ -15,6 +15,7 @@ export class CreateLessonComponent implements OnInit {
   descriptionEn: string;
   descriptionAr: string;
   files: any = {};
+  isLoading: boolean;
 
   constructor(
     private lessonService: LessonService,
@@ -24,6 +25,7 @@ export class CreateLessonComponent implements OnInit {
   ngOnInit(): void {}
 
   create() {
+    this.isLoading = true;
     this.lessonService
       .createLesson(this.courseId, {
         nameEn: this.nameEn,
@@ -33,6 +35,7 @@ export class CreateLessonComponent implements OnInit {
         // order: 20,
       }, this.files)
       .subscribe((res) => {
+        this.isLoading = false;
         this.created.emit({
           nameEn: this.nameEn,
           nameAr: this.nameAr,
@@ -46,7 +49,8 @@ export class CreateLessonComponent implements OnInit {
           'Lesson created successfully',
           { nzPlacement: 'bottomRight' }
         );
-      });
+      }, 
+      err => this.isLoading = false);
   }
 
   getFile(e: any, key: any) {
