@@ -1,5 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
 import { CategoryService } from 'src/app/models/categories.service';
@@ -17,6 +18,7 @@ export class CreateCategoryComponent implements OnInit {
   constructor(
     translate: TranslateService,
     private categoryService: CategoryService,
+    private router: Router,
     private notification: NzNotificationService,
   ) {}
 
@@ -46,6 +48,7 @@ export class CreateCategoryComponent implements OnInit {
         'Category created successfully',
         { nzPlacement: 'bottomRight' }
       );
+      this.router.navigateByUrl('/categories');
       } ,
       err => this.isLoading = false);
   }

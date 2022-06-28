@@ -25,6 +25,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   ) {
     localStorage.removeItem('authToken');
     localStorage.removeItem('refreshToken');
+    this.authenticationService.setIsAdminState(false);
   }
 
   ngOnInit(): void {
