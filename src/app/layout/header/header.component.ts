@@ -24,9 +24,6 @@ export class HeaderComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // this.categoriesService.getAllCategories().subscribe(res => {
-    //   this.categories = res
-    // });
     this.utilsService.languageSource.subscribe((lang) => {
       this.addRemoveRtlStyles(lang);
     });

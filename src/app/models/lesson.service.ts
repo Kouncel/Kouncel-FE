@@ -16,6 +16,7 @@ import {
 } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import * as $ from 'jquery';
+import { UtilsService } from '../shared/utils.service';
 
 @Injectable({ providedIn: 'root' })
 export class LessonService {
@@ -40,14 +41,7 @@ export class LessonService {
         map((res) => res),
         retryWhen((obs) => {
           return obs.pipe(
-            mergeMap((response) => {
-              if (response.status === 401) {
-                return of(response).pipe(delay(2000), take(9));
-              }
-              return throwError({
-                error: 'Unknown error for asynchronous function:' + response,
-              });
-            })
+            UtilsService.retryRequest()
           );
         })
       );
@@ -77,14 +71,7 @@ export class LessonService {
         map((res) => res),
         retryWhen((obs) => {
           return obs.pipe(
-            mergeMap((response) => {
-              if (response.status === 401) {
-                return of(response).pipe(delay(2000), take(9));
-              }
-              return throwError({
-                error: 'Unknown error for asynchronous function:' + response,
-              });
-            })
+            UtilsService.retryRequest()
           );
         })
       );

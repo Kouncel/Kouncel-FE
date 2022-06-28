@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AbstractControl, ValidatorFn } from '@angular/forms';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, delay, mergeMap, of, take, throwError } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class UtilsService {
@@ -29,6 +29,17 @@ export class UtilsService {
         return null;
       }
     };
+  }
+
+  static retryRequest(): any {
+    return mergeMap((response: any) => {
+      if (response.status === 401) {
+        return of(response).pipe(delay(2500), take(9));
+      }
+      return throwError({
+        error: 'Unknown error for asynchronous function:' + response,
+      });
+    })
   }
 
   setLanguage(lang: string) {

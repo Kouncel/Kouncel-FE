@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { BehaviorSubject, delay, map, mergeMap, Observable, of, retryWhen, take, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import * as $ from "jquery";
+import { UtilsService } from '../shared/utils.service';
 
 @Injectable({ providedIn: 'root' })
 export class InstructorService {
@@ -20,14 +21,7 @@ export class InstructorService {
       .get(`${environment.baseUrl || localStorage.getItem('baseUrl')}instructor`, httpOptions)
       .pipe(map((res) => res), retryWhen((obs) => {
         return obs.pipe(
-          mergeMap((response) => {
-            if (response.status === 401) {
-              return of(response).pipe(delay(2000), take(9));
-            }
-            return throwError({
-              error: 'Unknown error for asynchronous function:' + response,
-            });
-          })
+          UtilsService.retryRequest()
         );
       }));
   }
@@ -50,14 +44,7 @@ export class InstructorService {
         httpOptions
       ).pipe(retryWhen((obs) => {
         return obs.pipe(
-          mergeMap((response) => {
-            if (response.status === 401) {
-              return of(response).pipe(delay(2000), take(9));
-            }
-            return throwError({
-              error: 'Unknown error for asynchronous function:' + response,
-            });
-          })
+          UtilsService.retryRequest()
         );
       }));
 
