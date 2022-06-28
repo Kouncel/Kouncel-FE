@@ -49,6 +49,7 @@ export class CreateLessonComponent implements OnInit {
           'Lesson created successfully',
           { nzPlacement: 'bottomRight' }
         );
+        location.reload();
       }, 
       err => this.isLoading = false);
   }

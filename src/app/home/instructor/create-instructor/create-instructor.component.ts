@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
 import { InstructorService } from 'src/app/models/instructors.service';
@@ -17,6 +18,7 @@ export class CreateInstructorComponent implements OnInit {
   constructor(
     translate: TranslateService,
     private instrcutorService: InstructorService,
+    private router: Router,
     private notification: NzNotificationService
   ) {}
 
@@ -48,6 +50,7 @@ export class CreateInstructorComponent implements OnInit {
             'Instructor created successfully',
             { nzPlacement: 'bottomRight' }
           );
+          this.router.navigateByUrl('/instructors');
         },
         (err) => (this.isLoading = false)
       );

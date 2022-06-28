@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Router } from '@angular/router';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
 import { CategoryService } from 'src/app/models/categories.service';
 import { CourseService } from 'src/app/models/courses.service';
@@ -12,10 +13,12 @@ import { InstructorService } from 'src/app/models/instructors.service';
 export class CreateCourseComponent implements OnInit {
   @Output() created: EventEmitter<any> = new EventEmitter<any>();
   @Input() course: any;
+  courseId: any;
   nameEn: string;
   nameAr: string;
   descriptionAr: string;
   descriptionEn: string;
+  allowCreation: boolean = false;
   overviewAr: string;
   overviewEn: string;
   price: number;
@@ -26,11 +29,14 @@ export class CreateCourseComponent implements OnInit {
   instructorId: any[];
   files: any = {};
   isLoading: boolean;
+  courseCreated: boolean;
+  courseEdited: boolean;
 
   constructor(
     private courseService: CourseService,
     private categoryService: CategoryService,
     private instructorService: InstructorService,
+    private router: Router,
     private notification: NzNotificationService
   ) {}
 
@@ -59,6 +65,10 @@ export class CreateCourseComponent implements OnInit {
     }
   }
 
+  checkAllowCreation() {
+    this.allowCreation = !!(this.nameEn && this.nameAr);
+  }
+
   create() {
     this.isLoading = true;
     if (this.course) {
@@ -72,7 +82,7 @@ export class CreateCourseComponent implements OnInit {
       this.course.overviewEn = this.overviewEn;
       this.course.price = this.price;
       this.course.status = this.status;
-      this.courseService.editCourse(this.course.id, {...this.course}, this.files).subscribe((res) => {
+      this.courseService.editCourse(this.course.id || this.courseId, {...this.course}, this.files).subscribe((res) => {
         this.isLoading = false;
         this.notification.create(
           'success',
@@ -88,6 +98,9 @@ export class CreateCourseComponent implements OnInit {
         nameAr: this.nameAr,
       })
       .subscribe((res: any) => {
+        this.courseCreated = true;
+        this.course = res;
+        this.courseId = res.id;
         this.created.emit({
           nameEn: this.nameEn,
           nameAr: this.nameAr,
@@ -101,15 +114,26 @@ export class CreateCourseComponent implements OnInit {
         res['price'] = this.price;
         res['status']= this.status;
         this.courseService.editCourse(res['id'], res, this.files).subscribe((res) => {
-          this.isLoading = false
-          this.notification.create(
-            'success',
-            'Success',
-            'Course created successfully',
-            { nzPlacement: 'bottomRight' }
-          );
-        }, err => this.isLoading = false);
+          this.isLoading = false;
+          this.courseEdited = true;
+          this.showNotification();
+          this.router.navigateByUrl('/courses');
+        }, err => {
+          this.isLoading = false;
+          this.showNotification();
+        });
       }, err => this.isLoading = false);
+    }
+  }
+
+  showNotification() {
+    if (this.courseCreated || this.courseEdited) {
+      this.notification.create(
+        'success',
+        'Success',
+        'Course created successfully',
+        { nzPlacement: 'bottomRight' }
+      );
     }
   }
 

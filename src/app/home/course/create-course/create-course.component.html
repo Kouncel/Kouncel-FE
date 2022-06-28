@@ -1,8 +1,8 @@
 <h2>Create Course</h2>
 <hr />
 <br />
-<input [(ngModel)]="nameEn" placeholder="Course title En" name="nameEn" />
-<input [(ngModel)]="nameAr" placeholder="Course title Ar" name="nameAr" />
+<input (change)="checkAllowCreation()" [(ngModel)]="nameEn" placeholder="Course title En" name="nameEn" />
+<input (change)="checkAllowCreation()" [(ngModel)]="nameAr" placeholder="Course title Ar" name="nameAr" />
 Category
 <select [(ngModel)]="categoryId">
     <option *ngFor="let item of categories" [value]="item.id">
@@ -67,4 +67,4 @@ Trailer
             </video>
     <br/><br/><hr style="display: block; width: 100%"/><br/><br/></div>
 
-<button (click)="create()" [disabled]="isLoading"> <i *ngIf="isLoading" class="fa fa-spinner fa-pulse fa-fw"></i> Create</button>
+<button (click)="create()" [disabled]="isLoading || !allowCreation"> <i *ngIf="isLoading" class="fa fa-spinner fa-pulse fa-fw"></i> Create</button>
