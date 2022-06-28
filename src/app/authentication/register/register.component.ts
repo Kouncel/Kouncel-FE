@@ -76,10 +76,11 @@ export class RegisterComponent implements OnInit, OnDestroy {
   }
 
   register() {
+    // TODO: Check why validators are not working when marking as dirty
     this.formGroup.markAsDirty();
     if (this.formGroup.valid) {
       const registrationOb = { ...this.formGroup.value };
-      registrationOb.professionId = '0459cc91-7bce-422b-98c7-fe0b8a054b94';
+      registrationOb.professionId = registrationOb.profession.id;
       registrationOb.birthdate = '1996-01-24T17:33:07Z';
       delete registrationOb.profession;
       this.authenticationService.register(registrationOb).subscribe(

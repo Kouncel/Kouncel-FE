@@ -29,12 +29,13 @@ export class HttpInterceptorService implements HttpInterceptor {
     let headers;
     if (req.url.indexOf('accounts/login') === -1
       && req.url.indexOf('accounts/forgot-password') === -1
-      && req.url.indexOf('accounts/register') === -1
-      && req.url.indexOf('professions') === -1) {
-      headers = req.headers.set(
+      && req.url.indexOf('accounts/register') === -1) {
+      if (localStorage.getItem('authToken')) {
+        headers = req.headers.set(
         'Authorization',
         `Bearer ${localStorage.getItem('authToken')}`
       );
+      }
     }
     if (!this.isRefreshingToken) {
       this.isRefreshingToken = true;
