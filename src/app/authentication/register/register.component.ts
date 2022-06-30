@@ -8,6 +8,8 @@ import {
   Validators,
 } from '@angular/forms';
 import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
+import mixpanel from 'mixpanel-browser';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
 import { Subscription } from 'rxjs';
 import { LookupsService } from 'src/app/models/lookups.service';
@@ -33,7 +35,8 @@ export class RegisterComponent implements OnInit, OnDestroy {
     private authenticationService: AuthenticationService,
     private lookupsService: LookupsService,
     private professionsService: ProfessionsService,
-    private notification: NzNotificationService
+    private notification: NzNotificationService,
+    translate: TranslateService
   ) {
     this.professionsService.getAllProfessions().subscribe((res: any) => {
       this.professions = res['data'];
@@ -41,9 +44,6 @@ export class RegisterComponent implements OnInit, OnDestroy {
     this.lookupsService
       .getCountries()
       .subscribe((countries) => (this.countries = countries));
-    // this.lookupsService
-    //   .getProfessions()
-    //   .subscribe((professions) => (this.professions = professions));
   }
 
   ngOnInit(): void {
@@ -68,36 +68,45 @@ export class RegisterComponent implements OnInit, OnDestroy {
         validators: [UtilsService.match('password', 'confirmPassword')],
       }
     );
-    // this.subscriptions.push(
-    //   this.authenticationService.isLoggedIn.subscribe((isLoggedIn) => {
-    //     this.router.navigate(['']);
-    //   })
-    // );
+    setTimeout(() => {
+      console.log(this.formGroup)
+      Object.keys(this.formGroup.controls).forEach(key => {
+        console.log(this.formGroup.controls[key].errors)
+      });
+    }, 2000);
   }
 
   register() {
     // TODO: Check why validators are not working when marking as dirty
-    this.formGroup.markAsDirty();
+    this.formGroup.markAllAsTouched();
+    // this.formGroup.markAsDirty();
     if (this.formGroup.valid) {
+      mixpanel.track('Registration Started', {
+        'email_address': this.formGroup.get('email')?.value
+      });
       const registrationOb = { ...this.formGroup.value };
-      registrationOb.professionId = registrationOb.profession.id;
+      registrationOb.professionId = registrationOb.profession;
       registrationOb.birthdate = '1996-01-24T17:33:07Z';
       delete registrationOb.profession;
       this.authenticationService.register(registrationOb).subscribe(
         (authToken) => {
-          // localStorage.setItem('authToken', authToken);
-          // this.authenticationService.setLoggedInState(true);
           this.router.navigate(['verify'], {queryParams: {email: this.formGroup.get('email')?.value}});
+          mixpanel.track('Registration Succuss', {
+            'email_address': this.formGroup.get('email')?.value
+          });
+          mixpanel.track('Email Verification Sent', {
+            'email_address': this.formGroup.get('email')?.value
+          });
         },
         (err) => {
-          err?.error?.errors?.forEach((element: any) => {
-            this.notification.create(
-              'error',
-              'Registration Error',
-              element.error_description,
-              { nzPlacement: 'bottomRight' }
-            );
-          });
+          // err?.error?.errors?.forEach((element: any) => {
+          //   this.notification.create(
+          //     'error',
+          //     'Registration Error',
+          //     element.error_description,
+          //     { nzPlacement: 'bottomRight' }
+          //   );
+          // });
         }
       );
     }

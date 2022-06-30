@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import mixpanel from 'mixpanel-browser';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
 import { AuthenticationService } from '../authentication.service';
 
@@ -22,10 +23,16 @@ export class ResetVerifyComponent implements OnInit {
   ngOnInit(): void {}
 
   resend() {
+    mixpanel.track('Reset Password Email Sent', {
+      'email_address': this.email
+    });
     this.authenticationService
       .resetPassword(this.email)
       .subscribe(
         (res) => {
+          mixpanel.track('Password Reset', {
+            'email_address': this.email
+          });
           this.notification.create(
             'success',
             'Success',

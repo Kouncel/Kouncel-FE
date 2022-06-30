@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import mixpanel from 'mixpanel-browser';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
 import { Subscription } from 'rxjs';
 import { AuthenticationService } from '../authentication.service';
@@ -36,10 +37,16 @@ export class ResetPasswordComponent implements OnInit {
   resetPassword() {
     this.formGroup.markAsDirty();
     if (this.formGroup.valid) {
+      mixpanel.track('Reset Password Email Sent', {
+        'email_address': this.formGroup.get('email')?.value
+      });
       this.authenticationService
         .resetPassword(this.formGroup.get('email')?.value)
         .subscribe(
           (res) => {
+            mixpanel.track('Password Reset', {
+              'email_address': this.formGroup.get('email')?.value
+            });
             this.router.navigate(['/reset-verify'], {queryParams: {email: this.formGroup.get('email')?.value}});
           },
           (err) => {

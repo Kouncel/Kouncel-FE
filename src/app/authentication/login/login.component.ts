@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
+import mixpanel from 'mixpanel-browser';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
 import { Observable, Subscription } from 'rxjs';
 import { AuthenticationService } from '../authentication.service';
@@ -48,6 +49,9 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.authenticationService.setLoggedInState(false);
     this.formGroup.markAsDirty();
     if (this.formGroup.valid) {
+      mixpanel.track('Login Started', {
+        'email_address': this.formGroup.get('email')?.value
+      });
       this.authenticationService
         .login(
           this.formGroup.get('email')?.value,
@@ -55,6 +59,9 @@ export class LoginComponent implements OnInit, OnDestroy {
         )
         .subscribe(
           (authToken) => {
+            mixpanel.track('Login Succuss', {
+              'email_address': this.formGroup.get('email')?.value
+            });
             localStorage.setItem('authToken', authToken.access_token);
             localStorage.setItem('refreshToken', authToken.refresh_token);
             this.authenticationService.setLoggedInState(true);
