@@ -5,6 +5,7 @@
 export const environment = {
   production: false,
   baseUrl: 'http://ec2-18-193-82-205.eu-central-1.compute.amazonaws.com:8080/',
+  mixpanelToken: 'b3007d8eda8c7a965d9aafe7caa73fda'
   // baseUrl: 'https://ec2-3-65-226-189.eu-central-1.compute.amazonaws.com/',
 };
 

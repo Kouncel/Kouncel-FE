@@ -2,143 +2,152 @@
     <br />
     <br />
     <h1>
-        Create Account
+        {{ 'CREATE-ACCOUNT' | translate }}
     </h1>
     <br />
     <p>
-        Please enter all your data to join KOUNCEL!
+        {{ 'PLEASE-ENTER-ALL-YOUR-DATA' | translate }}
     </p>
     <br />
     <hr />
     <div class="row justify-content-center">
         <form class="col-md-6" (ngSubmit)="register()" [formGroup]="formGroup">
             <div
-                [ngClass]="{'input-error': (formGroup?.get('firstName')?.dirty || formGroup?.get('lastName')?.dirty) && formGroup?.dirty && (formGroup?.get('firstName')?.invalid || formGroup?.get('lastName')?.invalid)}">
+                [ngClass]="{'input-error': (formGroup?.get('firstName')?.touched || formGroup?.get('lastName')?.touched) && formGroup?.touched && (formGroup?.get('firstName')?.invalid || formGroup?.get('lastName')?.invalid)}">
                 <label>
-                    Name
+                    {{ 'NAME' | translate }}
                 </label>
                 <br />
                 <div class="half-input">
-                    <input name="firstName" formControlName="firstName" placeholder="First Name" />
+                    <input name="firstName" formControlName="firstName" placeholder="{{ 'FIRST-NAME' | translate }}" />
                 </div>
                 <div class="half-input">
-                    <input name="lastName" formControlName="lastName" placeholder="Last Name" />
+                    <input name="lastName" formControlName="lastName" placeholder="{{ 'LAST-NAME' | translate }}" />
                 </div>
             </div>
             <div
-                [ngClass]="{'input-error': formGroup?.dirty && formGroup?.get('email')?.dirty && formGroup?.get('email')?.invalid}">
+                [ngClass]="{'input-error': formGroup?.touched && formGroup?.get('email')?.touched && formGroup?.get('email')?.invalid}">
                 <label>
-                    E-mail
+                    {{ 'EMAIL' | translate }}
                 </label>
                 <br />
-                <input type="email" name="email" formControlName="email" placeholder="Example: someone@example.com" />
+                <input type="email" name="email" formControlName="email" placeholder="{{ 'EXAMPLE-EMAIL' | translate }}" />
             </div>
             <div>
                 <br />
                 <div class="half-input"
-                    [ngClass]="{'input-error': formGroup?.dirty && formGroup?.get('birthdate')?.dirty && formGroup?.get('birthdate')?.invalid}">
+                    [ngClass]="{'input-error': formGroup?.touched && formGroup?.get('birthdate')?.touched && formGroup?.get('birthdate')?.invalid}">
                     <label>
-                        Date of Birth
+                        {{ 'DATE-OF-BIRTH' | translate }}
                     </label>
                     <input name="birthdate" type="date" formControlName="birthdate" placeholder="dd/mm/yyyy" />
                 </div>
                 <div class="half-input"
-                    [ngClass]="{'input-error': formGroup?.dirty && formGroup?.get('gender')?.dirty && formGroup?.get('gender')?.invalid}">
+                    [ngClass]="{'input-error': formGroup?.touched && formGroup?.get('gender')?.touched && formGroup?.get('gender')?.invalid}">
                     <label>
-                        Gender
+                        {{ 'GENDER' | translate }}
                     </label>
-                    <select name="gender" formControlName="gender" placeholder="Select your gender">
-                        <option value="Male">Male</option>
-                        <option value="Female">Female</option>
+                    <select name="gender" formControlName="gender">
+                        <option value="Male">{{ 'MALE' | translate }}</option>
+                        <option value="Female">{{ 'FEMALE' | translate }}</option>
                     </select>
                 </div>
             </div>
             <div
-                [ngClass]="{'input-error': formGroup?.dirty && formGroup?.get('country')?.dirty && formGroup?.get('country')?.invalid}">
+                [ngClass]="{'input-error': formGroup?.touched && formGroup?.get('country')?.touched && formGroup?.get('country')?.invalid}">
                 <label>
-                    Country
+                    {{ 'COUNTRY' | translate }}
                 </label>
                 <br />
-                <select name="country" formControlName="country" placeholder="Select your country">
+                <select name="country" formControlName="country">
                     <option value=""></option>
                     <option *ngFor="let item of countries" [value]="item.code">{{item.name}}</option>
                 </select>
             </div>
             <div
-                [ngClass]="{'input-error': formGroup?.dirty && formGroup?.get('profession')?.dirty && formGroup?.get('profession')?.invalid}">
+                [ngClass]="{'input-error': formGroup?.touched && formGroup?.get('profession')?.touched && formGroup?.get('profession')?.invalid}">
                 <label>
-                    Profession
+                    {{ 'PROFESSION' | translate }}
                 </label>
                 <br />
-                <select name="profession" formControlName="profession" placeholder="Select your profession">
+                <select name="profession" formControlName="profession">
                     <option value=""></option>
-                    <option *ngFor="let item of professions" [value]="item.code">{{item.name}}</option>
+                    <option *ngFor="let item of professions" [value]="item.id">{{item.name}}</option>
                 </select>
             </div>
             <div class="relative"
-                [ngClass]="{'input-error': (formGroup?.get('password')?.dirty || formGroup?.get('confirmPassword')?.dirty) && formGroup?.dirty && (formGroup?.hasError('matching') || formGroup?.get('password')?.invalid || formGroup?.get('confirmPassword')?.invalid)}">
+                [ngClass]="{'input-error': (formGroup?.get('password')?.touched || formGroup?.get('confirmPassword')?.touched) && formGroup?.touched && (formGroup?.hasError('matching') || formGroup?.get('password')?.invalid || formGroup?.get('confirmPassword')?.invalid)}">
                 <label>
-                    Password
+                    {{ 'PASSWORD' | translate }}
                 </label>
                 <br />
                 <i class="fa fa-exclamation-circle password-info" aria-hidden="true"
-                    nzTooltipTitle="Password should be at least 6 characters, max 100 characters, should contain one uppercase, one lowercase and one special character"
+                    nzTooltipTitle="{{ 'PASSWORD-CRITERIA' | translate }}"
                     nzTooltipPlacement="right" nz-tooltip></i>
                 <div class="password-holder">
                     <input [type]="showHidePassword ? 'password' : 'text'" name="password" formControlName="password"
-                        placeholder="Enter your password" />
+                        placeholder="{{ 'ENTER-YOUR-PASSWORD' | translate }}" />
                     <i class="fa show-hide-password" [ngClass]="{'fa-eye': showHidePassword, 'fa-eye-slash': !showHidePassword}" (click)="showHidePassword = !showHidePassword"></i>
                 </div>
                 <div class="password-holder">
                     <input [type]="showHidePassword ? 'password' : 'text'" name="confirmPassword" formControlName="confirmPassword"
-                        placeholder="Confirm your password" />
+                        placeholder="{{ 'CONFIRM-YOUR-PASSWORD' | translate }}" />
                     <i class="fa show-hide-password" [ngClass]="{'fa-eye': showHidePassword, 'fa-eye-slash': !showHidePassword}" (click)="showHidePassword = !showHidePassword"></i>
                 </div>
             </div>
             <br />
-            <div *ngIf="formGroup?.dirty && formGroup?.invalid" class="form-errors">
-                <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
+            <div *ngIf="formGroup?.touched && formGroup?.invalid" class="form-errors">
                 <ul>
-                    <li *ngIf="formGroup.get('firstName')?.dirty && formGroup.get('firstName')?.hasError('required')">
-                        First Name is required</li>
-                    <li *ngIf="formGroup.get('lastName')?.dirty && formGroup.get('lastName')?.hasError('required')">Last
-                        Name is required</li>
-                    <li *ngIf="formGroup.get('email')?.dirty && formGroup.get('email')?.hasError('required')">Email is
-                        required</li>
-                    <li *ngIf="formGroup.get('birthdate')?.dirty && formGroup.get('birthdate')?.hasError('required')">
-                        Birth Date is required</li>
-                    <li *ngIf="formGroup.get('gender')?.dirty && formGroup.get('gender')?.hasError('required')">Gender
-                        is required</li>
-                    <li *ngIf="formGroup.get('country')?.dirty && formGroup.get('country')?.hasError('required')">
-                        Country is required</li>
-                    <li *ngIf="formGroup.get('profession')?.dirty && formGroup.get('profession')?.hasError('required')">
-                        Profession is required</li>
-                    <li *ngIf="formGroup.get('password')?.dirty && formGroup.get('password')?.hasError('required')">
-                        Password is required</li>
-                    <li
-                        *ngIf="formGroup.get('confirmPassword')?.dirty && formGroup.get('confirmPassword')?.hasError('required')">
-                        Please confirm your password</li>
-                    <li *ngIf="formGroup.get('matching')?.dirty && formGroup?.hasError('matching')">Passwords don't
-                        match</li>
-                    <li *ngIf="formGroup.get('password')?.dirty && formGroup.get('password')?.hasError('pattern')">
-                        Password doesn't match pattern</li>
-                    <li *ngIf="formGroup.get('email')?.dirty && formGroup.get('email')?.hasError('email')">Invalid Email
+                    <li *ngIf="formGroup.get('firstName')?.touched && formGroup.get('firstName')?.hasError('required')">
+                        <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
+                        {{ 'FIRST-NAME' | translate }} {{ 'IS-REQUIRED' | translate }}</li>
+                    <li *ngIf="formGroup.get('lastName')?.touched && formGroup.get('lastName')?.hasError('required')">
+                        <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
+                        {{ 'LAST-NAME' | translate }} {{ 'IS-REQUIRED' | translate }}</li>
+                    <li *ngIf="formGroup.get('email')?.touched && formGroup.get('email')?.hasError('required')">
+                        <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
+                        {{ 'EMAIL' | translate }} {{ 'IS-REQUIRED' | translate }}</li>
+                    <li *ngIf="formGroup.get('birthdate')?.touched && formGroup.get('birthdate')?.hasError('required')">
+                        <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
+                        {{ 'DATE-OF-BIRTH' | translate }} {{ 'IS-REQUIRED' | translate }}</li>
+                    <li *ngIf="formGroup.get('gender')?.touched && formGroup.get('gender')?.hasError('required')">
+                        <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
+                        {{ 'GENDER' | translate }} {{ 'IS-REQUIRED' | translate }}</li>
+                    <li *ngIf="formGroup.get('country')?.touched && formGroup.get('country')?.hasError('required')">
+                        <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
+                        {{ 'COUNTRY' | translate }} {{ 'IS-REQUIRED' | translate }}</li>
+                    <li *ngIf="formGroup.get('profession')?.touched && formGroup.get('profession')?.hasError('required')">
+                        <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
+                        {{ 'PROFESSION' | translate }} {{ 'IS-REQUIRED' | translate }}</li>
+                    <li *ngIf="formGroup.get('password')?.touched && formGroup.get('password')?.hasError('required')">
+                        <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
+                        {{ 'PASSWORD' | translate }} {{ 'IS-REQUIRED' | translate }}</li>
+                    <li *ngIf="formGroup.get('confirmPassword')?.touched && formGroup.get('confirmPassword')?.hasError('required')">
+                        <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
+                        {{ 'PLEASE-CONFIRM-PASSWORD' | translate }}</li>
+                    <li *ngIf="formGroup.get('matching')?.touched && formGroup?.hasError('matching')">
+                        <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
+                        {{ 'PASSWWORDS-DONT-MATCH' | translate }}</li>
+                    <li *ngIf="formGroup.get('password')?.touched && formGroup.get('password')?.hasError('pattern')">
+                        <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
+                        {{ 'PASSWWORD-DOESNT-MATCH-PATTERN' | translate }}</li>
+                    <li *ngIf="formGroup.get('email')?.touched && formGroup.get('email')?.hasError('email')">
+                        <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
+                        {{ 'INVALID-EMAIL' | translate }}
                     </li>
                 </ul>
             </div>
             <br />
-            <button type="submit">Create Account</button>
+            <button type="submit">{{ 'CREATE-ACCOUNT' | translate }}</button>
             <br />
             <br />
             <br />
-            <p>Already have an account? <a class="red" [routerLink]="['/login']"
-                    routerLinkActive="router-link-active">Log
-                    in</a></p>
+            <p>{{ 'ALREADY-HAVE-AN-ACCOUNT' | translate }}? <a class="red" [routerLink]="['/login']"
+                    routerLinkActive="router-link-active">{{ 'LOG-IN' | translate }}</a></p>
             <br />
             <p class="grey no-underline">
-                By signing up or creating an account, you agree to the <a class="white" href="#"> End User License
-                    Agreement,</a> <a class="white" href="#"> Terms & Conditions</a>
-                and <a class="white" href="#"> Privacy Policy </a> including cookie usage
+                {{ 'BY-SIGNING' | translate }} <a class="white" href="#"> {{ 'END-USER' | translate }},</a> <a class="white" href="#"> {{ 'TERMS-AND-CONDITIONS' | translate }}</a>
+                {{ 'AND' | translate }} <a class="white" href="#"> {{ 'PRIVACY-POLICY' | translate }} </a> {{ 'COOKIE-USAGE' | translate }}
             </p>
         </form>
     </div>

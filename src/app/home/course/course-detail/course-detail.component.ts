@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import mixpanel from 'mixpanel-browser';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
 import { CategoryService } from 'src/app/models/categories.service';
 import { CourseService } from 'src/app/models/courses.service';
@@ -99,6 +100,12 @@ export class CourseDetailComponent implements OnInit {
       this.courseService.getCourse(params.id).subscribe((course: any) => {
         this.courseUrl = location.href;
         this.course = course;
+        mixpanel.track('Course Clicked', {
+          'course_id': params.id,
+          'course_name': course.nameEn,
+          'category_id': course.category.id,
+          'category_name': course.category.nameEn,
+        });
         this.categoryService
           .getAllCategories()
           .subscribe((catgegories: any) => {
@@ -121,6 +128,36 @@ export class CourseDetailComponent implements OnInit {
         this.isRTL = lang === 'ar';
       })
     );
+  }
+
+  sendAnalytics(analyticsType: string) {
+    if (analyticsType === 'sample') {
+      mixpanel.track('Sample CTA Clicked', {
+        'course_id': this.course.id,
+        'course_name': this.course.nameEn,
+      });
+    } else if (analyticsType === 'trailer') {
+      mixpanel.track('Trailer CTA Clicked', {
+        'course_id': this.course.id,
+        'course_name': this.course.nameEn,
+      });
+    } else if (analyticsType === 'share') {
+      mixpanel.track('Share Clicked', {
+        'course_id': this.course.id,
+        'course_name': this.course.nameEn,
+      });
+    } else if (analyticsType === 'subscribe') {
+      mixpanel.track('Subscribe Clicked', {
+        'course_id': this.course.id,
+        'course_name': this.course.nameEn,
+        'course_price': this.course.price,
+      });
+    } else if (analyticsType === 'category') {
+      mixpanel.track('Category Clicked', {
+        'category_id': this.course.category.id,
+        'category_name': this.course.category.nameEn,
+      });
+    }
   }
 
   copyToClipboard() {

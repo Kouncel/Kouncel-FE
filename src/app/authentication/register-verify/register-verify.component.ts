@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import mixpanel from 'mixpanel-browser';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
 import { AuthenticationService } from '../authentication.service';
 
@@ -31,6 +32,9 @@ export class RegisterVerifyComponent implements OnInit {
       .sendVerifyEmail(this.email)
       .subscribe(
         (res) => {
+          mixpanel.track('Email Verification Sent', {
+            'email_address': this.email
+          });
           this.notification.create(
             'success',
             'Success',

@@ -3,6 +3,8 @@ import { TranslateService } from '@ngx-translate/core';
 import { UtilsService } from '../shared/utils.service';
 import jwt_decode from "jwt-decode";
 import { AuthenticationService } from '../authentication/authentication.service';
+import mixpanel from 'mixpanel-browser';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'koun-layout',
@@ -12,6 +14,7 @@ import { AuthenticationService } from '../authentication/authentication.service'
 export class LayoutComponent implements OnInit {
   constructor(translate: TranslateService, utilsService: UtilsService,
     private authenticationService: AuthenticationService) {
+      mixpanel.init(environment.mixpanelToken, {});
     // this language will be used as a fallback when a translation isn't found in the current language
     translate.setDefaultLang('en');
     utilsService.languageSource.subscribe((lang) => {
