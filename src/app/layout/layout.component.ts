@@ -14,6 +14,12 @@ import { environment } from 'src/environments/environment';
 export class LayoutComponent implements OnInit {
   constructor(translate: TranslateService, utilsService: UtilsService,
     private authenticationService: AuthenticationService) {
+      // this language will be used as a fallback when a translation isn't found in the current language
+      translate.setDefaultLang('en');
+  
+      // the lang to use, if the lang isn't available, it will use the current loader to get them
+      translate.use('en');
+      
       mixpanel.init(environment.mixpanelToken, {});
     // this language will be used as a fallback when a translation isn't found in the current language
     translate.setDefaultLang('en');

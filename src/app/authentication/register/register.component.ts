@@ -25,6 +25,7 @@ import { AuthenticationService } from '../authentication.service';
 export class RegisterComponent implements OnInit, OnDestroy {
   formGroup: FormGroup = new FormGroup({});
   subscriptions: Subscription[] = [];
+  isRTL: boolean;
 
   countries: any[] = [];
   professions: any[] = [];
@@ -36,6 +37,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
     private lookupsService: LookupsService,
     private professionsService: ProfessionsService,
     private notification: NzNotificationService,
+    private utilsService: UtilsService,
     translate: TranslateService
   ) {
     this.professionsService.getAllProfessions().subscribe((res: any) => {
@@ -44,6 +46,9 @@ export class RegisterComponent implements OnInit, OnDestroy {
     this.lookupsService
       .getCountries()
       .subscribe((countries) => (this.countries = countries));
+      this.utilsService.languageSource.subscribe((lang) => {
+        this.isRTL = lang === 'ar';
+      })
   }
 
   ngOnInit(): void {
