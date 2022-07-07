@@ -61,7 +61,7 @@
                 <br />
                 <select name="country" formControlName="country">
                     <option value=""></option>
-                    <option *ngFor="let item of countries" [value]="item.code">{{item.name}}</option>
+                    <option *ngFor="let item of countries" [value]="item.code">{{isRTL ? item.nameAr : item.nameEn}}</option>
                 </select>
             </div>
             <div
@@ -72,7 +72,7 @@
                 <br />
                 <select name="profession" formControlName="profession">
                     <option value=""></option>
-                    <option *ngFor="let item of professions" [value]="item.id">{{item.name}}</option>
+                    <option *ngFor="let item of professions" [value]="item.id">{{isRTL ? (item.nameAr || item.name) : (item.nameEn || item.name)}}</option>
                 </select>
             </div>
             <div class="relative"
