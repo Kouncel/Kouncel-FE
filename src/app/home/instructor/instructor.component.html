@@ -9,7 +9,7 @@
         <hr />
     </div>
     <div class="row">
-        <koun-instructor-item *ngFor="let item of categories" [title]="isRTL ? item.nameAr : item.nameEn" [image]="item.imageUrl"
+        <koun-instructor-item *ngFor="let item of categories" [overview]="isRTL ? item.overviewAr : item.overviewEn" [title]="isRTL ? item.nameAr : item.nameEn" [image]="item.imageUrl"
             class="col-lg-3 col-md-4 col-sm-6 col-xs"></koun-instructor-item>
     </div>
 </div>

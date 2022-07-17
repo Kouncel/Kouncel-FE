@@ -8,6 +8,7 @@ import { AuthenticationService } from 'src/app/authentication/authentication.ser
 })
 export class InstructorItemComponent implements OnInit {
   @Input() title: string;
+  @Input() overview: string;
   @Input() image: string;
   constructor(public authenticationService: AuthenticationService) {}
 

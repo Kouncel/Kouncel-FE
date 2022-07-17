@@ -28,7 +28,7 @@ export class CategoryComponent implements OnInit {
       res => this.categories = res.map((c: any) => {
         c.title = c.nameEn;
         c.description = c.description || c.nameEn || '';
-        c.image = `https://picsum.photos/700?random=${Math.ceil(Math.random()*1000)}`;
+        c.image = 'https://icon-library.com/images/photo-placeholder-icon/photo-placeholder-icon-17.jpg' || `https://picsum.photos/700?random=${Math.ceil(Math.random()*1000)}`;
         return c;
       })
     );
