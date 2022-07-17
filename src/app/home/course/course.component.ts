@@ -25,7 +25,7 @@ export class CourseComponent implements OnInit {
         this.courses = res.data.map((c: any) => {
           c.title = c.nameEn;
           c.description = c.description || c.nameEn || '';
-          c.image = c.coverImage || `https://picsum.photos/700?random=${Math.ceil(Math.random()*1000)}`;
+          c.image = c.coverImage || 'https://icon-library.com/images/photo-placeholder-icon/photo-placeholder-icon-17.jpg' || `https://picsum.photos/700?random=${Math.ceil(Math.random()*1000)}`;
           return c;
         });
       }
