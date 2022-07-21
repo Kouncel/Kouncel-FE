@@ -6,18 +6,18 @@
         <div
             [ngClass]="{'input-error': formGroup?.dirty && formGroup?.get('nameEn')?.invalid && formGroup?.get('nameEn')?.dirty}">
             <label>
-                {{ 'TITLE' | translate }} En
+                {{ 'NAME' | translate }} En
             </label>
             <br />
-            <input type="text" name="nameEn" formControlName="nameEn" placeholder="{{'TITLE' | translate }} En" />
+            <input type="text" name="nameEn" formControlName="nameEn" placeholder="{{'NAME' | translate }} En" />
         </div>
         <div
             [ngClass]="{'input-error': formGroup?.dirty && formGroup?.get('nameAr')?.invalid && formGroup?.get('nameAr')?.dirty}">
             <label>
-                {{ 'TITLE' | translate }} Ar
+                {{ 'NAME' | translate }} Ar
             </label>
             <br />
-            <input type="text" name="nameAr" formControlName="nameAr" placeholder="{{'TITLE' | translate }} Ar" />
+            <input type="text" name="nameAr" formControlName="nameAr" placeholder="{{'NAME' | translate }} Ar" />
         </div>
         <br />
         <!-- <div
