@@ -26,6 +26,10 @@ export class CreateInstructorComponent implements OnInit {
     this.formGroup = new FormGroup({
       nameEn: new FormControl('', [Validators.required]),
       nameAr: new FormControl('', [Validators.required]),
+      overviewEn: new FormControl('', [Validators.required]),
+      overviewAr: new FormControl('', [Validators.required]),
+      bioEn: new FormControl('', [Validators.required]),
+      bioAr: new FormControl('', [Validators.required]),
       myImage: new FormControl(),
       // description: new FormControl('', [Validators.required]),
     });
@@ -39,6 +43,10 @@ export class CreateInstructorComponent implements OnInit {
       .createInstructor({
         nameEn: this.formGroup.get('nameEn').value,
         nameAr: this.formGroup.get('nameAr').value,
+        overviewEn: this.formGroup.get('overviewEn').value,
+        overviewAr: this.formGroup.get('overviewAr').value,
+        bioEn: this.formGroup.get('bioEn').value,
+        bioAr: this.formGroup.get('bioAr').value,
         image: this.myImage,
       })
       .subscribe(

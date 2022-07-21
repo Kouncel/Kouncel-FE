@@ -19,6 +19,38 @@
             <br />
             <input type="text" name="nameAr" formControlName="nameAr" placeholder="{{'NAME' | translate }} Ar" />
         </div>
+        <div
+            [ngClass]="{'input-error': formGroup?.dirty && formGroup?.get('overviewEn')?.invalid && formGroup?.get('overviewEn')?.dirty}">
+            <label>
+                Overview En
+            </label>
+            <br />
+            <input type="text" name="overviewEn" formControlName="overviewEn" placeholder="Overview En" />
+        </div>
+        <div
+            [ngClass]="{'input-error': formGroup?.dirty && formGroup?.get('overviewAr')?.invalid && formGroup?.get('overviewAr')?.dirty}">
+            <label>
+                Overview Ar
+            </label>
+            <br />
+            <input type="text" name="overviewAr" formControlName="overviewAr" placeholder="Overview Ar" />
+        </div>
+        <div
+            [ngClass]="{'input-error': formGroup?.dirty && formGroup?.get('bioEn')?.invalid && formGroup?.get('bioEn')?.dirty}">
+            <label>
+                Bio En
+            </label>
+            <br />
+            <input type="text" name="bioEn" formControlName="bioEn" placeholder="Bio En" />
+        </div>
+        <div
+            [ngClass]="{'input-error': formGroup?.dirty && formGroup?.get('bioAr')?.invalid && formGroup?.get('bioAr')?.dirty}">
+            <label>
+                Bio Ar
+            </label>
+            <br />
+            <input type="text" name="bioAr" formControlName="bioAr" placeholder="Bio Ar" />
+        </div>
         <br />
         <!-- <div
             [ngClass]="{'input-error': formGroup?.dirty && formGroup?.get('description')?.invalid && formGroup?.get('description')?.dirty}">
