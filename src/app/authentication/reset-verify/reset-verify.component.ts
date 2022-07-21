@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 import mixpanel from 'mixpanel-browser';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
 import { AuthenticationService } from '../authentication.service';
@@ -14,7 +15,8 @@ export class ResetVerifyComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,
     private authenticationService: AuthenticationService,
-    private notification: NzNotificationService) {
+    private notification: NzNotificationService,
+    translate: TranslateService) {
     this.route.queryParams.subscribe((params) => {
       this.email = params['email'];
     });

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'koun-register-success',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RegisterSuccessComponent implements OnInit {
 
-  constructor() { }
+  constructor(translate: TranslateService) { }
 
   ngOnInit(): void {
   }

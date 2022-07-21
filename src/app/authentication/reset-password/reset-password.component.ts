@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 import mixpanel from 'mixpanel-browser';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
 import { Subscription } from 'rxjs';
@@ -18,7 +19,8 @@ export class ResetPasswordComponent implements OnInit {
   constructor(
     private router: Router,
     private authenticationService: AuthenticationService,
-    private notification: NzNotificationService
+    private notification: NzNotificationService,
+    translate: TranslateService
   ) {}
 
   ngOnInit(): void {

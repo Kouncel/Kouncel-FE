@@ -2,11 +2,11 @@
     <br />
     <br />
     <h1>
-        Reset Your Password
+        {{"RESET-YOUR-PASSWORD" | translate}}
     </h1>
     <br />
     <p>
-        Please, Check your e-mail to reset your password
+        {{"CHECK-EMAIL-RESET" | translate}}
     </p>
     <br />
     <hr />
@@ -18,19 +18,18 @@
     <div class="row justify-content-center">
         <div class="col-md-4">
             <i class="fa fa-envelope grey no-underline" aria-hidden="true"></i>
-            <p style="margin-top: 20px;">An e-mail will be sent to your inbox with a reset password link, Please check
-                your inbox</p>
+            <p style="margin-top: 20px;">{{"AN-EMAIL-RESET" | translate}}</p>
             <br />
             <p class="grey no-underline">
-                E-mail: <a href="mailto:{{email}}" class="white">mailto:{{email}}</a>
+                {{"EMAIL" | translate}}:&nbsp;<a href="mailto:{{email}}" class="white">{{email}}</a>
             </p>
             <br />
             <br />
             <br />
             <br />
 
-            <p>Didn't receive verification e-mail? <a class="red" (click)="resend()"
-                    routerLinkActive="router-link-active">Resend</a></p>
+            <p>{{"DIDNT-RECEIVE-YOUR-EMAIL" | translate}}&nbsp;<a class="red" (click)="resend()"
+                    routerLinkActive="router-link-active">{{"RESEND" | translate}}</a></p>
         </div>
     </div>
 </div>
