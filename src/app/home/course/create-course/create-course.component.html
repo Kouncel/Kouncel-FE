@@ -1,4 +1,4 @@
-<h2>Create Course</h2>
+<h2>{{course ? 'Edit' : 'Create'}} Course</h2>
 <hr />
 <br />
 Name En *
@@ -69,4 +69,4 @@ Trailer
             </video>
     <br/><br/><hr style="display: block; width: 100%"/><br/><br/></div>
 
-<button (click)="create()" [disabled]="isLoading || !allowCreation"> <i *ngIf="isLoading" class="fa fa-spinner fa-pulse fa-fw"></i> Create</button>
+<button (click)="create()" [disabled]="(isLoading || !allowCreation) && !course"> <i *ngIf="isLoading" class="fa fa-spinner fa-pulse fa-fw"></i> {{course ? 'Save' : 'Create'}}</button>
